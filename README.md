@@ -1,1 +1,1 @@
-# wiz front
+# wiz
