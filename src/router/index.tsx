@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import Nav from "../components/Navbar";
-import Pages from "../pages/Pages";
+
+import KtWizHistory from "../pages/KtWizHistory";
+import KtWizAbout from "../pages/KtWizAbout";
 
 export const router = createBrowserRouter([
     {
@@ -8,8 +10,12 @@ export const router = createBrowserRouter([
         element: <Nav />,
         children: [
             {
-                path: "/pages",
-                element: <Pages />,
+                path: "/ktwiz/about",
+                element: <KtWizAbout />,
+            },
+            {
+                path: "/ktwiz/history",
+                element: <KtWizHistory />,
             },
         ],
     },
