@@ -7,7 +7,7 @@ type PageLocatorProps = {
 
 const PageLocator = ({pagePath, currentPage} : PageLocatorProps) => {
   return (
-    <div className="flex flex-row gap-2 items-center text-sm text-[#b7b7b7] right-0">
+    <div className="flex flex-row gap-2 items-center text-sm text-[#b7b7b7] absolute right-0 top-0">
         <IoMdHome />
         <span>HOME</span>
         <span>{pagePath}</span>
