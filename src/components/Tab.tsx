@@ -13,7 +13,7 @@ const [activeTab, setActiveTab] = useState(0);
   return (
     <>
     
-    <ul className="flex justify-center space-x-4">
+    <ul className="w-[1100px] bg-green-300 flex justify-center space-x-4">
         {tabs.map((tab, index) => (
             <li key={index}>
                 <Link
