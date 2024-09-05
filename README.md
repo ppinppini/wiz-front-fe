@@ -1,1 +1,1 @@
-#readme daeun
+# wiz
