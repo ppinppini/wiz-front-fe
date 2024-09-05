@@ -1,12 +1,22 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, Outlet } from "react-router-dom";
 
 const Nav = () => {
     const [isBlack, isSetBlack] = useState(false);
+    const navRef = useRef<HTMLDivElement>(null);
+    const [navHeight, setNavHeight] = useState(0);
+
+    useEffect(() => {
+        // 약간의 지연을 두고 높이를 다시 계산
+
+        if (navRef.current) {
+            setNavHeight(navRef.current.offsetHeight);
+        }
+    }, []);
 
     return (
         <>
-            <nav className="w-full group  fixed  ">
+            <nav ref={navRef} className="w-full group  fixed  ">
                 {/* 지속적인 영역 */}
                 <div
                     className=" flex justify-center gap-10 px-4 pt-6 pb-2 bg-black text-white  transition-colors duration-700 ease-in-out hover:bg-white hover:text-black"
@@ -159,6 +169,9 @@ const Nav = () => {
                     </div>
                 </div>
             </nav>
+            <div style={{ paddingTop: `${navHeight}px` }}>
+                <Outlet />
+            </div>
         </>
     );
 };
