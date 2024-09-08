@@ -2,44 +2,59 @@ import { useEffect, useState } from 'react';
 import MainGameSchedule from '../assets/main-game-schedule.png'
 import DoosanBearsLogo from '../assets/DoosanBearsLogo.png'
 import KtWizLogo from '../assets/KtWizLogo.png'
+import { GameInfo } from '../types/types';
+import { api } from '../api/api'
 
 const MainPage = () => {
-  // 각각의 데이터를 state로 저장
-  const [currentGame, setCurrentGame] = useState<any>(null);
-  // const [nextGame, setNextGame] = useState<any>(null);
-  // const [prevGame, setPrevGame] = useState<any>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [currentGame, setCurrentGame] = useState<GameInfo | null>(null);
+  const [prevGame, setPrevGame] = useState<GameInfo | null>(null);
+  const [nextGame, setNextGame] = useState<GameInfo | null>(null);
+  const [displayedGame, setDisplayedGame] = useState<GameInfo | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [currentGameDate, setCurrentGameDate] = useState("");
-
+  
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://43.201.249.197/api/game/recentGames');
-        const result = await response.json();
-        // 각 데이터를 state에 저장
-        setCurrentGame(result.data.current);
-        // setNextGame(result.data.next);
-        // setPrevGame(result.data.prev);
-        setLoading(false);
-      } catch (error: any) {
-        setError(error.message);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-    
+    setLoading(true);
+    api.getRecentGame()
+    .then((data) => {
+      setCurrentGame(data.current);
+      setPrevGame(data.prev);
+      setNextGame(data.next);
+      setDisplayedGame(data.current);
+      setLoading(false);
+    })
+    .catch((err) => {
+      setError(err.message);
+      setLoading(false);
+    });
   }, []);
   
-  if (loading) {
-    return <div>Loading...</div>; // 데이터가 로딩 중일 때
+  if (!currentGame) {
+    return <div>현재 게임에 대한 정보가 없습니다.</div>; 
   }
-  
-  if (error) {
-    return <div>Error: {error}</div>; // 에러가 발생했을 때
+
+  if (!displayedGame) {
+    return <div>출력되는게임에 대한 정보가 없습니다.</div>; 
   }
-  
+
+  // prev 버튼 핸들러
+  const handlePrevClick = () => {
+    if (displayedGame === currentGame && prevGame) {
+      setDisplayedGame(prevGame); // prevGame으로 변경
+    } else if (displayedGame === nextGame && currentGame) {
+      setDisplayedGame(currentGame); // nextGame에서 currentGame으로 변경
+    }
+  };
+
+  // next 버튼 핸들러
+  const handleNextClick = () => {
+    if (displayedGame === currentGame && nextGame) {
+      setDisplayedGame(nextGame); // currentGame에서 nextGame으로 변경
+    } else if (displayedGame === prevGame && currentGame) {
+      setDisplayedGame(currentGame); // prevGame에서 currentGame으로 변경
+    }
+  };
+
   return (
     // GAME SCHEDULE SECTION CONTAINER
     <div className="flex flex-col items-center">
@@ -53,19 +68,29 @@ const MainPage = () => {
         <div className="w-[37.8125em] h-[13.875em] pr-[1.25em]">
         {/* GAME INFO CARD HEADER */}
           <div className='flex flex-row justify-between items-center text-3xl border-b-[0.0625em]'>
-            <img src="https://www.ktwiz.co.kr/v2/imgs/ico-24-navi-prev.svg" alt="prev"/>
+            <img 
+              src="https://www.ktwiz.co.kr/v2/imgs/ico-24-navi-prev.svg" 
+              alt="prev"
+              onClick={handlePrevClick}
+              className='cursor-pointer'
+            />
               {/* GAME INFO CARD HEADER CENTER */}
               <div className='text-sm flex flex-col items-center w-full font-sans'>
-                {/* CURRENT GAME DATE */}
+                {/* DISPLAYED GAME DATE */}
                 <div className='noto text-[1.25em] font-bold mb-[0.625em] text-[#35383e]'>
-                  {`${currentGame.gyear}.${currentGame.gmonth}.${currentGame.gday}`}
+                  {`${displayedGame.gyear}.${displayedGame.gmonth}.${displayedGame.gday}`}
                 </div>
-                {/* CURRENT GAME LOCATION & TIME */}
+                {/* DISPLAYED GAME LOCATION & TIME */}
                 <div className='noto text-[0.875rem] text-[#717781]'>
-                  {`${currentGame.stadium} ${currentGame.gtime}`}
+                  {`${displayedGame.stadium} ${displayedGame.gtime}`}
                 </div>
               </div>
-            <img src="https://www.ktwiz.co.kr/v2/imgs/ico-24-navi-next.svg" alt="next"/>
+            <img 
+              src="https://www.ktwiz.co.kr/v2/imgs/ico-24-navi-next.svg" 
+              alt="next"
+              onClick={handleNextClick}
+              className='cursor-pointer'
+            />
           </div>
           {/* GAME INFO CARD BODY */}
           <div className=' pt-[1.125em] w-[36.5625em] h-[9.375em] flex flex-row justify-between items-'>
@@ -76,15 +101,21 @@ const MainPage = () => {
                 <img src={DoosanBearsLogo} alt="DoosanBearsLogo" />
               </div>
               {/* TEAM1 NAME */}
-              {currentGame.matchTeamName}
+              {displayedGame.matchTeamName}
             </div>
             {/* CENTER */}
             <div className='w-[16.5625em] h-[8.25em] box-border flex flex-col items-center justify-center'>
               {/* SCORE */}
               <div>
-                <span className='inline-block w-[108px] h-[94px] text-center text-[4em] font-bold'>{currentGame.visitScore}</span>
-                <span className='inline-block text-[3.125em]'>:</span>
-                <span className='inline-block w-[108px] h-[94px] text-center text-[4em] font-bold'>{currentGame.homeScore}</span>
+                <span className='inline-block w-[108px] h-[94px] text-center text-[4em] font-bold'>
+                  {displayedGame.visitScore ?? '-'}
+                </span>
+                <span className='inline-block text-[3.125em]'>
+                  :
+                </span>
+                <span className='inline-block w-[108px] h-[94px] text-center text-[4em] font-bold'>
+                  {displayedGame.homeScore ?? '-'}
+                </span>
               </div>
               {/* GAME DETAIL BUTTON */}
               <div>
@@ -101,7 +132,7 @@ const MainPage = () => {
                 <img src={KtWizLogo} alt="KtWizLogo" />
               </div>
               {/* TEAM2 NAME */}
-              {currentGame.home}
+              {displayedGame.home}
             </div>
           </div>
         </div>
