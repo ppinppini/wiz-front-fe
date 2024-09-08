@@ -16,7 +16,7 @@ const Nav = () => {
 
     return (
         <>
-            <nav ref={navRef} className="w-full group  fixed  ">
+            <nav ref={navRef} className="w-full group z-50 fixed  ">
                 {/* 지속적인 영역 */}
                 <div
                     className=" flex justify-center gap-10 px-4 pt-6 pb-2 bg-black text-white  transition-colors duration-700 ease-in-out hover:bg-white hover:text-black"

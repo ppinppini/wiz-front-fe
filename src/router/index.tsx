@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import Nav from "../components/Navbar";
 
-import KtWizHistory from "../pages/KtWizHistory";
-import KtWizAbout from "../pages/KtWizAbout";
+import KtWizHistory from "../pages/info/History";
+import KtWizAbout from "../pages/info/About";
 import Schedule from "../pages/game/Schedule";
 
 export const router = createBrowserRouter([
