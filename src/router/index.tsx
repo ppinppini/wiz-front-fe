@@ -3,6 +3,7 @@ import Nav from "../components/Navbar";
 
 import KtWizHistory from "../pages/KtWizHistory";
 import KtWizAbout from "../pages/KtWizAbout";
+import Schedule from "../pages/game/Schedule";
 
 export const router = createBrowserRouter([
     {
@@ -16,6 +17,10 @@ export const router = createBrowserRouter([
             {
                 path: "/ktwiz/history",
                 element: <KtWizHistory />,
+            },
+            {
+                path: "/game/regular/schedule",
+                element: <Schedule />,
             },
         ],
     },
