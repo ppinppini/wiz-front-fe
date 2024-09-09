@@ -2,30 +2,33 @@ import { useEffect, useState } from 'react';
 import MainGameSchedule from '../assets/main-game-schedule.png'
 import DoosanBearsLogo from '../assets/DoosanBearsLogo.png'
 import KtWizLogo from '../assets/KtWizLogo.png'
-import { GameInfo } from '../types/types';
-import { api } from '../api/api'
+import { GameInfo } from '../../types/types';
+import { api } from '../../api/api'
+import { Link } from 'react-router-dom';
 
-const MainPage = () => {
+const MainPageGameSchedule = () => {
   const [currentGame, setCurrentGame] = useState<GameInfo | null>(null);
   const [prevGame, setPrevGame] = useState<GameInfo | null>(null);
   const [nextGame, setNextGame] = useState<GameInfo | null>(null);
   const [displayedGame, setDisplayedGame] = useState<GameInfo | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  // const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   
   useEffect(() => {
-    setLoading(true);
+    // setLoading(true);
     api.getRecentGame()
     .then((data) => {
       setCurrentGame(data.current);
       setPrevGame(data.prev);
       setNextGame(data.next);
       setDisplayedGame(data.current);
-      setLoading(false);
+      // setLoading(false);
     })
     .catch((err) => {
       setError(err.message);
-      setLoading(false);
+      // setLoading(false);
+      console.log("ERROR : ", error);
+      
     });
   }, []);
   
@@ -77,11 +80,11 @@ const MainPage = () => {
               {/* GAME INFO CARD HEADER CENTER */}
               <div className='text-sm flex flex-col items-center w-full font-sans'>
                 {/* DISPLAYED GAME DATE */}
-                <div className='noto text-[1.25em] font-bold mb-[0.625em] text-[#35383e]'>
+                <div className='notokr text-[1.25em] font-bold mb-[0.625em] text-[#35383e]'>
                   {`${displayedGame.gyear}.${displayedGame.gmonth}.${displayedGame.gday}`}
                 </div>
                 {/* DISPLAYED GAME LOCATION & TIME */}
-                <div className='noto text-[0.875rem] text-[#717781]'>
+                <div className='notokr text-[0.875rem] text-[#717781]'>
                   {`${displayedGame.stadium} ${displayedGame.gtime}`}
                 </div>
               </div>
@@ -94,54 +97,58 @@ const MainPage = () => {
           </div>
           {/* GAME INFO CARD BODY */}
           <div className=' pt-[1.125em] w-[36.5625em] h-[9.375em] flex flex-row justify-between items-'>
-            {/* TEAM1 */}
-            <div className='noto w-[10em] h-[8.25em] box-border flex flex-col items-center justify-center font-bold'>
-              {/* TEAM1 EMBLEM */}
+            {/* AWAY TEAM */}
+            <div className='notokr w-[10em] h-[8.25em] box-border flex flex-col items-center justify-center font-bold'>
+              {/* AWAY TEAM EMBLEM */}
               <div className='w-[6.25em] h-[6.25em]'>
                 <img src={DoosanBearsLogo} alt="DoosanBearsLogo" />
               </div>
-              {/* TEAM1 NAME */}
-              {displayedGame.matchTeamName}
+              {/* AWAY TEAM */}
+              {displayedGame.visit}
             </div>
             {/* CENTER */}
             <div className='w-[16.5625em] h-[8.25em] box-border flex flex-col items-center justify-center'>
               {/* SCORE */}
               <div>
                 <span className='inline-block w-[108px] h-[94px] text-center text-[4em] font-bold'>
-                  {displayedGame.visitScore ?? '-'}
+                  {displayedGame.visitScore ?? '0'}
                 </span>
-                <span className='inline-block text-[3.125em]'>
+                <span className='inline-block text-[3.125em] h-[94px]'>
                   :
                 </span>
                 <span className='inline-block w-[108px] h-[94px] text-center text-[4em] font-bold'>
-                  {displayedGame.homeScore ?? '-'}
+                  {displayedGame.homeScore ?? '0'}
                 </span>
               </div>
               {/* GAME DETAIL BUTTON */}
-              <div>
-                <button className='flex flex-row'>
-                  경기정보
-                  <img src="https://www.ktwiz.co.kr/v2/imgs/ico-18-navi-next.svg" alt="nextArrow" />
-                </button>
+              <div className='w-[16.5625em] h-[1.6875em] mt-[-0.625em] flex justify-center'>
+                <Link to={`/regular/boxscore/${displayedGame.gameDate}/${displayedGame.gmkey}`}>
+                  <div 
+                    className='notokr relative flex flex-row justify-center items-center py-[7px] pr-[32px] pl-[12px] bg-gray-900 bg-opacity-50 text-[0.8125em] text-white rounded-md cursor-pointer'
+                  >
+                      경기정보
+                      <img src="https://www.ktwiz.co.kr/v2/imgs/ico-18-navi-next.svg" alt="" className='absolute top-[0.3125em] right-[0.625em]'/>
+                  </div>
+                </Link>
               </div>
             </div>
-            {/* TEAM2 */}
-            <div className='noto w-[10em] h-[8.25em] box-border flex flex-col items-center justify-center font-bold'>
-              {/* TEAM2 EMBLEM */}
+            {/* HOME TEAM */}
+            <div className='notokr w-[10em] h-[8.25em] box-border flex flex-col items-center justify-center font-bold'>
+              {/* HOME TEAM EMBLEM */}
               <div className='w-[6.25em] h-[6.25em]'>
                 <img src={KtWizLogo} alt="KtWizLogo" />
               </div>
-              {/* TEAM2 NAME */}
+              {/* HOME TEAM NAME */}
               {displayedGame.home}
             </div>
           </div>
         </div>
         {/* VIDEO CONTAINER */}
         <div className="w-[24.6875em] h-[13.875em] bg-blue-300"> 
-          비디오 부분
+          {/* 비디오 부분 */}
         </div>
       </div>
     </div>
   );
 }
-export default MainPage
+export default MainPageGameSchedule;
