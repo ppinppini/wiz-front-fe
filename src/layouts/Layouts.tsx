@@ -1,6 +1,5 @@
 import Nav from "../components/Navbar";
 
-
 const Layouts = () => {
     return (
         <>
