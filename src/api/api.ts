@@ -34,12 +34,33 @@ export const api = {
     }
   },
   recentNewsFetcher: async () => {
-    const response = await fetch("http://43.201.249.197/api/media/hotissue?count=10");
-      return response.json();
+
+    const response = await fetch(`${API_BASE_URL}/media/hotissue?count=10`);
+    return response.json();
   },
   // 메인페이지의 '하이라이트 영상' 을 불러오는 api
   highlightsVideoFetcher: async () => {
-      const response = await fetch("http://43.201.249.197/api/media/highlightlist?count=10");
-      return response.json();
+    const response = await fetch(
+      `${API_BASE_URL}/media/highlightlist?count=10`
+    );
+    return response.json();
+  },
+  //메인 페이지의 팀 순위 api
+  getGameRank: async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/game/ktwizteamrank`);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const jsonData = await response.json();
+      return jsonData.data.ktWizTeamRank;
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new Error(error.message);
+      } else {
+        throw new Error("알 수 없는 에러 발생");
+      }
+    }
+
   },
 };

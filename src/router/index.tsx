@@ -1,11 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 // import Nav from "../components/Navbar";
 
-import KtWizHistory from "../pages/KtWizHistory";
-import KtWizAbout from "../pages/KtWizAbout";
+import KtWizHistory from "../pages/info/History";
+import KtWizAbout from "../pages/info/About";
 import Schedule from "../pages/game/Schedule";
+<<<<<<< HEAD
 import Layouts from "../layouts/Layouts";
 import Slide from '../components/Slide';
+=======
+import Main from "../pages/main/Main";
+>>>>>>> 1cfdc61becd86a5f3b2ce46be500ab3a721d5a14
 
 export const router = createBrowserRouter([
     {
@@ -13,8 +17,10 @@ export const router = createBrowserRouter([
         element: <Layouts />,
         children: [
             {
-                path: "/",  // 루트 경로에 Slide.tsx를 추가
-                element: <Slide />,  // Slide 컴포넌트 렌더링
+
+                path: "/",
+                element: <Main />,
+
             },
             {
                 path: "/ktwiz/about",
