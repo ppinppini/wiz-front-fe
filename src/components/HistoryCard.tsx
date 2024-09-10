@@ -4,7 +4,7 @@ import { THistoryDataType } from "../types/types";
 type HistoryCardProps = {
     historyData: THistoryDataType[];
 };
-
+//KT Wiz란? 페이지의 구단 연혁 카드를 보여주는 컴포넌트
 const HistoryCard = ({ historyData }: HistoryCardProps) => {
     return (
         <div className="px-40 relative">
