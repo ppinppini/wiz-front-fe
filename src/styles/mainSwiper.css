@@ -1,0 +1,9 @@
+.swiper-button-next,
+.swiper-button-prev {
+    @apply text-blue-50; /* Tailwind 클래스 사용 */
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    @apply text-red-500; /* hover 상태에서 빨간색으로 변경 */
+}
