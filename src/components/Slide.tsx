@@ -74,7 +74,7 @@ const Slide = () => {
 
       
       <div className='controller'>
-        <button className="absolute w-[350px] h-[48px] px-8 py-2 text-sm font-extrabold text-center left-[600px] text-black border border-black rounded-lg hover:bg-gray-100">더 많은 사진보기</button>  
+        <button className="z-30 cursor-pointer absolute w-[350px] h-[48px] px-8 py-2 text-sm font-extrabold text-center left-[600px] text-black border border-black rounded-lg hover:bg-gray-100">더 많은 사진보기</button>  
       </div>   
       
 

@@ -6,9 +6,9 @@ import KtWizAbout from "../pages/info/About";
 import Schedule from "../pages/game/Schedule";
 
 import Layouts from "../layouts/Layouts";
-import Slide from '../components/Slide';
+//import Slide from '../components/Slide';
 
-//import Main from "../pages/main/Main";
+import Main from "../pages/main/Main";
 
 
 export const router = createBrowserRouter([
@@ -19,7 +19,7 @@ export const router = createBrowserRouter([
             {
 
                 path: "/",
-                element: <Slide />,
+                element: <Main />,
 
             },
             {
