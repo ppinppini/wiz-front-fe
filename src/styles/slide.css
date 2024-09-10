@@ -1,0 +1,67 @@
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.5s ease;
+    border-radius: 10px;
+    width: 412px; /* masking 너비 */
+    height: 382px; /* masking 높이 */
+  }
+
+  .swiper-slide.active {
+    border-radius: 10px;
+    width: 412px; /* 기본 너비 */
+    height: 446px; /* 기본 높이 */
+  }
+
+
+  .image-container.masked {
+    transition: filter 0.5s ease;
+    filter: brightness(1); /* 기본적으로 마스킹 적용 */
+    background-color: hsla(0, 0%, 100%, .6); /* 기존 배경색을 투명한 흰색으로 */
+    //transform: scale(1);
+    width: 353px; /* masking 너비 */
+    height: 382px; /* masking 높이 */
+    border-radius: 10px;
+   
+    
+  }
+  
+  .image-container.active {
+    //transform: scale(1.2); /* 활성화된 슬라이드는 확대 */
+    filter: none; /* 마스킹 제거 */
+    box-shadow: 0 30px 30px rgba(245, 50, 50, .3);
+    border-radius: 10px;
+    width: 412px; /* 기본 너비 */
+    height: 446px; /* 기본 높이 */
+    
+    
+  }
+  
+   
+   
+  img {
+    width: 100%; /* 슬라이드 크기에 맞게 이미지 크기 조정 */
+    height: 100%; /* 슬라이드 크기에 맞게 이미지 높이 조정 */
+    object-fit: cover; /* 이미지를 슬라이드 안에 꽉 채움 */
+    border-radius: 10px;
+    
+    //transition: all 0.5s ease;
+  }
+
+  html, body {
+    height: 100%; /* 전체 페이지가 100% 높이를 가집니다 */
+  }
+
+  .swiper {
+    padding-top: 70px; /*32px로 추후에 조정하시오!!!*/
+  } 
+
+  .swiper-wrapper {
+    height: 510px;
+    margin-left: -30px;
+  }
+
+  .image-container.masked img {
+    opacity: 0.4;
+  }
