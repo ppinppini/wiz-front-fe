@@ -24,14 +24,14 @@ const Nav = () => {
                     onMouseLeave={() => isSetBlack(false)}
                 >
                     <div>
-                        <img src={isBlack ? "https://www.ktwiz.co.kr/v2/imgs/img-logo-black.svg" : "https://www.ktwiz.co.kr/v2/imgs/img-logo.svg"} alt="KT로고" className="w-24" />
+                        <Link to={"/"}><img src={isBlack ? "https://www.ktwiz.co.kr/v2/imgs/img-logo-black.svg" : "https://www.ktwiz.co.kr/v2/imgs/img-logo.svg"} alt="KT로고" className="w-24" /></Link>
                     </div>
                     <div className="flex items-end ">
-                        <ul className="flex gap-14 items-end text-[17px] ">
-                            <li className="relative  ">
-                                <div className="border-b-2 border-transparent hover:border-red-500">kt wiz</div>
+                        <ul className="flex gap-14 items-end text-[17px]  ">
+                            <li className="relative ">
+                                <div className="border-b-2 border-transparent hover:border-red-500 ">kt wiz</div>
 
-                                <ul className="  absolute left-0 top-full hidden text-[14px] group-hover:block  space-y-2  mt-2 w-20   ">
+                                <ul className="  absolute left-0 top-full hidden text-[14px] group-hover:block  space-y-2  mt-2 w-20 ">
                                     <li>
                                         <Link to={"/ktwiz/about"}>KT Wiz는?</Link>
                                     </li>
@@ -54,7 +54,7 @@ const Nav = () => {
                             </li>
                             <li className="relative">
                                 <div className="border-b-2 border-transparent hover:border-red-500">wiz park</div>
-                                <ul className="absolute left-0 top-full hidden text-[14px] group-hover:block space-y-2 mt-2 w-36">
+                                <ul className="absolute left-0 top-full hidden text-[14px] group-hover:block space-y-2 mt-2 w-36 ">
                                     <li>
                                         <Link to={"/wizpark/intro"}>수원 kt wiz park</Link>
                                     </li>
