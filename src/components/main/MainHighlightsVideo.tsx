@@ -1,9 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
+
 import { api } from "../../api/api";
+
 import { Link } from "react-router-dom";
 import React from "react";
 import { nanoid } from "nanoid";
 import { TMainHighlightsVideoListType } from "../../types/types";
+
 // 하이라이트 비디오를 보여주는 컴포넌트
 const MainHighlightsVideo = () => {
   const { isLoading, isError, data, error } = useQuery({
@@ -32,7 +35,7 @@ const MainHighlightsVideo = () => {
                   <img
                     src={video.imgFilePath}
                     alt="썸네일 이미지"
-                    className="w-full h-auto block rounded-md"
+                    className="block w-full h-auto rounded-md"
                   />
                   <div className="flex justify-between w-full mt-2">
                     <div className="inline-block mb-4 rounded-[12px] bg-gradient-to-r from-[#f53232] via-[#cc65de] to-[#2ab2c6] px-2 py-1 text-[11px] text-white font-bold">
@@ -55,7 +58,7 @@ const MainHighlightsVideo = () => {
             ))}
         </ul>
 
-        <div className="mt-4 border rounded-md border-black  px-4 py-2 cursor-pointer text-center w-80">
+        <div className="px-4 py-2 mt-4 text-center border border-black rounded-md cursor-pointer w-80">
           더 많은 영상 보기
         </div>
       </div>
@@ -65,7 +68,7 @@ const MainHighlightsVideo = () => {
     <>
       <div className="flex flex-col justify-between items-center min-h-[500px] relative z-10">
         <img
-          className="block absolute top-0"
+          className="absolute top-0 block"
           src="https://www.ktwiz.co.kr/v2/imgs/img-title-video@2x.png"
           alt="wizVideo이미지"
         />
@@ -75,12 +78,13 @@ const MainHighlightsVideo = () => {
             title={data.data.list[0].artTitle}
             allow="autoplay"
             allowFullScreen
-            className="absolute top-32 left-0 w-full h-full rounded-3xl z-20"
+            className="absolute left-0 z-20 w-full h-full top-32 rounded-3xl"
           ></iframe>
         </div>
       </div>
       <MainHighlightsVideoList />
     </>
   );
+
 };
 export default React.memo(MainHighlightsVideo);
