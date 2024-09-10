@@ -9,7 +9,7 @@ const MainBottomCard = () => {
     <>
     <div className="flex space-x-4 box-border
     relative mx-auto w-full max-w-[1200px] px-[50px] mb-[160px]
-    mt-[300px]">
+    mt-[140px]">
     <OnlineStoreCard/>
     <PlayerOfTheMonthCard/>
     </div>
