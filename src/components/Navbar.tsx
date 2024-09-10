@@ -16,10 +16,10 @@ const Nav = () => {
 
     return (
         <>
-            <nav ref={navRef} className="w-full group  fixed  ">
+            <nav ref={navRef} className="fixed w-full group ">
                 {/* 지속적인 영역 */}
                 <div
-                    className=" flex justify-center gap-10 px-4 pt-6 pb-2 bg-black text-white  transition-colors duration-700 ease-in-out hover:bg-white hover:text-black"
+                    className="flex justify-center gap-10 px-4 pt-6 pb-2 text-white transition-colors duration-700 ease-in-out bg-black hover:bg-white hover:text-black"
                     onMouseEnter={() => isSetBlack(true)}
                     onMouseLeave={() => isSetBlack(false)}
                 >
@@ -28,7 +28,7 @@ const Nav = () => {
                     </div>
                     <div className="flex items-end ">
                         <ul className="flex gap-14 items-end text-[17px] ">
-                            <li className="relative  ">
+                            <li className="relative ">
                                 <div className="border-b-2 border-transparent hover:border-red-500">kt wiz</div>
 
                                 <ul className="  absolute left-0 top-full hidden text-[14px] group-hover:block  space-y-2  mt-2 w-20   ">
