@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 import Tab from "../../components/Tab";
 import PageLocator from "../../components/PageLocator";
+// import GameInfoCardContainer from "../../components/GameInfoCardContainer";
 import TopBanner from "../../components/TopBanner";
 
 const Schedule = () => {
@@ -30,6 +31,7 @@ const Schedule = () => {
         <PageLocator pagePath='> Game > 정규 리그 >' currentPage='경기 일정' />
 
         {/* 상단 게임 정보 */}
+        {/* <GameInfoCardContainer /> */}
 
         {/* 월간 게임 정보 */}
       </div>
