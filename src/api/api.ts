@@ -34,6 +34,7 @@ export const api = {
     }
   },
   recentNewsFetcher: async () => {
+
     const response = await fetch(`${API_BASE_URL}/media/hotissue?count=10`);
     return response.json();
   },
@@ -60,5 +61,6 @@ export const api = {
         throw new Error("알 수 없는 에러 발생");
       }
     }
+
   },
 };

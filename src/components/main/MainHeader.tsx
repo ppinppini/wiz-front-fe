@@ -1,8 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
+
 import { api } from "../../api/api";
+
 import { Link } from "react-router-dom";
 import { FaAngleLeft } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa6";
+
 
 const MainHeader = () => {
   const { isError, isLoading, data } = useQuery({
@@ -16,9 +19,9 @@ const MainHeader = () => {
     <div
       className={`bg-[url('https://www.ktwiz.co.kr/v2/imgs/dummy/main/2024_season_bg_web.png')]  px-40  relative bg-center  text-[white]  bg-no-repeat w-full h-[1000px] box-border`}
     >
-      <div className="flex justify-between items-center relative h-full">
-        <FaAngleLeft className="absolute top-1/2 transform -translate-y-1/2 left-4 text-9xl cursor-pointer" />
-        <FaAngleRight className="absolute top-1/2 transform -translate-y-1/2 right-4 text-9xl cursor-pointer" />
+      <div className="relative flex items-center justify-between h-full">
+        <FaAngleLeft className="absolute transform -translate-y-1/2 cursor-pointer top-1/2 left-4 text-9xl" />
+        <FaAngleRight className="absolute transform -translate-y-1/2 cursor-pointer top-1/2 right-4 text-9xl" />
       </div>
       <div className="absolute bottom-0 block w-[33.3333%] p-[10px] pb-10 ">
         <div className=" inline-block mb-4 rounded-[12px] bg-gradient-to-r from-[#f53232] via-[#cc65de] to-[#2ab2c6] px-2 py-1 text-[11px] text-white font-bold">
@@ -34,5 +37,6 @@ const MainHeader = () => {
       </div>
     </div>
   );
+
 };
 export default MainHeader;
