@@ -1,10 +1,8 @@
-import Nav from "../components/Navbar";
-
 const Layouts = () => {
-    return (
-        <>
-            <Nav></Nav>
-        </>
-    );
-};
-export default Layouts;
+  return (
+    <>
+      <h1>Layouts Component</h1>
+    </>
+  );
+}
+export default Layouts
