@@ -1,3 +1,4 @@
+import { api } from '../api/api';
 import ktLogo from '../assets/ktLogo.svg'
 import { useEffect, useState } from 'react';
 
@@ -14,8 +15,7 @@ const PlayerOfTheMonthCard = () => {
         const fetchPlayerData = async()=>{
             try {
                 // API 호출
-                const response = await fetch('http://43.201.249.197/api/media/monthlyPlayer');
-                const data = await response.json();
+                const data = await api.getPlayerOfTheMonth();
                 //console.log(data);
                 setPlayer({
                     num: data.num, //선수 번호
