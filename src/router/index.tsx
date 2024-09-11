@@ -9,6 +9,7 @@ import Layouts from "../layouts/Layouts";
 //import Slide from '../components/Slide';
 
 import Main from "../pages/main/Main";
+import Pitchersdetail from "../pages/players/details/Pitchersdetail";
 
 
 export const router = createBrowserRouter([
@@ -34,6 +35,9 @@ export const router = createBrowserRouter([
                 path: "/game/regular/schedule",
                 element: <Schedule />,
             },
+            {   path: "/player/pitcher/details",
+                element: <Pitchersdetail/>,
+            }
         ],
     },
 ]);
