@@ -23,7 +23,7 @@ const formatBirthDate = (birth: string) => {
   return `${year}.${month}.${day}`;
 };
 
-const PlayerProfile = () => {
+const Pitchersdetail = () => {
   const [playerData, setPlayerData] = useState<PlayerData | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -120,4 +120,4 @@ const PlayerProfile = () => {
   );
 };
 
-export default PlayerProfile;
+export default Pitchersdetail;
