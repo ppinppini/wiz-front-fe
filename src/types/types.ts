@@ -1,5 +1,5 @@
 /** 경기 데이터 타입 */
-export type GameInfo = {
+export type TGameInfo = {
   displayDate: string;
   game: string;
   gameDate: number;
@@ -31,7 +31,7 @@ export type GameInfo = {
   visitScore?: number;
   visitStarter?: string;
 };
-export type HighlightVideo = {
+export type TMainHighlightVideo = {
   artcTitle: string;
   imgFilePath: string;
   videoLink: string;
