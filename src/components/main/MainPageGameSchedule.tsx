@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import GameContainer from '../game/GameContainer';
 import MainGameSchedule from "../../assets/main-game-schedule.png";
 import { api } from '../../api/api';
-import { GameInfo } from '../../types/types';
+import { TGameInfo } from '../../types/types';
 
 const MainPageGameSchedule = () => {
-  const [currentGame, setCurrentGame] = useState<GameInfo | null>(null);
-  const [prevGame, setPrevGame] = useState<GameInfo | null>(null);
-  const [nextGame, setNextGame] = useState<GameInfo | null>(null);
-  const [displayedGame, setDisplayedGame] = useState<GameInfo | null>(null);
+  const [currentGame, setCurrentGame] = useState<TGameInfo | null>(null);
+  const [prevGame, setPrevGame] = useState<TGameInfo | null>(null);
+  const [nextGame, setNextGame] = useState<TGameInfo | null>(null);
+  const [displayedGame, setDisplayedGame] = useState<TGameInfo | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   // 이전 버튼 클릭 핸들러

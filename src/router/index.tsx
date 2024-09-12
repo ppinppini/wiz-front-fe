@@ -3,12 +3,13 @@ import { createBrowserRouter } from "react-router-dom";
 
 import KtWizHistory from "../pages/info/History";
 import KtWizAbout from "../pages/info/About";
-import Schedule from "../pages/game/Schedule";
 
 import Layouts from "../layouts/Layouts";
 //import Slide from '../components/Slide';
 
 import Main from "../pages/main/Main";
+import Schedule from "../pages/game/Schedule";
+import RankingRecord from "../pages/game/RankingRecord";
 
 
 export const router = createBrowserRouter([
@@ -31,7 +32,7 @@ export const router = createBrowserRouter([
                 element: <KtWizHistory />,
             },
             {
-                path: "/game/regular/schedule",
+                path: "/game/schedule",
                 element: <Schedule />,
             },
         ],

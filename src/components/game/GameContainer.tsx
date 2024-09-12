@@ -3,7 +3,7 @@ import TeamInfo from './TeamInfo';
 import GameResult from './GameResult';
 import GameInfo from './GameInfo';
 
-interface GameListProps {
+interface GameContainerProps {
   gameInfo: {
     homeTeam: string;
     awayTeam: string;
@@ -21,7 +21,7 @@ interface GameListProps {
   handleNextBtnClick: () => void
 }
 
-const GameContainer: React.FC<GameListProps> = ({ gameInfo, handlePrevBtnClick, handleNextBtnClick }) => {
+const GameContainer: React.FC<GameContainerProps> = ({ gameInfo, handlePrevBtnClick, handleNextBtnClick }) => {
   
   return (
     <>
