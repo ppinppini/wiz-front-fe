@@ -16,10 +16,10 @@ const Nav = () => {
 
     return (
         <>
-            <nav ref={navRef} className="w-full group z-50 fixed  ">
+            <nav ref={navRef} className="fixed z-50 w-full group ">
                 {/* 지속적인 영역 */}
                 <div
-                    className=" flex justify-center gap-10 px-4 pt-6 pb-2 bg-black text-white  transition-colors duration-700 ease-in-out hover:bg-white hover:text-black"
+                    className="flex justify-center gap-10 px-4 pt-6 pb-2 text-white transition-colors duration-700 ease-in-out bg-black  hover:bg-white hover:text-black"
                     onMouseEnter={() => isSetBlack(true)}
                     onMouseLeave={() => isSetBlack(false)}
                 >
@@ -27,7 +27,8 @@ const Nav = () => {
                         <Link to={"/"}><img src={isBlack ? "https://www.ktwiz.co.kr/v2/imgs/img-logo-black.svg" : "https://www.ktwiz.co.kr/v2/imgs/img-logo.svg"} alt="KT로고" className="w-24" /></Link>
                     </div>
                     <div className="flex items-end ">
-                        <ul className="flex gap-14 items-end text-[17px]  ">
+
+                        <ul className="flex gap-14 items-end text-[17px]">
                             <li className="relative ">
                                 <div className="border-b-2 border-transparent hover:border-red-500 ">kt wiz</div>
 
