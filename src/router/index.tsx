@@ -10,6 +10,7 @@ import Layouts from "../layouts/Layouts";
 import Main from "../pages/main/Main";
 import Schedule from "../pages/game/Schedule";
 import RankingRecord from "../pages/game/RankingRecord";
+import Pitchersdetail from "../pages/players/details/Pitchersdetail";
 
 
 export const router = createBrowserRouter([
@@ -35,6 +36,9 @@ export const router = createBrowserRouter([
                 path: "/game/schedule",
                 element: <Schedule />,
             },
+            {   path: "/player/pitcher/details",
+                element: <Pitchersdetail/>,
+            }
         ],
     },
 ]);

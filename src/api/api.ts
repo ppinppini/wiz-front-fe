@@ -42,4 +42,9 @@ export const api = {
     const data = await apiFetch("/game/ktwizteamrank");
     return data.data.ktWizTeamRank;
   },
+  // 메인 페이지 하단의 '이달의 선수' api
+  getPlayerOfTheMonth: async () => {
+    const data = await apiFetch("/media/monthlyPlayer");
+    return data;
+  },
 };
