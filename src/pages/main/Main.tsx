@@ -1,7 +1,7 @@
 
-import MainBottomCard from "../../components/Main/MainBottomCard";
-import MainHeader from "../../components/Main/MainHeader";
-import MainHighlightsVideo from "../../components/Main/MainHighlightsVideo";
+import MainBottomCard from "../../components/main/MainBottomCard";
+import MainHeader from "../../components/main/MainHeader";
+import MainHighlightsVideo from "../../components/main/MainHighlightsVideo";
 import Slide from '../../components/Slide';
 
 const Main = () => {
