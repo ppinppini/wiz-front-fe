@@ -34,7 +34,7 @@ const Slide = () => {
 
 
   return (
-    <div className='relative w-full'>
+    <div className='relative w-full slide-container'>
       <Swiper
         onSlideChange={handleSlideChange}
         centeredSlides={true}
