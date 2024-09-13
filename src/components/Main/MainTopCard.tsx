@@ -8,7 +8,7 @@ const MainTopCard = () => {
     <>
       <div
         className="flex space-x-4 mx-auto w-full max-w-[1200px] px-[50px] mb-[160px]
-    mt-[300px]"
+    mt-[50px]"
       >
         <div className="w-1/2 h-64">
           <GameRank />
