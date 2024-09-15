@@ -3,7 +3,6 @@ import PageLocator from "../../components/PageLocator";
 import { TGameSeasonTeamRank } from "../../types/types";
 import { api } from "../../api/api";
 import TemaSeasonRankChart from "../../components/rank/TeamSeasonRankChart";
-import TeamSeasonRankChart2 from "../../components/rank/TeamSeasonRankChart2";
 
 const RankingRecord = () => {
 
