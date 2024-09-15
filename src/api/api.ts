@@ -47,4 +47,9 @@ export const api = {
     const data = await apiFetch("/media/monthlyPlayer");
     return data;
   },
+  // 정규리그 페이지 팀순위 api
+  getGameSeasonTeamRank: async () => {
+    const data = await apiFetch("/game/rank/periodteamrank");
+    return data.data;
+  },
 };

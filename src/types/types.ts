@@ -49,3 +49,8 @@ export type TMainHighlightsVideoListType = {
     contentsDate: string;
     artcTitle: string;
 };
+// 정규리그 페이지 순위기록 / 팀순위 컴포넌트의 타입들
+export type TGameSeasonTeamRank = {
+  date: string;
+  rank: number;
+}[];
