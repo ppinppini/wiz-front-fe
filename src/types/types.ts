@@ -49,8 +49,35 @@ export type TMainHighlightsVideoListType = {
     contentsDate: string;
     artcTitle: string;
 };
-// 정규리그 페이지 순위기록 / 팀순위 컴포넌트의 타입들
+// 정규리그 순위기록 / 팀순위 컴포넌트의 타입들
 export type TGameSeasonTeamRank = {
   date: string;
   rank: number;
+}[];
+// 정규리그 순위기록 / 팀기록 컴포넌트 타입들
+export type TGameSeasonTeamRecord = {
+  ab: number;
+  bra: string;
+  continue1: string;
+  drawn: number;
+  er: number;
+  era: string;
+  game: number;
+  gameFlag: number;
+  gb: string;
+  gyear: string;
+  hr: number;
+  hra: string;
+  lastrank: number;
+  lose: number;
+  lra: string;
+  r: number;
+  rank: number;
+  run: number;
+  sb: number;
+  teamCode: string;
+  teamName: string;
+  teamNameEng: string;
+  win: number;
+  wra: string;
 }[];

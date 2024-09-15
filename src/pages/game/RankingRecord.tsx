@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react";
 import PageLocator from "../../components/PageLocator";
-import { TGameSeasonTeamRank } from "../../types/types";
+import { TGameSeasonTeamRank, TGameSeasonTeamRecord } from "../../types/types";
 import { api } from "../../api/api";
 import TemaSeasonRankChart from "../../components/rank/TeamSeasonRankChart";
+import Table from "../../components/rank/Table";
 
 const RankingRecord = () => {
 
-  const [rankList, setRankList] = useState<TGameSeasonTeamRank | null>(null);
+  const [rankList, setRankList] = useState<TGameSeasonTeamRank>([]);
+  const [recordList, setRecordList] = useState<TGameSeasonTeamRecord>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {      
     const fetchData = async () => {
       try {
         const gameSeasonTeamRankData = await api.getGameSeasonTeamRank();
-        setRankList(gameSeasonTeamRankData.list);        
+        const gameSeasonTeamRecordData = await api.getGameSeasonTeamRecord();
+        setRankList(gameSeasonTeamRankData);        
+        setRecordList(gameSeasonTeamRecordData);        
       } catch (err) {
         if(err instanceof Error){
           setError(err.message);
@@ -27,10 +31,6 @@ const RankingRecord = () => {
 
   if (error) {
     return <div className='flex flex-col items-center'>에러 발생: {error}</div>;
-  }
-
-  if (!rankList) {
-    return <div className='flex flex-col items-center'>API 호출오류 : rankList</div>;
   }
 
   return (
@@ -55,25 +55,26 @@ const RankingRecord = () => {
           </div>
 
           {/* 2024 SEASON 팀 기록 */}
-          <div className="block mt-[40px] h-[400px]">
+          <div className="block mt-[80px] h-[400px]">
             <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500">2024 시즌 팀 기록</h4>
-
+            {/* <pre>{JSON.stringify(recordList, null, 2)}</pre> */}
+            <Table recordList={recordList}/>
           </div>
 
           {/* 2024 SEASON 팀 투수 기록 */}
-          <div className="block mt-[40px] h-[400px]">
+          <div className="block mt-[80px] h-[400px]">
             <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500">2024 팀 투수 기록</h4>
 
           </div>
 
           {/* 2024 SEASON 팀 타자 기록 */}
-          <div className="block mt-[40px] h-[400px]">
+          <div className="block mt-[80px] h-[400px]">
             <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500">2024 팀 타자 기록</h4>
 
           </div>
 
           {/* 2024 SEASON 팀 간 승패표 */}
-          <div className="block mt-[40px] h-[400px]">
+          <div className="block mt-[80px] h-[400px]">
             <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500">2024 팀 간 승패표</h4>
 
           </div>
