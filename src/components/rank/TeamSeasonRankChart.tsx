@@ -40,10 +40,6 @@ const TeamSeasonRankChart: React.FC<TeamSeasonRankChartData> = ({ rankList }) =>
     return null;
   };
 
-  if (!rankList) {
-    return <div className='flex flex-col items-center'>API 호출오류 : rankList</div>;
-  }
-
   return (
     <>
       <ResponsiveContainer width="100%" height="100%">
