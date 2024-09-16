@@ -57,4 +57,19 @@ export const api = {
     const data = await apiFetch("/game/teamrankbyyear");
     return data.data.list;
   },
+  // 정규리그 페이지 시즌 팀 투수 순위 api
+  getGameSeasonTeamPitcherRank: async () => {
+    const data = await apiFetch("/game/rank/pitching");
+    return data.data.list;
+  },
+  // 정규리그 페이지 시즌 팀 타자 순위 api
+  getGameSeasonTeamBatterRank: async () => {
+    const data = await apiFetch("/game/rank/batting");
+    return data.data.list;
+  },
+  // 정규리그 페이지 시즌 팀 상대 전적 api
+  getGameSeasonTeamvsRank: async () => {
+    const data = await apiFetch("/game/rank/teamvs");
+    return data.data.list;
+  },
 };
