@@ -5,7 +5,7 @@ import {
 } from "@tanstack/react-table";
 import { TGameSeasonTeamRecord } from "../../types/types";
 
-const Table: React.FC<{ recordList: TGameSeasonTeamRecord }> = ({
+const SeasonTeamRankTable: React.FC<{ recordList: TGameSeasonTeamRecord }> = ({
   recordList,
 }) => {
   const columns: ColumnDef<TGameSeasonTeamRecord[0]>[] = [
@@ -82,13 +82,13 @@ const Table: React.FC<{ recordList: TGameSeasonTeamRecord }> = ({
   });
 
   return (
-    <div className="text-xs text-center border-t-2 border-t-[#DC2626]">
-      <table className="w-full border border-gray-200">
+    <div className='text-xs text-center border-t-2 border-t-[#DC2626]'>
+      <table className='w-full border border-gray-200'>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id} className="bg-gray-100">
+            <tr key={headerGroup.id} className='bg-gray-100'>
               {headerGroup.headers.map((header) => (
-                <th key={header.id} className="border px-4 py-2">
+                <th key={header.id} className='border px-4 py-2'>
                   {typeof header.column.columnDef.header === "function"
                     ? header.column.columnDef.header(header.getContext())
                     : header.column.columnDef.header}
@@ -100,9 +100,16 @@ const Table: React.FC<{ recordList: TGameSeasonTeamRecord }> = ({
         <tbody>
           {table.getRowModel().rows.map((row) => (
             // KT만 배경색 다르게 처리해야함
-            <tr key={row.id} className="bg-white">
+            <tr
+              key={row.id}
+              className={
+                row.getValue("teamName") === "KT"
+                  ? "bg-red-100 text-[#EC090C]"
+                  : "bg-white"
+              }
+            >
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="border px-4 py-2">
+                <td key={cell.id} className='border px-4 py-2'>
                   {String(cell.getValue())}{" "}
                 </td>
               ))}
@@ -114,4 +121,4 @@ const Table: React.FC<{ recordList: TGameSeasonTeamRecord }> = ({
   );
 };
 
-export default Table;
+export default SeasonTeamRankTable;
