@@ -84,7 +84,7 @@ const PitcherRankingTable: React.FC<{
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id} className='bg-gray-100'>
               {headerGroup.headers.map((header) => (
-                <th key={header.id} className='border px-4 py-2'>
+                <th key={header.id} className='border py-2'>
                   {typeof header.column.columnDef.header === "function"
                     ? header.column.columnDef.header(header.getContext())
                     : header.column.columnDef.header}
@@ -104,7 +104,7 @@ const PitcherRankingTable: React.FC<{
               }
             >
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className='border px-4 py-2'>
+                <td key={cell.id} className='border py-2'>
                   {String(cell.getValue())}{" "}
                 </td>
               ))}
