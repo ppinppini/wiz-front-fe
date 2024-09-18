@@ -3,7 +3,7 @@ import {
   useReactTable,
   ColumnDef,
 } from "@tanstack/react-table";
-import { TGameSeasonTeamBatterRank } from "../../../types/types";
+import { TGameSeasonTeamBatterRank } from "../../types/types";
 
 const BatterRankingTable: React.FC<{
   batterRanking: TGameSeasonTeamBatterRank;
