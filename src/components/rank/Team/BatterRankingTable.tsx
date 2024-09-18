@@ -3,23 +3,19 @@ import {
   useReactTable,
   ColumnDef,
 } from "@tanstack/react-table";
-import { TGameSeasonTeamPitcherRank } from "../../types/types";
+import { TGameSeasonTeamBatterRank } from "../../../types/types";
 
-const PitcherRankingTable: React.FC<{
-  pitcherRanking: TGameSeasonTeamPitcherRank;
-}> = ({ pitcherRanking }) => {
-  const columns: ColumnDef<TGameSeasonTeamPitcherRank[0]>[] = [
+const BatterRankingTable: React.FC<{
+  batterRanking: TGameSeasonTeamBatterRank;
+}> = ({ batterRanking }) => {
+  const columns: ColumnDef<TGameSeasonTeamBatterRank[0]>[] = [
     {
       accessorKey: "teamName",
       header: "팀명",
     },
     {
-      accessorKey: "sh",
-      header: "희타",
-    },
-    {
-      accessorKey: "sf",
-      header: "희비",
+      accessorKey: "ab",
+      header: "타수",
     },
     {
       accessorKey: "bb",
@@ -35,56 +31,76 @@ const PitcherRankingTable: React.FC<{
     },
     {
       accessorKey: "kk",
-      header: "탈삼진",
+      header: "삼진",
     },
     {
-      accessorKey: "wp",
-      header: "폭투",
+      accessorKey: "hr",
+      header: "홈런",
     },
     {
-      accessorKey: "bk",
-      header: "보크",
+      accessorKey: "hit",
+      header: "안타",
     },
     {
-      accessorKey: "r",
-      header: "실점",
+      accessorKey: "h2",
+      header: "2루타",
     },
     {
-      accessorKey: "er",
-      header: "자책점",
+      accessorKey: "h3",
+      header: "3루타",
     },
     {
-      accessorKey: "bs",
-      header: "블론세이브",
+      accessorKey: "run",
+      header: "득점",
     },
     {
-      accessorKey: "whip",
-      header: "WHIP",
+      accessorKey: "rbi",
+      header: "타점",
     },
     {
-      accessorKey: "oavg",
-      header: "피안타율",
+      accessorKey: "sb",
+      header: "도루",
     },
     {
-      accessorKey: "qs",
-      header: "QS",
+      accessorKey: "sf",
+      header: "희비",
+    },
+    {
+      accessorKey: "sh",
+      header: "희타",
+    },
+    {
+      accessorKey: "ops",
+      header: "OPS",
+    },
+    {
+      accessorKey: "slg",
+      header: "장타율",
+    },
+    {
+      accessorKey: "iso",
+      header: "ISO",
+    },
+    {
+      accessorKey: "sba",
+      header: "도루성공률",
     },
   ];
 
   const table = useReactTable({
-    data: pitcherRanking,
+    data: batterRanking,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
 
   return (
-    <div className='text-xs text-center border-t-2 border-t-[#DC2626]'>
-      <table className='w-full border border-gray-200'>
+    <div className="text-xs text-center border-t-2 border-t-[#DC2626]">
+      <table className="w-full border border-gray-200">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id} className='bg-gray-100'>
+            <tr key={headerGroup.id} className="bg-gray-100">
               {headerGroup.headers.map((header) => (
-                <th key={header.id} className='border py-2'>
+                <th key={header.id} className="border py-2">
                   {typeof header.column.columnDef.header === "function"
                     ? header.column.columnDef.header(header.getContext())
                     : header.column.columnDef.header}
@@ -104,7 +120,7 @@ const PitcherRankingTable: React.FC<{
               }
             >
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className='border py-2'>
+                <td key={cell.id} className="border py-2">
                   {String(cell.getValue())}{" "}
                 </td>
               ))}
@@ -115,4 +131,4 @@ const PitcherRankingTable: React.FC<{
     </div>
   );
 };
-export default PitcherRankingTable;
+export default BatterRankingTable;
