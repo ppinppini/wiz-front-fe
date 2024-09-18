@@ -284,3 +284,10 @@ export type TGameBatterRank = {
   teamName: string;
   wrHit: string;
 }[];
+// 정규리그 순위기록 / 타자순위
+export type TGameCrowdStatus = {
+  crowd: number;
+  game: number;
+  teamCode: string;
+  teamName: string;
+}[];
