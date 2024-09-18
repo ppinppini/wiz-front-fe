@@ -72,4 +72,34 @@ export const api = {
     const data = await apiFetch("/game/rank/teamvs");
     return data.data.list;
   },
+  // 정규리그 페이지 투수 평균 자책점 TOP3 api
+  getGamePitcherEraTop3: async () => {
+    const data = await apiFetch("/game/rank/pitcher/era/top3");
+    return data.data.list;
+  },
+  // 정규리그 페이지 투수 승리 TOP3 api
+  getGamePitcherWinTop3: async () => {
+    const data = await apiFetch("/game/rank/pitcher/win/top3");
+    return data.data.list;
+  },
+  // 정규리그 페이지 전체 투수 평균자책점 TOP5 api
+  getGameAllPitcherEraTop5: async () => {
+    const data = await apiFetch("/game/rank/pitcher/total/top5");
+    return data.data.list;
+  },
+  // 정규리그 페이지 타자 타율 TOP3 api
+  getGameBatterHraTop3: async () => {
+    const data = await apiFetch("/game/rank/batter/hra/top3");
+    return data.data.list;
+  },
+  // 정규리그 페이지 타자 홈런 TOP3 api
+  getGameBatterHrTop3: async () => {
+    const data = await apiFetch("/game/rank/batter/hr/top3");
+    return data.data.list;
+  },
+  // 정규리그 페이지 전체 타자 타율 TOP5 api
+  getGameAllBatterHraTop5: async () => {
+    const data = await apiFetch("/game/rank/batter/total/top5");
+    return data.data.list;
+  },
 };
