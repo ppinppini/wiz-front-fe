@@ -102,4 +102,9 @@ export const api = {
     const data = await apiFetch("/game/rank/batter/total/top5");
     return data.data.list;
   },
+  // 정규리그 페이지 2024시즌 관중현황 api
+  getGameCrowdStatus: async () => {
+    const data = await apiFetch("/game/rank/crowd?gyear=2024");
+    return data.data.list;
+  },
 };
