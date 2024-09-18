@@ -8,11 +8,11 @@ import {
   TGameSeasonTeamvsRecord,
 } from "../../types/types";
 import { api } from "../../api/api";
-import SeasonTeamRankChart from "../../components/rank/Team/SeasonTeamRankChart";
-import SeasonTeamRankTable from "../../components/rank/Team/SeasonTeamRankTable";
-import PitcherRankingTable from "../../components/rank/Team/PitcherRankingTable";
-import BatterRankingTable from "../../components/rank/Team/BatterRankingTable";
-import SeasonTeamvsRecordTable from "../../components/rank/Team/SeasonTeamvsRecordTable";
+import SeasonTeamRankChart from "../../components/rank/SeasonTeamRankChart";
+import SeasonTeamRankTable from "../../components/rank/SeasonTeamRankTable";
+import PitcherRankingTable from "../../components/rank/PitcherRankingTable";
+import BatterRankingTable from "../../components/rank/BatterRankingTable";
+import SeasonTeamvsRecordTable from "../../components/rank/SeasonTeamvsRecordTable";
 
 const TeamRanking = () => {
   const [rankList, setRankList] = useState<TGameSeasonTeamRank>([]);
