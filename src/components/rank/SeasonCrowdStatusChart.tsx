@@ -6,21 +6,18 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-  TooltipProps,
+  Cell,
 } from "recharts";
-import {
-  NameType,
-  ValueType,
-} from "recharts/types/component/DefaultTooltipContent";
 
 import { TGameCrowdStatus } from "../../types/types";
+import { numberWithCommas } from "../../utils/numberWithCommas";
 
 const SeasonCrowdStatusChart: React.FC<{ crowdStatus: TGameCrowdStatus }> = ({
   crowdStatus,
 }) => {
   return (
     <>
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width='100%' height='100%'>
         <BarChart
           data={crowdStatus}
           margin={{
@@ -30,27 +27,29 @@ const SeasonCrowdStatusChart: React.FC<{ crowdStatus: TGameCrowdStatus }> = ({
             left: 25,
           }}
         >
-          <CartesianGrid horizontal={true} vertical={false} color="#E6E6E6" />
+          <CartesianGrid horizontal={true} vertical={false} color='#E6E6E6' />
           <XAxis
-            dataKey="teamName"
+            dataKey='teamName'
             interval={0}
-            textAnchor="center"
-            tick={{ fontSize: 12 }}
+            tick={{ fontSize: 16 }}
             tickMargin={10}
           />
           <YAxis
-            type="number"
+            type='number'
             domain={[0, 1400000]}
             tickCount={8}
-            reversed={false}
             tickMargin={20}
             tick={{ fontSize: 12 }}
+            tickFormatter={numberWithCommas}
           />
-          <Bar type="monotone" dataKey="rank" stroke="#EC0A0B" />
-          {/* <Tooltip
-            content={<CustomTooltip />} // 툴팁은 커스텀 툴팁으로 설정
-            cursor={false} // dot에 호버링시 십자선 숨김
-          /> */}
+          <Bar dataKey='crowd' barSize={30}>
+            {crowdStatus.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={entry.teamName === "KT" ? "#FF5733" : "#404046"}
+              />
+            ))}
+          </Bar>
         </BarChart>
       </ResponsiveContainer>
     </>
