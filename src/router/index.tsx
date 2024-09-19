@@ -3,7 +3,6 @@ import { createBrowserRouter } from "react-router-dom";
 
 import KtWizHistory from "../pages/info/History";
 import KtWizAbout from "../pages/info/About";
-import Schedule from "../pages/game/Schedule";
 
 import Layouts from "../layouts/Layouts";
 //import Slide from '../components/Slide';

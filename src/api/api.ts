@@ -107,4 +107,18 @@ export const api = {
     const data = await apiFetch("/game/rank/crowd?gyear=2024");
     return data.data.list;
   },
+  // 정규리그 페이지 순위기록 탭 투수기록 테이블 api
+  getGamePitcherRecordRanking: async () => {
+    const data = await apiFetch(
+      "/game/rank/kt/pitcher?gyear=2024&pname=&sortKey=ERA"
+    );
+    return data.data.list;
+  },
+  // 정규리그 페이지 순위기록 탭 타자기록 테이블 api
+  getGameBatterRecordRanking: async () => {
+    const data = await apiFetch(
+      "/game/rank/kt/batter?gyear=2024&pname=&sortKey=ERA"
+    );
+    return data.data.list;
+  },
 };
