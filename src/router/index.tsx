@@ -13,6 +13,7 @@ import Schedule from "../pages/game/Schedule";
 import RankingRecord from "../pages/game/RankingRecord";
 import Pitchersdetail from "../pages/players/details/Pitchersdetail";
 import Staff from "../pages/players/Staff";
+import Pitchers from "../pages/players/Pitchers";
 
 
 export const router = createBrowserRouter([
@@ -38,8 +39,18 @@ export const router = createBrowserRouter([
                 path: "/game/schedule",
                 element: <Schedule />,
             },
-            {   path: "/player/pitcher/details",
-                element: <Pitchersdetail/>,
+            /*
+            {
+                path: "/player/pitcher/details/:backnum",  // backnum을 URL 파라미터로 받음
+                element: <Pitchersdetail />,
+            },
+            */
+            {
+                path: "/player/pitcher/details",  
+                element: <Pitchersdetail />,
+            },
+            {   path: "/player/pitcher",
+                element: <Pitchers/>,
             }
         ],
     },
