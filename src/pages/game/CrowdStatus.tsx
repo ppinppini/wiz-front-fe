@@ -32,31 +32,31 @@ const CrowdStatus = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center">
+      <div className='flex flex-col items-center'>
         {/* 메인 컨텐츠 컨테이너 */}
-        <div className="w-[1100px] h-[1590.5px] mx-[25.1em] pt-[4.625em] relative">
+        <div className='w-[1100px] h-[1590.5px] mx-[25.1em] pt-[4.625em] relative'>
           {/* 페이지 로케이터 */}
           <PageLocator
-            pagePath="> Game > 정규 리그 >"
-            currentPage="경기 일정"
+            pagePath='> Game > 정규 리그 >'
+            currentPage='경기 일정'
           />
           {/* 2024 SEASON 누적 관중 차트 */}
-          <div className="block mt-[40px] h-[400px]">
-            <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500">
-              2024 시즌 팀 순위
+          <div className='block mt-[40px] h-[400px]'>
+            <h4 className='text-lg border-l-4 pl-3 mb-3 border-red-500'>
+              2024 시즌 누적관중
             </h4>
-            <div className="border-[1px] border-gray-500 w-full h-full">
+            <div className='border-[1px] border-gray-500 w-full h-full'>
               <SeasonCrowdStatusChart crowdStatus={crowdStatus} />
             </div>
           </div>
           {/* 2024 SEASON 관중 기록 테이블 */}
-          <div className="block mt-[100px] h-[400px]">
-            <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500">
-              2024 시즌 팀 순위
+          <div className='block mt-[100px] h-[400px]'>
+            <h4 className='text-lg border-l-4 pl-3 mb-3 border-red-500'>
+              2024 시즌 관중기록
             </h4>
             {/* 2024 SEASON 누적 관중 차트 */}
-            <div className="w-full h-full">
-              {/* <SeasonCrowdStatusTable crowdStatus={crowdStatus} /> */}
+            <div className='w-full h-full'>
+              <SeasonCrowdStatusTable crowdStatus={crowdStatus} />
             </div>
           </div>
         </div>
