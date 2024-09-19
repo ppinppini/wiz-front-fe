@@ -7,6 +7,7 @@ import KtWizAbout from "../pages/info/About";
 import Layouts from "../layouts/Layouts";
 //import Slide from '../components/Slide';
 
+
 import Main from "../pages/main/Main";
 import Schedule from "../pages/game/Schedule";
 import TeamRanking from "../pages/game/TeamRanking";
@@ -14,6 +15,7 @@ import Pitchersdetail from "../pages/players/details/Pitchersdetail";
 import PitcherRanking from "../pages/game/PitcherRanking";
 import BatterRanking from "../pages/game/BatterRanking";
 import CrowdStatus from "../pages/game/CrowdStatus";
+import Staff from "../pages/players/Staff";
 
 export const router = createBrowserRouter([
   {
@@ -53,6 +55,10 @@ export const router = createBrowserRouter([
         element: <CrowdStatus />,
       },
       { path: "/player/pitcher/details", element: <Pitchersdetail /> },
+      {
+        path: "/player/coach",
+        element: <Staff />,  // CoachStaff 페이지 설정
+      },
     ],
   },
 ]);
