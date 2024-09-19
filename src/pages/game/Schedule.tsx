@@ -1,9 +1,6 @@
-import { useEffect, useState } from "react";
 import TopBanner from "../../components/TopBanner";
 import Tab from "../../components/Tab";
 import PageLocator from "../../components/PageLocator";
-import { TGameInfo } from "../../types/types";
-import { api } from "../../api/api";
 import ScheduleTop from "../../components/game/ScheduleTop";
 
 const Schedule = () => {
