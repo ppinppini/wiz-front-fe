@@ -1,13 +1,5 @@
 import { useReactTable, getCoreRowModel, ColumnDef, flexRender } from "@tanstack/react-table";
-
-interface EtcGameRecord {
-    how: string;
-    result: string;
-}
-
-interface GameBoxScoreMainRecordProps {
-    etcgames: EtcGameRecord[];
-}
+import { EtcGameRecord, GameBoxScoreMainRecordProps } from "../../types/types";
 
 const GameBoxScoreMainRecord = ({ etcgames }: GameBoxScoreMainRecordProps) => {
     const columns: ColumnDef<EtcGameRecord>[] = [
