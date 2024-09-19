@@ -26,6 +26,7 @@ const ScheduleCalendar = () => {
         queryFn: () => api.allGameScheduleFetcher(newYearMonth),
     });
 
+  
     const [value, setValue] = useState<Date | [Date, Date] | null>(new Date());
 
     const [activeTab, setActiveTab] = useState<"wiz" | "all">("wiz");
@@ -35,6 +36,8 @@ const ScheduleCalendar = () => {
     if (isMonthError) return <h1>{monthError.message}</h1>;
     if (isMonthLoading) return <h1>Loading ...</h1>;
 
+    console.log(monthData);
+    
     // 월간 일정 데이터 처리
     const gameData = monthData.data.list.reduce(
         (acc: any, game: any) => {
@@ -45,6 +48,7 @@ const ScheduleCalendar = () => {
         {} as { [key: string]: (typeof monthData.data.list)[0] }
     );
 
+    
     // 전체 경기 일정 데이터 처리
     const allGameDataMap = allGamesData.data.list.reduce((acc: any, game: any) => {
         const formattedDate = `${game.displayDate.slice(0, 4)}-${game.displayDate.slice(4, 6)}-${game.displayDate.slice(6, 8)}`;
@@ -64,7 +68,7 @@ const ScheduleCalendar = () => {
             console.log(selectedGameData);
 
             if (selectedGameData) {
-                navigate(`/game/boxscore/?gameDate=${selectedGameData.displayDate}}&gmkey=${selectedGameData.gmkey}`, {
+                navigate(`/game/boxscore?gameDate=${selectedGameData.displayDate}&gmkey=${selectedGameData.gmkey}`, {
                     state: {
                         gmkey: selectedGameData.gmkey,
                         displayDate: selectedGameData.displayDate,

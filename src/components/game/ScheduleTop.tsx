@@ -39,7 +39,7 @@ const ScheduleTop = () => {
   return (
     <>
         {/* Game Schedule Top Area */}
-        <div className="flex flex-col w-[1100px] h-[302px] py-[38px] ">
+        <div className="flex flex-col w-[1100px] h-[302px] py-[38px] text-white">
             {/* Game Schedule Top Container */}
             <div className="w-[1100px] h-[226px]">
                 <ul className="flex flex-row">

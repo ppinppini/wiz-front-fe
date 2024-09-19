@@ -1,12 +1,12 @@
 .react-calendar {
-    @apply bg-white rounded-lg shadow-md p-4 w-full;
+    @apply bg-black text-white rounded-lg shadow-md p-4 w-full;
 }
 .react-calendar__navigation button {
-    @apply text-red-600  p-2;
+    @apply text-red-600  p-2 bg-black text-white;
 }
 
 .react-calendar__tile {
-    @apply p-2 text-center text-black flex flex-col justify-start items-center h-full;
+    @apply p-2 text-center text-white flex flex-col justify-start items-center h-full;
 }
 
 .react-calendar__tile--active {
@@ -14,7 +14,7 @@
 }
 
 .react-calendar__tile--now {
-    @apply bg-white border-4 border-red-500 hover:bg-white;
+    @apply  border-4 border-red-500 hover:bg-white;
 }
 .react-calendar__tile--now:enabled {
     @apply border-4 border-red-600 bg-white;
@@ -26,5 +26,9 @@
 .react-calendar__tile--active:enabled:hover,
 .react-calendar__tile--active:enabled:focus {
     background: red;
+    color: white;
+}
+.custom-calendar .react-calendar__tile {
+    background-color: black;
     color: white;
 }

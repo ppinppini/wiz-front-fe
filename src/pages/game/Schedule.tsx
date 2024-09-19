@@ -2,6 +2,8 @@ import TopBanner from "../../components/TopBanner";
 import Tab from "../../components/Tab";
 import PageLocator from "../../components/PageLocator";
 import ScheduleTop from "../../components/game/ScheduleTop";
+import ScheduleCalendar from "../../components/game/ScheduleCalendar";
+import TabMenuBar from "../../components/TabMenuBar";
 
 const Schedule = () => {
   const gameTabs = [
@@ -11,13 +13,17 @@ const Schedule = () => {
     { title: "관전포인트", route: "../game/watchPoint" },
   ];
 
+  
+
   return (
-    <div className='flex flex-col items-center'>
-      {/* 상단 배너 */}
+    <div className='flex flex-col items-center bg-black'>
+      {/* 상단 배너
       <TopBanner />
 
       {/* 탭 구현 */}
-      <Tab tabs={gameTabs} />
+      {/* <Tab tabs={gameTabs} />  */}
+
+      <TabMenuBar tabs={gameTabs}/>
 
       {/* 메인 컨텐츠 컨테이너 */}
       <div className='w-[1100px] h-[1590.5px] mx-[25.1em] pt-[4.625em] relative'>
@@ -29,6 +35,7 @@ const Schedule = () => {
         <ScheduleTop />
 
         {/* 월간 게임 정보 - 캘린더 */}
+        <ScheduleCalendar/>
       </div>
 
       {/* 푸터 */}
