@@ -6,17 +6,11 @@ const Nav = () => {
     const navRef = useRef<HTMLDivElement>(null);
     const [navHeight, setNavHeight] = useState(0);
 
-    useEffect(() => {
-        // 약간의 지연을 두고 높이를 다시 계산
-
-        if (navRef.current) {
-            setNavHeight(navRef.current.offsetHeight);
-        }
-    }, []);
+ 
 
     return (
         <>
-            <nav ref={navRef} className="fixed z-50 w-full group ">
+            <nav ref={navRef} className=" z-50 w-full group ">
                 {/* 지속적인 영역 */}
                 <div
                     className="flex justify-center gap-10 px-4 pt-6 pb-2 text-white transition-colors duration-700 ease-in-out bg-black  hover:bg-white hover:text-black"

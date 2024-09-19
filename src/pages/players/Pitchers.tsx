@@ -61,7 +61,7 @@ const Pitchers = () => {
                 {/* 스크롤 시 나타나는 TabMenuNavbar 컴포넌트 */}
                 {isSticky && (
                     <div className={`fixed top-0 left-0 z-50 w-full ${!hasAnimated ? "animate-diagonal-slide" : ""}`} onAnimationEnd={() => setHasAnimated(true)}>
-                        <TabMenuNavbar />
+                        <TabMenuNavbar  menuItems={playerTabs}/>
                     </div>
                 )}
             </div>

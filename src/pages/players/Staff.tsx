@@ -67,7 +67,7 @@ const Staff = () => {
             }`}
             onAnimationEnd={() => setHasAnimated(true)}
           >
-            <TabMenuNavbar />
+            <TabMenuNavbar menuItems={playerTabs}/>
           </div>
         )}
 

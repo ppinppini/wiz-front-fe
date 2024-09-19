@@ -10,7 +10,7 @@ export type TabProps = {
   }
 const TabMenuBar = ({tabs}:TabProps) => {
 
-  // const menuItems = ['코칭스탭', '투수', '포수', '내야수', '외야수', '응원단'];  
+ 
 
   return (
     <div
