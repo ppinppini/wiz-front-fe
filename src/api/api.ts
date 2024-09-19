@@ -43,13 +43,13 @@ export const api = {
         return response.json();
     },
     // 정규리그 페이지의 '경기 일정'탭의 '월 스케줄' 데이터를 요청하는 코드
-    monthSceduleFetcher: async () => {
-        const response = await fetch(`${API_BASE_URL}/game/monthschedule?yearMonth=202409`);
+    monthSceduleFetcher: async (yearMonth:string) => {
+        const response = await fetch(`${API_BASE_URL}/game/monthschedule?yearMonth=${yearMonth}`);
         return response.json();
     },
     // 정규리그 페이지의 '경기 일정'탭의 '모든 팀월 스케줄' 데이터를 요청하는 코드
-    allGameScheduleFetcher: async () => {
-        const response = await fetch(`${API_BASE_URL}/game/allgameschedule?yearMonth=202409`);
+    allGameScheduleFetcher: async (yearMonth:string) => {
+        const response = await fetch(`${API_BASE_URL}/game/allgameschedule?yearMonth=${yearMonth}`);
         return response.json();
     },
 
