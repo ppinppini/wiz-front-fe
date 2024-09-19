@@ -1,25 +1,6 @@
-import { NewsListResponse, NewsDetailResponse } from "../types/types";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 async function apiFetch(endpoint: string) {
-  try {
-    const response = await fetch(`${API_BASE_URL}${endpoint}`);
-    if (!response.ok) {
-      throw new Error(
-        `Error: ${response.statusText} (HTTP ${response.status})`
-      );
-    }
-    const responseData = await response.json();
-    return responseData;
-  } catch (error) {
-    if (error instanceof Error) {
-      throw new Error(`API 요청 중 오류 발생: ${error.message}`);
-    } else {
-      throw new Error("알 수 없는 오류가 발생했습니다.");
-    }
-  }
-}
-async function apiFetchType<T>(endpoint: string): Promise<T> {
   try {
     const response = await fetch(`${API_BASE_URL}${endpoint}`);
     if (!response.ok) {
@@ -61,18 +42,25 @@ export const api = {
     const data = await apiFetch("/game/ktwizteamrank");
     return data.data.ktWizTeamRank;
   },
-  // 뉴스 리스트 api
-  getNewsList: async (
-    searchWord = "",
-    itemCount = 5,
-    pageNum = 1
-  ): Promise<NewsListResponse> => {
+  // 뉴스 소식 api
+  getNewsList: async (searchWord = "", itemCount = 5, pageNum = 1) => {
     const endpoint = `/article/newslistpage?searchWord=${searchWord}&itemCount=${itemCount}&pageNum=${pageNum}`;
-    return apiFetchType<NewsListResponse>(endpoint);
+    const data = await apiFetch(endpoint);
+    return data.data.list;
   },
-  fetchNewsDetail: async (artcSeq: number): Promise<NewsDetailResponse> => {
-    const endpoint = `/article/newsdetail?artcSeq=${artcSeq}`;
-    return apiFetchType<NewsDetailResponse>(endpoint);
+  getNewsDetail: async (artcSeq: number) => {
+    const data = await apiFetch(`/article/newsdetail?artcSeq=${artcSeq}`);
+    return data.data.article;
+  },
+  // 보도자료 리스트 api
+  getPressList: async (searchWord = "", itemCount = 5, pageNum = 1) => {
+    const endpoint = `/article/wizpresslistpage?searchWord=${searchWord}&itemCount=${itemCount}&pageNum=${pageNum}`;
+    const data = await apiFetch(endpoint);
+    return data.data.list;
+  },
+  getPressDetail: async (artcSeq: number) => {
+    const data = await apiFetch(`/article/wizpressdetail?artcSeq=${artcSeq}`);
+    return data.data.article;
   },
   // 메인 페이지 하단의 '이달의 선수' api
   getPlayerOfTheMonth: async () => {

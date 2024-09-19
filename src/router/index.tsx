@@ -8,6 +8,7 @@ import Layouts from "../layouts/Layouts";
 //import Slide from '../components/Slide';
 
 import WizNews from "../pages/meida/WizNews";
+import WizPress from "../pages/meida/WizPress";
 import Main from "../pages/main/Main";
 import Schedule from "../pages/game/Schedule";
 
@@ -40,7 +41,11 @@ export const router = createBrowserRouter([
         path: "/media/wiznews",
         element: <WizNews />,
       },
-{
+      {
+        path: "/media/wizpress",
+        element: <WizPress />,
+      },
+      {
         path: "/game/schedule",
         element: <Schedule />,
       },
@@ -68,11 +73,10 @@ export const router = createBrowserRouter([
   },
   {
     path: "/player/coach",
-    element: <Staff />,  // CoachStaff 페이지 설정
+    element: <Staff />, // CoachStaff 페이지 설정
   },
   {
     path: "/player/pitcher",
-    element: <Pitchers />,  // Pitchers 페이지 설정
-
+    element: <Pitchers />, // Pitchers 페이지 설정
   },
 ]);

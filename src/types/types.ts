@@ -37,6 +37,7 @@ export type TMainHighlightVideo = {
   videoLink: string;
   viewCnt: number;
 };
+
 //KT Wiz란? 페이지의 구단 연혁 카드를 보여주는 컴포넌트의 타입
 export type THistoryDataType = {
   id: number;
@@ -577,7 +578,7 @@ export interface GameBoxScorePitcherRecordProps {
   name: string;
 }
 
-// wiz 소식 리스트
+// wiz 뉴스 리스트
 export interface NewsList {
   artcContents: string;
   artcNextSeq: number;
@@ -597,15 +598,7 @@ export interface NewsList {
   useYn: string;
   viewCnt: number;
 }
-
-export interface NewsListResponse {
-  data: {
-    list: NewsList[];
-    searchCount: number;
-  };
-}
-
-//wiz 소식 상세
+//wiz 뉴스 상세
 export interface NewsDetail {
   artcContents: string;
   artcNextSeq: number;
@@ -615,7 +608,7 @@ export interface NewsDetail {
   boardCatSeq: number;
   boardCode: string;
   delYn: string;
-  imgFilePath: string;
+  imgFilePath?: string;
   maxArticlePerPage: number;
   regDttm: number;
   regr: string;
@@ -623,10 +616,4 @@ export interface NewsDetail {
   updr: string;
   useYn: string;
   viewCnt: number;
-}
-
-export interface NewsDetailResponse {
-  data: {
-    article: NewsDetail;
-  };
 }

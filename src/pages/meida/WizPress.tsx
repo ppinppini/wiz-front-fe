@@ -2,15 +2,16 @@ import { useState, useEffect, useCallback } from "react";
 import TopBanner from "../../components/TopBanner";
 import PageLocator from "../../components/PageLocator";
 import Tab from "../../components/Tab";
-import { NewsList, NewsDetail } from "../../types/types";
+import { NewsList as newsListType, NewsDetail } from "../../types/types";
 import SearchBar from "../../components/media/SearchBar";
-import NewsCard from "../../components/media/NewsCard";
+//import NewsCard from "../../components/media/NewsCard";
 import Pagination from "../../components/media/Pagination";
 import { api } from "../../api/api";
 import NewsDetailModal from "./NewsDetailModal";
+import NewsList from "../../components/media/NewsList";
 
-const WizNews = () => {
-  const [news, setNews] = useState<NewsList[]>([]);
+const WizPress = () => {
+  const [news, setNews] = useState<newsListType[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [totalPages, setTotalPages] = useState<number>(0);
@@ -21,16 +22,16 @@ const WizNews = () => {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const openModal = async (artcSeq: number) => {
-    const response = await api.getNewsDetail(artcSeq);
+    const response = await api.getPressDetail(artcSeq);
 
     setSelectedArticle(response);
     setModalOpen(true);
   };
 
   const fetchNews = useCallback(async () => {
-    const data = await api.getNewsList(searchTerm, 9, currentPage);
+    const data = await api.getPressList(searchTerm, 10, currentPage);
     setNews(data);
-    setTotalPages(Math.ceil(data.searchCount / 9));
+    setTotalPages(Math.ceil(data.searchCount / 10));
   }, [searchTerm, currentPage]);
 
   useEffect(() => {
@@ -57,24 +58,13 @@ const WizNews = () => {
       {/* 메인 컨텐츠 컨테이너 */}
       <div className="w-[1100px] h-[1590.5px] mx-[25.1em] pt-[4.625em] relative">
         {/* 페이지 로케이터 */}
-        <PageLocator pagePath="> MEDIA >" currentPage="wiz 뉴스" />
+        <PageLocator pagePath="> MEDIA >" currentPage="wiz 보도자료" />
 
         {/* 검색 컴포넌트 */}
         <SearchBar onSearch={handleSearch} />
-        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {news.map((item) => (
-            <NewsCard key={item.artcSeq} article={item} />
-          ))}
-        </div> */}
 
-        {/* 뉴스 카드 리스트 컴포넌트 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {news.map((item) => (
-            <div key={item.artcSeq} onClick={() => openModal(item.artcSeq)}>
-              <NewsCard article={item} />
-            </div>
-          ))}
-        </div>
+        {/* 뉴스 리스트 컴포넌트 */}
+        <NewsList news={news} onSelectArticle={openModal} />
         {/* 뉴스 상세 모달 */}
         {selectedArticle && (
           <NewsDetailModal
@@ -97,4 +87,4 @@ const WizNews = () => {
   );
 };
 
-export default WizNews;
+export default WizPress;
