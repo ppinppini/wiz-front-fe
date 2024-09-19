@@ -7,9 +7,11 @@ import KtWizAbout from "../pages/info/About";
 import Layouts from "../layouts/Layouts";
 //import Slide from '../components/Slide';
 
-
+import WizNews from "../pages/meida/WizNews";
+import WizPress from "../pages/meida/WizPress";
 import Main from "../pages/main/Main";
 import Schedule from "../pages/game/Schedule";
+
 import TeamRanking from "../pages/game/TeamRanking";
 import Pitchersdetail from "../pages/players/details/Pitchersdetail";
 import PitcherRanking from "../pages/game/PitcherRanking";
@@ -35,6 +37,14 @@ export const router = createBrowserRouter([
       {
         path: "/ktwiz/history",
         element: <KtWizHistory />,
+      },
+      {
+        path: "/media/wiznews",
+        element: <WizNews />,
+      },
+      {
+        path: "/media/wizpress",
+        element: <WizPress />,
       },
       {
         path: "/game/schedule",
@@ -68,10 +78,10 @@ export const router = createBrowserRouter([
   },
   {
     path: "/player/coach",
-    element: <Staff />,  // CoachStaff 페이지 설정
+    element: <Staff />, // CoachStaff 페이지 설정
   },
   {
     path: "/player/pitcher",
-    element: <Pitchers />,  // Pitchers 페이지 설정
+    element: <Pitchers />, // Pitchers 페이지 설정
   },
 ]);
