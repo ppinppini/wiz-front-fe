@@ -17,7 +17,7 @@ interface TeamSeasonRankChartData {
   }[]
 };
 
-const TeamSeasonRankChart: React.FC<TeamSeasonRankChartData> = ({ rankList }) => {
+const SeasonTeamRankChart: React.FC<TeamSeasonRankChartData> = ({ rankList }) => {
 
   const CustomTooltip = ({ active, payload, label }: TooltipProps<ValueType, NameType>) => {
     if (active && payload && payload.length) {
@@ -94,4 +94,4 @@ const TeamSeasonRankChart: React.FC<TeamSeasonRankChartData> = ({ rankList }) =>
     </>
   );
 }
-export default TeamSeasonRankChart;
+export default SeasonTeamRankChart;
