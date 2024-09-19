@@ -45,9 +45,9 @@ export type THistoryDataType = {
 };
 // 메인페이지의 하이라이트 비디오리스트 컴포넌트의 타입들
 export type TMainHighlightsVideoListType = {
-    imgFilePath: string;
-    contentsDate: string;
-    artcTitle: string;
+  imgFilePath: string;
+  contentsDate: string;
+  artcTitle: string;
 };
 // Player 페이지의 투수 카드 컴포넌트의 타입들
 export type TPlayerPitcherProps = {
@@ -89,7 +89,7 @@ export type TPlayerCoachProps = {
   teamCode: string;
   teamName: string;
   weight: string;
-}
+};
 // 정규리그 순위기록 / 팀순위 컴포넌트의 타입들
 export type TGameSeasonTeamRank = {
   date: string;
@@ -501,8 +501,6 @@ export interface GameBoxScoreMainRecordProps {
   etcgames: EtcGameRecord[];
 }
 
-
-
 export interface GameInfo {
   gameDate: string;
   gmkey: string;
@@ -555,7 +553,6 @@ export interface GameBoxScoreScheduleProps {
   schedule: Schedule;
 }
 
-
 // 박스스코어의 투수기록 타입
 export interface PitcherRecord {
   name: string;
@@ -577,6 +574,59 @@ export interface PitcherRecord {
 
 export interface GameBoxScorePitcherRecordProps {
   pitchers: PitcherRecord[]; // pitchers로 props 이름 변경
-  name: string
+  name: string;
 }
 
+// wiz 소식 리스트
+export interface NewsList {
+  artcContents: string;
+  artcNextSeq: number;
+  artcPrevSeq: number;
+  artcSeq: number;
+  artcTitle: string;
+  boardCatSeq: number;
+  boardCode: string;
+  delYn: string;
+  imgFilePath: string;
+  maxArticlePerPage: number;
+  regDttm: number;
+  regr: string;
+  totalPage: number;
+  updDttm: number;
+  updr: string;
+  useYn: string;
+  viewCnt: number;
+}
+
+export interface NewsListResponse {
+  data: {
+    list: NewsList[];
+    searchCount: number;
+  };
+}
+
+//wiz 소식 상세
+export interface NewsDetail {
+  artcContents: string;
+  artcNextSeq: number;
+  artcPrevSeq: number;
+  artcSeq: number;
+  artcTitle: string;
+  boardCatSeq: number;
+  boardCode: string;
+  delYn: string;
+  imgFilePath: string;
+  maxArticlePerPage: number;
+  regDttm: number;
+  regr: string;
+  updDttm: number;
+  updr: string;
+  useYn: string;
+  viewCnt: number;
+}
+
+export interface NewsDetailResponse {
+  data: {
+    article: NewsDetail;
+  };
+}
