@@ -45,10 +45,51 @@ export type THistoryDataType = {
 };
 // 메인페이지의 하이라이트 비디오리스트 컴포넌트의 타입들
 export type TMainHighlightsVideoListType = {
-  imgFilePath: string;
-  contentsDate: string;
-  artcTitle: string;
+    imgFilePath: string;
+    contentsDate: string;
+    artcTitle: string;
 };
+// Player 페이지의 투수 카드 컴포넌트의 타입들
+export type TPlayerPitcherProps = {
+  backnum: string;
+  energybar: number;
+  energybarName: string;
+  gyear: string;
+  hasFanpage: string;
+  hittype: string;
+  mobilePlayerImg: string;
+  mobilePlayerImg1: string;
+  mobilePlayerImg2: string;
+  pcode: string;
+  playerName: string;
+  playerPrvwImg: string;
+  position: string;
+  rank: number;
+  rankName: string;
+  teamName: string;
+};
+// Player 페이지의 코칭스탭 컴포넌트의 타입들
+export type TPlayerCoachProps = {
+  backnum: string;
+  birth: string;
+  career: string;
+  gyear: string;
+  height: string;
+  heightWeight: string;
+  hittype: string;
+  mobilePlayerImg1: string;
+  mobilePlayerImg2: string;
+  orderSeq: string;
+  pcode: string;
+  playerName: string;
+  playerPrvwImg: string;
+  playerPrvwImg2: string;
+  playerPrvwImg3: string;
+  position: string;
+  teamCode: string;
+  teamName: string;
+  weight: string;
+}
 // 정규리그 순위기록 / 팀순위 컴포넌트의 타입들
 export type TGameSeasonTeamRank = {
   date: string;
@@ -538,3 +579,4 @@ export interface GameBoxScorePitcherRecordProps {
   pitchers: PitcherRecord[]; // pitchers로 props 이름 변경
   name: string
 }
+

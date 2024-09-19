@@ -16,6 +16,7 @@ import PitcherRanking from "../pages/game/PitcherRanking";
 import BatterRanking from "../pages/game/BatterRanking";
 import CrowdStatus from "../pages/game/CrowdStatus";
 import Staff from "../pages/players/Staff";
+import Pitchers from "../pages/players/Pitchers";
 import BoxScore from "../pages/game/BoxScore";
 
 export const router = createBrowserRouter([
@@ -59,11 +60,18 @@ export const router = createBrowserRouter([
         path: "/game/ranking/crowd",
         element: <CrowdStatus />,
       },
-      { path: "/player/pitcher/details", element: <Pitchersdetail /> },
       {
-        path: "/player/coach",
-        element: <Staff />,  // CoachStaff 페이지 설정
+        path: "/player/pitcher/details",
+        element: <Pitchersdetail />,
       },
     ],
+  },
+  {
+    path: "/player/coach",
+    element: <Staff />,  // CoachStaff 페이지 설정
+  },
+  {
+    path: "/player/pitcher",
+    element: <Pitchers />,  // Pitchers 페이지 설정
   },
 ]);
