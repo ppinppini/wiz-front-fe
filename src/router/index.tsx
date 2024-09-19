@@ -13,6 +13,7 @@ import Schedule from "../pages/game/Schedule";
 import RankingRecord from "../pages/game/RankingRecord";
 import Pitchersdetail from "../pages/players/details/Pitchersdetail";
 import Staff from "../pages/players/Staff";
+import Pitchers from "../pages/players/Pitchers";
 
 
 export const router = createBrowserRouter([
@@ -46,5 +47,9 @@ export const router = createBrowserRouter([
     {
         path: "/player/coach",
         element: <Staff />,  // CoachStaff 페이지 설정
+    },
+    {
+        path: "/player/pitcher",
+        element: <Pitchers />,  // CoachStaff 페이지 설정
     }
 ]);

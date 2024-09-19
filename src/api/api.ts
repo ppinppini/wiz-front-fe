@@ -47,4 +47,13 @@ export const api = {
     const data = await apiFetch("/media/monthlyPlayer");
     return data;
   },
+  //Player 코칭스탭 페이지의 이미지를 불러오는 api
+  getPlayerCoachImage: async () => {
+    const data = await apiFetch("/player/coachlist");
+    return data.data.list; 
+  },
+  getPlayerPitcherImage: async () => {
+    const data = await apiFetch("/player/pitcherlist");
+    return data; 
+  },
 };
