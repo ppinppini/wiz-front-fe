@@ -47,6 +47,16 @@ export const api = {
     const data = await apiFetch("/media/monthlyPlayer");
     return data;
   },
+
+  //Player 코칭스탭 페이지의 이미지를 불러오는 api
+  getPlayerCoachImage: async () => {
+    const data = await apiFetch("/player/coachlist");
+    return data.data.list; 
+  },
+  getPlayerPitcherImage: async () => {
+    const data = await apiFetch("/player/pitcherlist");
+    return data; 
+  },  
   // 정규리그 페이지 시즌 팀 순위 api
   getGameSeasonTeamRank: async () => {
     const data = await apiFetch("/game/rank/periodteamrank");
@@ -136,5 +146,6 @@ export const api = {
   boxScoreFetcher: async (gameDate: string, gmKey: string) => {
       const response = await apiFetch(`/game/boxscore?gameDate=${gameDate}&gmkey=${gmKey}`);
       return response.json();
+
   },
 };
