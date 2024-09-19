@@ -10,8 +10,8 @@ import {
 import { api } from "../../api/api";
 import SeasonTeamRankChart from "../../components/rank/SeasonTeamRankChart";
 import SeasonTeamRankTable from "../../components/rank/SeasonTeamRankTable";
-import PitcherRankingTable from "../../components/rank/PitcherRankingTable";
-import BatterRankingTable from "../../components/rank/BatterRankingTable";
+import TeamPitcherRankingTable from "../../components/rank/TeamPitcherRankingTable";
+import TeamBatterRankingTable from "../../components/rank/TeamBatterRankingTable";
 // import SeasonTeamvsRecordTable from "../../components/rank/SeasonTeamvsRecordTable";
 
 const TeamRanking = () => {
@@ -99,7 +99,7 @@ const TeamRanking = () => {
             <h4 className='text-lg border-l-4 pl-3 mb-3 border-red-500'>
               2024 팀 투수 기록
             </h4>
-            <PitcherRankingTable pitcherRanking={pitcherRanking} />
+            <TeamPitcherRankingTable pitcherRanking={pitcherRanking} />
           </div>
 
           {/* 2024 SEASON 팀 타자 기록 */}
@@ -107,7 +107,7 @@ const TeamRanking = () => {
             <h4 className='text-lg border-l-4 pl-3 mb-3 border-red-500'>
               2024 팀 타자 기록
             </h4>
-            <BatterRankingTable batterRanking={batterRanking} />
+            <TeamBatterRankingTable batterRanking={batterRanking} />
           </div>
 
           {/* 2024 SEASON 팀 간 승패표 */}
