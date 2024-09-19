@@ -1,16 +1,20 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface PlayerType {
   backnum: string;
   playerName: string;
   playerPrvwImg: string;
+  pcode:string;
 };
 
 const PlayerCarousel = () => {
+  
     const [playerData, setPlayerData] = useState<PlayerType[]>([]);
-
+    const navigate =useNavigate();
+    
     useEffect(() => {
         const fetchPlayerData = async () => {
         try {
@@ -20,6 +24,7 @@ const PlayerCarousel = () => {
             backnum: player.backnum,
             playerName: player.playerName,
             playerPrvwImg: player.playerPrvwImg,
+            pcode:player.pcode,
             }));
             setPlayerData(players);
         } catch (error) {
@@ -33,7 +38,7 @@ const PlayerCarousel = () => {
         <Swiper spaceBetween={10} slidesPerView={4} loop={true}>
         {playerData.map((player, index) => (
             <SwiperSlide key={index}>
-            <div className="relative group text-center hover-blur">
+            <div className="relative group text-center hover-blur" >
                 <img
                 src={player.playerPrvwImg}
                 alt={player.playerName}
@@ -41,8 +46,14 @@ const PlayerCarousel = () => {
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 transition-opacity duration-300 
                 group-hover:opacity-100 backdrop-filter backdrop-blur-lg">
+                {/* <button
+                    onClick={() => window.location.href = `/player/pitcher/details/${pcode}`}
+                    className="text-white border border-white py-2 px-4 rounded-lg cursor-pointer"
+                    >
+                    프로필
+                    </button> */}
                 <button
-                    onClick={() => window.location.href = `/player/pitcher/details/${player.backnum}`}
+                    onClick={()=>navigate(`/player/pitcher/details?pcode=${player.pcode}`)}
                     className="text-white border border-white py-2 px-4 rounded-lg cursor-pointer"
                     >
                     프로필
