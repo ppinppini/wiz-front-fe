@@ -40,7 +40,7 @@
   
    
    
-  img {
+  .slide-container img {
     width: 100%; /* 슬라이드 크기에 맞게 이미지 크기 조정 */
     height: 100%; /* 슬라이드 크기에 맞게 이미지 높이 조정 */
     object-fit: cover; /* 이미지를 슬라이드 안에 꽉 채움 */
@@ -49,7 +49,7 @@
     //transition: all 0.5s ease;
   }
 
-  html, body {
+  .slide-container html, .slide-container body {
     height: 100%; /* 전체 페이지가 100% 높이를 가집니다 */
   }
 
