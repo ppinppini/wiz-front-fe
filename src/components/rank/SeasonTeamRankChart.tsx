@@ -9,8 +9,6 @@ interface TeamSeasonRankChartData {
 }
 
 const SeasonTeamRankChart: React.FC<TeamSeasonRankChartData> = ({ rankList }) => {
-
-
     const CustomTooltip = ({ active, payload, label }: TooltipProps<ValueType, NameType>) => {
         if (active && payload && payload.length) {
             // 날짜를 mm.dd 형식으로 변환
@@ -39,9 +37,18 @@ const SeasonTeamRankChart: React.FC<TeamSeasonRankChartData> = ({ rankList }) =>
                         right: 40,
                         bottom: 30,
                     }}
+                    className="bg-black"
                 >
                     <CartesianGrid horizontal={true} vertical={false} color="#E6E6E6" />
-                    <XAxis dataKey="date" interval={0} textAnchor="end" angle={-45} tick={{ fontSize: 12 }} tickFormatter={(date) => `${date.slice(4, 6)}.${date.slice(6, 8)}`} tickMargin={10} />
+                    <XAxis
+                        dataKey="date"
+                        interval={0}
+                        textAnchor="end"
+                        angle={-45}
+                        tick={{ fontSize: 12, fill: "white" }}
+                        tickFormatter={(date) => `${date.slice(4, 6)}.${date.slice(6, 8)}`}
+                        tickMargin={10}
+                    />
                     <YAxis
                         type="number"
                         domain={[1, 10]}
@@ -50,7 +57,7 @@ const SeasonTeamRankChart: React.FC<TeamSeasonRankChartData> = ({ rankList }) =>
                         ticks={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
                         tickFormatter={(tick) => `${tick}위`}
                         tickMargin={20}
-                        tick={{ fontSize: 12 }}
+                        tick={{ fontSize: 12, fill: "white" }}
                     />
                     <Line
                         type="monotone"
