@@ -87,13 +87,16 @@ const BatterRecordRankingTable: React.FC<{
 
   return (
     <>
-      <div className='w-full text-xs text-center border-t-2 mt-[100px] border-t-[#DC2626]'>
-        <table className='w-full border border-gray-200'>
+      <div className="w-full text-xs text-center border-t-2 mt-[100px] border-t-[#DC2626]">
+        <table className="w-full border border-gray-200">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id} className='bg-gray-100'>
+              <tr key={headerGroup.id} className="bg-gray-100">
                 {headerGroup.headers.map((header) => (
-                  <th key={header.id} className='border py-2'>
+                  <th
+                    key={header.id}
+                    className="border py-2 bg-black text-white"
+                  >
                     {typeof header.column.columnDef.header === "function"
                       ? header.column.columnDef.header(header.getContext())
                       : header.column.columnDef.header}
@@ -104,9 +107,9 @@ const BatterRecordRankingTable: React.FC<{
           </thead>
           <tbody>
             {table.getRowModel().rows.map((row) => (
-              <tr key={row.id} className='bg-white'>
+              <tr key={row.id} className="bg-white">
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className='border py-2'>
+                  <td key={cell.id} className="border py-2 bg-black text-white">
                     {String(cell.getValue())}{" "}
                   </td>
                 ))}
