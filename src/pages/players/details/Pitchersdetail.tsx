@@ -1,122 +1,90 @@
-import { useEffect, useState } from 'react';
-import playerImage from '../../../assets/playerImg.png';
-
-type PlayerData = {
-  playerImg: string; // 선수 이미지 URL
-
-  backnum: string;  // 선수 번호
-  playerName: string;  // 선수 이름
-  engName: string;  // 선수 영문 이름
-
-  birth: string;
-  height: string;
-  weight: string;
-  career: string;
-};
-
-// 생년월일 형식을 YYYY.MM.DD로 변경
-const formatBirthDate = (birth: string) => {
-  if (birth.length !== 8) return birth; 
-  const year = birth.slice(0, 4);
-  const month = birth.slice(4, 6);
-  const day = birth.slice(6, 8);
-  return `${year}.${month}.${day}`;
-};
+import React, { useEffect, useState } from 'react';
+import StatusArea from '../../../components/player/StatusArea';
+import PlayerCarousel from '../../../components/player/PlayerCarousel';
+import PitersInfo from '../../../components/player/PitersInfo';
+import { useLocation } from 'react-router-dom';
+import TabMenuBar from '../../../components/TabMenuBar';
+import BackgroundImage from '../../../components/BackgroundImage';
+import playertogether from '../../../assets/kt4.png';
+import TabMenuNavbar from '../../../components/TabMenuNavbar'; // 추가
+import '../../../styles/gradient.css';
+import PlayerNavbar from '../../../components/PlayerNavbar';
 
 const Pitchersdetail = () => {
-  const [playerData, setPlayerData] = useState<PlayerData | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const location = useLocation();
+  const pcode = location?.state?.pcode;
 
+  // 스크롤 상태를 관리하는 state
+  const [isSticky, setIsSticky] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  // 스크롤을 감지해서 navbar 고정 상태를 설정하는 로직
   useEffect(() => {
-    const fetchPlayerData = async () => {
-      try {
-        const response = await fetch('http://43.201.249.197/api/player/pitcherdetail?pcode=53006');
-        if (!response.ok) {
-          throw new Error('Failed to fetch player data.');
-        }
-        const data = await response.json();
-        
-        // Access the correct path for gameplayer
-        if (data && data.data && data.data.gameplayer) {
-          const gamePlayer = data.data.gameplayer; 
-
-          //데이터누락시 N/A로 출력
-          setPlayerData({
-            playerImg: gamePlayer.playerPrvwImg || "", // 선수 이미지 URL (추후 누끼딴 이미지로 변경할 예정)
-
-            backnum: gamePlayer.backnum || "N/A", // 선수 번호
-            playerName: gamePlayer.playerName || "N/A", // 선수 이름
-            engName: gamePlayer.engName || "N/A", // 선수 영문 이름
-
-            birth: formatBirthDate(gamePlayer.birth || "N/A"), // 선수 생년월일
-            height: gamePlayer.height || "N/A", // 선수 키
-            weight: gamePlayer.weight || "N/A", // 선수 몸무게
-            career: gamePlayer.career || "N/A", // 선수 출신학교
-          });
-        } else {
-          throw new Error('Player data is not available.');
-        }
-      } catch (error) {
-        setError((error as Error).message);
-        console.error(error);
+    const handleScroll = () => {
+      if (window.scrollY >= 630) { // 특정 스크롤 위치에서 상단 고정
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+        setHasAnimated(false);
       }
     };
 
-    fetchPlayerData();
+    window.addEventListener('scroll', handleScroll);
+
+    // 컴포넌트 언마운트 시 이벤트 리스너 제거
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
-  if (error) {
-    return <div>{error}</div>;
-  }
-
-  if (!playerData) {
-    return <div>Loading...</div>;
-  }
   return (
-    <>
-      <div className="flex items-start bg-black text-white">
-      {/* 선수 이미지  */}
-      <div
-        className="relative w-[570px] h-[720px] bg-cover bg-center mr-5"
-        style={{ backgroundImage: "url('/path/team-logo.png')" }} // 배경 이미지에 kt로고 넣을 예정 
-      >
-        <img
-          /*{src={playerData.playerImg}}*/
-          src={playerImage}
-          alt={playerData.playerName}
-          className="w-[350px] h-[450px] object-contain rounded-lg mx-auto"
-        />
-      </div>
-
-      {/* 등번호 이름 영어이름*/}
-      <div className="pt-[125px] whitespace-nowrap">
-        <div className="w-[130px] text-[120px] text-[#808080] float-left tracking-[-3px] leading-[105px] mr-[20px] font-sans">
-          {playerData.backnum}
-        </div>
-        <div className="text-[30px] leading-[45px] block font-sans">
-          {playerData.playerName}
-        </div>
-        <div className="text-[30px] font-thin uppercase opacity-50 font-sans">
-          {playerData.engName}
-        </div>
-
-        {/* 생년월일 체격 출신학교*/}
-        <div className="mt-[55px]">
-          <p>
-            <span className="font-bold text-[#808080]">생년월일</span> {playerData.birth}
-          </p>
-          <p>
-            <span className="font-bold text-[#808080]">체격</span> {playerData.height}cm, {playerData.weight}kg
-          </p>
-          <p>
-            <span className="font-bold text-[#808080]">출신학교</span> {playerData.career}
-          </p>
-        </div>
-      </div>
-    </div>
     
-    </>
-  
+    <div className="bg-black min-h-screen w-full">
+      <PlayerNavbar/>
+
+      {/* 상단 배너 */}
+      <div className="relative">
+        <BackgroundImage imageUrl={playertogether} className="w-full title-banner" height="782px" />
+        
+        {/* TabMenuBar는 배너 위로 오도록 설정 */}
+        <div className="absolute top-[422px] w-full px-[144.8px]">
+          <TabMenuBar />
+        </div>
+      </div>
+
+      {/* 스크롤 시 나타나는 TabMenuNavbar 컴포넌트 */}
+      {isSticky && (
+        <div 
+          className={`fixed top-0 left-0 z-50 w-full ${
+            !hasAnimated ? 'animate-diagonal-slide' : ''
+          }`}
+          onAnimationEnd={() => setHasAnimated(true)}
+        >
+          <TabMenuNavbar />
+        </div>
+      )}
+
+      {/* 아래 컴포넌트들 */}
+      <div className="relative content_block mt-[40px] px-[144.8px] text-white">
+
+        {/* 플레이어 기본정보와 이미지 */}
+        <div className="w-full">
+          <PitersInfo />
+        </div>
+
+        {/* 2024 시즌 기록 */}
+        <div className="w-full mt-8">
+          <StatusArea />
+        </div>
+
+        {/* 다른 플레이어 캐러셀 */}
+        <div className="w-full mt-8">
+          <PlayerCarousel />
+        </div>
+        
+      </div>
+
+    </div>
   );
 };
 
