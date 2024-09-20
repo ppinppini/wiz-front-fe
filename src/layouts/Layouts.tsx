@@ -1,6 +1,6 @@
 //import Nav from '../components/Navbar';
 
-import PlayerNavbar from "../components/PlayerNavbar";
+import PlayerNavbar from '../components/PlayerNavbar';
 
 const Layouts = () => {
     return (

@@ -5,7 +5,6 @@ const PlayerNavbar = () => {
     const [isBlack, setIsBlack] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
     const navRef = useRef<HTMLDivElement>(null);
-    
 
     return (
         <>
@@ -21,43 +20,34 @@ const PlayerNavbar = () => {
                     setIsExpanded(false);
                 }}
                 style={{
-                    height: isExpanded ? '350px' : '80px',
-                    backgroundColor: isExpanded ? 'white' : 'black',
+                    height: isExpanded ? "350px" : "80px",
+                    backgroundColor: isExpanded ? "white" : "black",
+                    zIndex:9999,
                 }}
             >
                 {/* 지속적인 영역 */}
                 <div
                     className="flex justify-center gap-10 px-4 pt-6 pb-2 transition-colors duration-700 ease-in-out"
-                    style={{ 
-                        backgroundColor: isExpanded ? 'white' : 'black',
-                        color: isExpanded ? 'black' : 'white'  
+                    style={{
+                        backgroundColor: isExpanded ? "white" : "black",
+                        color: isExpanded ? "black" : "white",
                     }}
                 >
                     <div>
                         <Link to="/">
-                            <img
-                                src={
-                                    isBlack
-                                        ? 'https://www.ktwiz.co.kr/v2/imgs/img-logo-black.svg'
-                                        : 'https://www.ktwiz.co.kr/v2/imgs/img-logo.svg'
-                                }
-                                alt="KT로고"
-                                className="w-24"
-                            />
+                            <img src={isBlack ? "https://www.ktwiz.co.kr/v2/imgs/img-logo-black.svg" : "https://www.ktwiz.co.kr/v2/imgs/img-logo.svg"} alt="KT로고" className="w-24" />
                         </Link>
                     </div>
                     <div className="flex items-end">
-                        <ul className="flex gap-14 items-end text-[15px]" style={{ borderBottom: isExpanded ? '1px solid #D1D5DB' : ''}}>
+                        <ul className="flex gap-14 items-end text-[15px]" style={{ borderBottom: isExpanded ? "1px solid #D1D5DB" : "" }}>
                             {/* 각 메뉴 항목 */}
                             <li className="relative">
-                                <div className="border-b-2 border-transparent hover:border-red-500">
-                                    kt wiz
-                                </div>
+                                <div className="border-b-2 border-transparent hover:border-red-500">kt wiz</div>
                                 <ul
                                     className="absolute left-0 w-20 mt-2 space-y-2 transition-opacity duration-500 ease-in-out top-full"
                                     style={{
                                         opacity: isExpanded ? 1 : 0,
-                                        display: isExpanded ? 'inline-block' : 'none',
+                                        display: isExpanded ? "inline-block" : "none",
                                     }}
                                 >
                                     <li>
@@ -79,18 +69,20 @@ const PlayerNavbar = () => {
                             </li>
                             {/* 다른 메뉴 항목들 */}
                             <li className="relative">
-                                <div className="border-b-2 border-transparent hover:border-red-500">
-                                    wiz park
-                                </div>
+                                <div className="border-b-2 border-transparent hover:border-red-500">wiz park</div>
                                 <ul
                                     className="absolute left-0 mt-2 space-y-2 transition-opacity duration-500 ease-in-out top-full w-36"
                                     style={{
                                         opacity: isExpanded ? 1 : 0,
-                                        display: isExpanded ? 'inline-block' : 'none',
+                                        display: isExpanded ? "inline-block" : "none",
                                     }}
                                 >
                                     <li>
-                                        <Link to="/wizpark/intro">수원 kt wiz<br/>park</Link>
+                                        <Link to="/wizpark/intro">
+                                            수원 kt wiz
+                                            <br />
+                                            park
+                                        </Link>
                                     </li>
                                     <li>
                                         <Link to="/wizpark/parking">주차 예약</Link>
@@ -105,18 +97,16 @@ const PlayerNavbar = () => {
                             </li>
                             {/* Game 메뉴 */}
                             <li className="relative">
-                                <div className="border-b-2 border-transparent hover:border-red-500">
-                                    Game
-                                </div>
+                                <div className="border-b-2 border-transparent hover:border-red-500">Game</div>
                                 <ul
                                     className="absolute left-0 w-20 mt-2 space-y-2 transition-opacity duration-500 ease-in-out top-full"
                                     style={{
                                         opacity: isExpanded ? 1 : 0,
-                                        display: isExpanded ? 'inline-block' : 'none',
+                                        display: isExpanded ? "inline-block" : "none",
                                     }}
                                 >
                                     <li>
-                                        <Link to="/game/regular/schedule">정규리그</Link>
+                                        <Link to="/game/schedule">정규리그</Link>
                                     </li>
                                     <li>
                                         <Link to="/game/futures/schedule">퓨처스리그</Link>
@@ -125,14 +115,12 @@ const PlayerNavbar = () => {
                             </li>
                             {/* Player 메뉴 */}
                             <li className="relative">
-                                <div className="border-b-2 border-transparent hover:border-red-500">
-                                    Player
-                                </div>
+                                <div className="border-b-2 border-transparent hover:border-red-500">Player</div>
                                 <ul
                                     className="absolute left-0 w-20 mt-2 space-y-2 transition-opacity duration-500 ease-in-out top-full"
                                     style={{
                                         opacity: isExpanded ? 1 : 0,
-                                        display: isExpanded ? 'inline-block' : 'none',
+                                        display: isExpanded ? "inline-block" : "none",
                                     }}
                                 >
                                     <li>
@@ -157,14 +145,12 @@ const PlayerNavbar = () => {
                             </li>
                             {/* Media 메뉴 */}
                             <li className="relative">
-                                <div className="border-b-2 border-transparent hover:border-red-500">
-                                    Media
-                                </div>
+                                <div className="border-b-2 border-transparent hover:border-red-500">Media</div>
                                 <ul
                                     className="absolute left-0 w-20 mt-2 space-y-2 transition-opacity duration-500 ease-in-out top-full"
                                     style={{
                                         opacity: isExpanded ? 1 : 0,
-                                        display: isExpanded ? 'inline-block' : 'none',
+                                        display: isExpanded ? "inline-block" : "none",
                                     }}
                                 >
                                     <li>
@@ -189,26 +175,20 @@ const PlayerNavbar = () => {
                             </li>
                             {/* Shop 메뉴 */}
                             <li className="relative">
-                                <div className="border-b-2 border-transparent hover:border-red-500">
-                                    Shop
-                                </div>
+                                <div className="border-b-2 border-transparent hover:border-red-500">Shop</div>
                             </li>
                             {/* 스폰서 메뉴 */}
                             <li className="relative">
-                                <div className="border-b-2 border-transparent hover:border-red-500">
-                                    스폰서
-                                </div>
+                                <div className="border-b-2 border-transparent hover:border-red-500">스폰서</div>
                             </li>
                             {/* 티켓 구매 메뉴 */}
                             <li className="relative">
-                                <div className="border-b-2 border-transparent hover:border-red-500">
-                                    티켓 구매
-                                </div>
+                                <div className="border-b-2 border-transparent hover:border-red-500">티켓 구매</div>
                                 <ul
                                     className="absolute left-0 mt-2 space-y-2 transition-opacity duration-500 ease-in-out top-full w-28"
                                     style={{
                                         opacity: isExpanded ? 1 : 0,
-                                        display: isExpanded ? 'inline-block' : 'none',
+                                        display: isExpanded ? "inline-block" : "none",
                                     }}
                                 >
                                     <li>
@@ -225,10 +205,7 @@ const PlayerNavbar = () => {
                         </ul>
                     </div>
                     <div className="flex items-end">
-                        <ul
-                            className="flex md:gap-3 md:text-[14px]"
-                            style={{ color: isExpanded ? '#8a8b8e' : '#fff' }}
-                        >
+                        <ul className="flex md:gap-3 md:text-[14px]" style={{ color: isExpanded ? "#8a8b8e" : "#fff" }}>
                             <li>
                                 <Link to="/login">로그인</Link>
                             </li>
@@ -238,11 +215,7 @@ const PlayerNavbar = () => {
                             <li>
                                 <Link to="http://kt-sports.co.kr/sports/site/main.do">
                                     <img
-                                        src={
-                                            isBlack
-                                                ? 'https://www.ktwiz.co.kr/v2/imgs/img-logo-ktsports-bk@2x.png'
-                                                : 'https://www.ktwiz.co.kr/v2/imgs/img-logo-ktsports@2x.png'
-                                        }
+                                        src={isBlack ? "https://www.ktwiz.co.kr/v2/imgs/img-logo-ktsports-bk@2x.png" : "https://www.ktwiz.co.kr/v2/imgs/img-logo-ktsports@2x.png"}
                                         alt="kt로고"
                                         className="w-10 md:w-14"
                                     />
@@ -252,10 +225,8 @@ const PlayerNavbar = () => {
                     </div>
                 </div>
             </nav>
-            <div>
-                <Outlet />
-            </div> 
-           
+
+            <Outlet />
         </>
     );
 };
