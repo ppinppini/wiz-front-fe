@@ -31,7 +31,7 @@ const SeasonCrowdStatusChart: React.FC<{ crowdStatus: TGameCrowdStatus }> = ({
           <XAxis
             dataKey="teamName"
             interval={0}
-            tick={{ fontSize: 16 }}
+            tick={{ fontSize: 16, fill: "white" }}
             tickMargin={10}
           />
           <YAxis
@@ -39,14 +39,14 @@ const SeasonCrowdStatusChart: React.FC<{ crowdStatus: TGameCrowdStatus }> = ({
             domain={[0, 1400000]}
             tickCount={8}
             tickMargin={20}
-            tick={{ fontSize: 12 }}
+            tick={{ fontSize: 12, fill: "white" }}
             tickFormatter={numberWithCommas}
           />
           <Bar dataKey="crowd" barSize={15}>
             {crowdStatus.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
-                fill={entry.teamName === "KT" ? "#FF5733" : "#404046"}
+                fill={entry.teamName === "KT" ? "#FF5733" : "#FFFFFF"}
               />
             ))}
           </Bar>
