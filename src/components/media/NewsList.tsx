@@ -9,11 +9,11 @@ interface NewsListProps {
 
 function NewsList({ news, onSelectArticle }: NewsListProps) {
   return (
-    <div className="divide-y divide-gray-300">
+    <div className="divide-y divide-gray-300 text-white">
       {news.map((article) => (
         <div
           key={article.artcSeq}
-          className="py-4 px-6 hover:bg-gray-100 cursor-pointer"
+          className="py-4 px-6 hover:bg-gray-100 hover:text-black cursor-pointer"
           onClick={() => onSelectArticle(article.artcSeq)}
         >
           <div className="flex justify-between">

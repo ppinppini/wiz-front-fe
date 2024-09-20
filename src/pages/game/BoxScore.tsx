@@ -26,6 +26,7 @@ const BoxScore = () => {
         queryFn: () => api.boxScoreFetcher(gameDate, gmkey),
     });
 
+    
     const scoreBoard = data?.data?.scoreboard;
     const schedule = data?.data?.schedule;
     const mainRecords = data?.data?.etcgames;

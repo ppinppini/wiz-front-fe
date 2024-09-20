@@ -61,11 +61,12 @@ const ScheduleTopCard:React.FC<ScheduleTopCardProps> = ({
                             <img src={visitLogo} alt="visitLogo" className="w-[85px] h-[64px]"/> {/* 이미지 해결되면 w,h 값삭제 */}
                             <div className="notokr w-full h-[48px] text-sm">
                                 {visitFullName}
-                                {outcome ? (
-                                    <div>{visitDecision} : {visitStarter}</div>
+                                {/* {outcome ? (
+                                    <div>{visitDecision}  선발 :{visitStarter}</div>
                                 ) : (
                                     <div>선발 : {visitStarter}</div>
-                                )}
+                                )} */}
+                                <div>선발 : {visitStarter}</div>
                             </div>
                         </div>
 
@@ -100,11 +101,12 @@ const ScheduleTopCard:React.FC<ScheduleTopCardProps> = ({
                             <img src={homeLogo} alt="homeLogo" className="w-[85px] h-[64px]"/> {/* 이미지 해결되면 w,h 값삭제 */}
                             <div className="notokr w-full h-[48px] text-sm">
                                 {homeFullName}
-                                {outcome ? (
-                                    <div>{homeDecision} : {homeStarter}</div>
+                                {/* {outcome ? (
+                                    <div>{homeDecision} {homeStarter}</div>
                                 ) : (
                                     <div>선발 : {homeStarter}</div>
-                                )}
+                                )} */}
+                                <div>선발 : {visitStarter}</div>
                             </div>
                         </div>
                     </div>
@@ -125,11 +127,12 @@ const ScheduleTopCard:React.FC<ScheduleTopCardProps> = ({
                             <img src={visitLogo} alt="visitLogo" className="w-[85px] h-[64px]"/> {/* 이미지 해결되면 w,h 값삭제 */}
                             <div className="notokr w-full h-[48px] text-sm">
                                 {visitFullName}
-                                {outcome ? (
+                                {/* {outcome ? (
                                     <div>{visitDecision} : {visitStarter}</div>
                                 ) : (
                                     <div>선발 : {visitStarter}</div>
-                                )}
+                                )} */}
+                                <div>선발 : {visitStarter}</div>
                             </div>
                         </div>
 
@@ -164,11 +167,12 @@ const ScheduleTopCard:React.FC<ScheduleTopCardProps> = ({
                             <img src={homeLogo} alt="homeLogo" className="w-[85px] h-[64px]"/> {/* 이미지 해결되면 w,h 값삭제 */}
                             <div className="notokr w-full h-[48px] text-sm">
                                 {homeFullName}
-                                {outcome ? (
+                                {/* {outcome ? (
                                     <div>{homeDecision} : {homeStarter}</div>
                                 ) : (
-                                    <div>선발 : {homeStarter}</div>
-                                )}
+                                    <div>{homeStarter}</div>
+                                )} */}
+                                <div>선발 : {visitStarter}</div>
                             </div>
                         </div>
                     </div>

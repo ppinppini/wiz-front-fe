@@ -13,7 +13,14 @@ import PlayerNavbar from '../../../components/PlayerNavbar';
 const Pitchersdetail = () => {
   const location = useLocation();
   const pcode = location?.state?.pcode;
-
+  const playerTabs = [
+    { title: "코칭스텝", route: "../player/coach" },
+    { title: "투수", route: "../player/pitcher" },
+    { title: "포수", route: "../player/catcher" },
+    { title: "내야수", route: "../player/infielder" },
+    { title: "외야수", route: "../player/outfielder" },
+    { title: "응원단", route: "../player/cheer" },
+];
   // 스크롤 상태를 관리하는 state
   const [isSticky, setIsSticky] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -48,7 +55,7 @@ const Pitchersdetail = () => {
         
         {/* TabMenuBar는 배너 위로 오도록 설정 */}
         <div className="absolute top-[422px] w-full px-[144.8px]">
-          <TabMenuBar />
+          <TabMenuBar tabs={playerTabs}/>
         </div>
       </div>
 
@@ -60,7 +67,7 @@ const Pitchersdetail = () => {
           }`}
           onAnimationEnd={() => setHasAnimated(true)}
         >
-          <TabMenuNavbar />
+          <TabMenuNavbar menuItems={playerTabs}/>
         </div>
       )}
 
