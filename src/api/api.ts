@@ -1,22 +1,20 @@
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 async function apiFetch(endpoint: string) {
-  try {
-    const response = await fetch(`${API_BASE_URL}${endpoint}`);
-    if (!response.ok) {
-      throw new Error(
-        `Error: ${response.statusText} (HTTP ${response.status})`
-      );
+    try {
+        const response = await fetch(`${API_BASE_URL}${endpoint}`);
+        if (!response.ok) {
+            throw new Error(`Error: ${response.statusText} (HTTP ${response.status})`);
+        }
+        const responseData = await response.json();
+        return responseData;
+    } catch (error) {
+        if (error instanceof Error) {
+            throw new Error(`API 요청 중 오류 발생: ${error.message}`);
+        } else {
+            throw new Error("알 수 없는 오류가 발생했습니다.");
+        }
     }
-    const responseData = await response.json();
-    return responseData;
-  } catch (error) {
-    if (error instanceof Error) {
-      throw new Error(`API 요청 중 오류 발생: ${error.message}`);
-    } else {
-      throw new Error("알 수 없는 오류가 발생했습니다.");
-    }
-  }
 }
 
 export const api = {
@@ -41,6 +39,26 @@ export const api = {
   getGameRank: async () => {
     const data = await apiFetch("/game/ktwizteamrank");
     return data.data.ktWizTeamRank;
+  },
+  // 뉴스 소식 api
+  getNewsList: async (searchWord = "", itemCount = 5, pageNum = 1) => {
+    const endpoint = `/article/newslistpage?searchWord=${searchWord}&itemCount=${itemCount}&pageNum=${pageNum}`;
+    const data = await apiFetch(endpoint);
+    return data.data.list;
+  },
+  getNewsDetail: async (artcSeq: number) => {
+    const data = await apiFetch(`/article/newsdetail?artcSeq=${artcSeq}`);
+    return data.data.article;
+  },
+  // 보도자료 리스트 api
+  getPressList: async (searchWord = "", itemCount = 5, pageNum = 1) => {
+    const endpoint = `/article/wizpresslistpage?searchWord=${searchWord}&itemCount=${itemCount}&pageNum=${pageNum}`;
+    const data = await apiFetch(endpoint);
+    return data.data.list;
+  },
+  getPressDetail: async (artcSeq: number) => {
+    const data = await apiFetch(`/article/wizpressdetail?artcSeq=${artcSeq}`);
+    return data.data.article;
   },
   // 메인 페이지 하단의 '이달의 선수' api
   getPlayerOfTheMonth: async () => {
@@ -134,18 +152,17 @@ export const api = {
   // 정규리그 페이지의 '경기 일정'탭의 '월 스케줄' 데이터를 요청하는 코드
   monthSceduleFetcher: async (yearMonth:string) => {
       const response = await apiFetch(`/game/monthschedule?yearMonth=${yearMonth}`);
-      return response.json();
+      return response
   },
   // 정규리그 페이지의 '경기 일정'탭의 '모든 팀월 스케줄' 데이터를 요청하는 코드
   allGameScheduleFetcher: async (yearMonth:string) => {
       const response = await apiFetch(`/game/allgameschedule?yearMonth=${yearMonth}`);
-      return response.json();
+      return response
   },
 
-  // 정규리그 페이지의 '박스스코어' 데이터를 요청하는 코드
-  boxScoreFetcher: async (gameDate: string, gmKey: string) => {
-      const response = await apiFetch(`/game/boxscore?gameDate=${gameDate}&gmkey=${gmKey}`);
-      return response.json();
-
-  },
+    // 정규리그 페이지의 '박스스코어' 데이터를 요청하는 코드
+    boxScoreFetcher: async (gameDate: string, gmKey: string) => {
+        const response = await apiFetch(`/game/boxscore?gameDate=${gameDate}&gmkey=${gmKey}`);
+        return response
+    },
 };

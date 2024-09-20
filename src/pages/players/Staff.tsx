@@ -11,7 +11,14 @@ import TabMenuNavbar from '../../components/TabMenuNavbar';
 
 
 const Staff = () => {
-
+  const playerTabs = [
+    { title: "코칭스텝", route: "../player/coach" },
+    { title: "투수", route: "../player/pitcher" },
+    { title: "포수", route: "../player/catcher" },
+    { title: "내야수", route: "../player/infielder" },
+    { title: "외야수", route: "../player/outfielder" },
+    { title: "응원단", route: "../player/cheer" },
+];
   const [isSticky, setIsSticky] = useState(false);
 
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -42,7 +49,7 @@ const Staff = () => {
         <BackgroundImage imageUrl={playertogether} className="title-banner" height="782px" />
         <section className='content_block absolute top-[422px] px-[144.8px]'>
             <div className='mt-[40px]'>
-              <TabMenuBar />
+              <TabMenuBar tabs={playerTabs} />
             </div>
             <div>
               <h4 className='text-2xl text-white mt-[80px]'>코칭스탭</h4>
@@ -60,7 +67,7 @@ const Staff = () => {
             }`}
             onAnimationEnd={() => setHasAnimated(true)}
           >
-            <TabMenuNavbar />
+            <TabMenuNavbar menuItems={playerTabs}/>
           </div>
         )}
 

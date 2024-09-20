@@ -11,13 +11,15 @@ interface PlayerCardProps {
     playerDatas: TPlayerPitcherProps[];
 }
 
-const PlayerPitcherCard: React.FC<PlayerCardProps> = ({ number, name, imageUrl, pcode, playerData, playerDatas }) => {
+const PlayerPitcherCard: React.FC<PlayerCardProps> = ({ number, name, imageUrl, pcode, playerData }) => {
   
   const navigate = useNavigate();
   
   const handleClick = () => {
-    navigate(`/player/pitcher/detail?pcode=${pcode}`, {
-      state: { playerDatas },
+
+    navigate(`/player/pitcher/details?pcode=${pcode}`, {
+      state: { playerData,pcode },
+
     });
   };
   

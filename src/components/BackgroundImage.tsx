@@ -14,7 +14,9 @@ const BackgroundImage = ({ imageUrl, children, className, height }: BackgroundIm
     backgroundRepeat: 'no-repeat',
     width: '100%',
     backgroundPosition: 'center',
-    zIndex: -1, //나중에 맞게 바꿔
+
+    zIndex: 999,
+
     backgroundAttachment: 'fixed',
     backgroundSize: '100% 100%',
     height: height || '900px',
