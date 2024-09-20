@@ -46,7 +46,7 @@ export const api = {
   getNewsList: async (searchWord = "", itemCount = 5, pageNum = 1) => {
     const endpoint = `/article/newslistpage?searchWord=${searchWord}&itemCount=${itemCount}&pageNum=${pageNum}`;
     const data = await apiFetch(endpoint);
-    return data.data.list;
+    return data.data;
   },
   getNewsDetail: async (artcSeq: number) => {
     const data = await apiFetch(`/article/newsdetail?artcSeq=${artcSeq}`);
@@ -56,7 +56,7 @@ export const api = {
   getPressList: async (searchWord = "", itemCount = 5, pageNum = 1) => {
     const endpoint = `/article/wizpresslistpage?searchWord=${searchWord}&itemCount=${itemCount}&pageNum=${pageNum}`;
     const data = await apiFetch(endpoint);
-    return data.data.list;
+    return data.data;
   },
   getPressDetail: async (artcSeq: number) => {
     const data = await apiFetch(`/article/wizpressdetail?artcSeq=${artcSeq}`);
