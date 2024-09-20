@@ -86,7 +86,7 @@ const ScheduleCalendar = () => {
     };
 
     return (
-        <div className="p-4 w-full max-w-4xl mx-auto bg-white rounded-lg">
+        <div className="p-4 w-full max-w-4xl mx-auto bg-black text-white rounded-lg">
             <div className="w-[30%] flex gap-1 p-2">
                 <span
                     className={`block p-4 rounded-md cursor-pointer 

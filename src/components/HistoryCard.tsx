@@ -7,7 +7,7 @@ type HistoryCardProps = {
 //KT Wiz란? 페이지의 구단 연혁 카드를 보여주는 컴포넌트
 const HistoryCard = ({ historyData }: HistoryCardProps) => {
     return (
-        <div className="px-40 relative">
+        <div className="px-[10em] inset-0 relative z-10">
             {historyData.map((item) => (
                 <div key={item.id} className={classNames("w-[100%] -z-10  mb-4 flex  relative", item.id % 2 === 0 ? " justify-start" : " justify-end")}>
                     <div className="w-[26.8em] relative ">
