@@ -94,13 +94,13 @@ const TeamBatterRankingTable: React.FC<{
   });
 
   return (
-    <div className='text-xs text-center border-t-2 border-t-[#DC2626]'>
-      <table className='w-full border border-gray-200'>
+    <div className="text-xs text-center border-t-2 border-t-[#DC2626]">
+      <table className="w-full border border-gray-200">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id} className='bg-gray-100'>
+            <tr key={headerGroup.id} className="bg-gray-100">
               {headerGroup.headers.map((header) => (
-                <th key={header.id} className='border py-2'>
+                <th key={header.id} className="border py-2 bg-black text-white">
                   {typeof header.column.columnDef.header === "function"
                     ? header.column.columnDef.header(header.getContext())
                     : header.column.columnDef.header}
@@ -115,12 +115,12 @@ const TeamBatterRankingTable: React.FC<{
               key={row.id}
               className={
                 row.getValue("teamName") === "KT"
-                  ? "bg-red-100 text-[#EC090C]"
-                  : "bg-white"
+                  ? "bg-red-200 text-[#EC090C] font-bold"
+                  : "bg-black text-white "
               }
             >
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className='border py-2'>
+                <td key={cell.id} className="border py-2">
                   {String(cell.getValue())}{" "}
                 </td>
               ))}

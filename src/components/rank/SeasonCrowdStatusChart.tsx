@@ -17,7 +17,7 @@ const SeasonCrowdStatusChart: React.FC<{ crowdStatus: TGameCrowdStatus }> = ({
 }) => {
   return (
     <>
-      <ResponsiveContainer width='100%' height='100%'>
+      <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={crowdStatus}
           margin={{
@@ -27,26 +27,26 @@ const SeasonCrowdStatusChart: React.FC<{ crowdStatus: TGameCrowdStatus }> = ({
             left: 25,
           }}
         >
-          <CartesianGrid horizontal={true} vertical={false} color='#E6E6E6' />
+          <CartesianGrid horizontal={true} vertical={false} color="#E6E6E6" />
           <XAxis
-            dataKey='teamName'
+            dataKey="teamName"
             interval={0}
-            tick={{ fontSize: 16 }}
+            tick={{ fontSize: 16, fill: "white" }}
             tickMargin={10}
           />
           <YAxis
-            type='number'
+            type="number"
             domain={[0, 1400000]}
             tickCount={8}
             tickMargin={20}
-            tick={{ fontSize: 12 }}
+            tick={{ fontSize: 12, fill: "white" }}
             tickFormatter={numberWithCommas}
           />
-          <Bar dataKey='crowd' barSize={30}>
+          <Bar dataKey="crowd" barSize={15}>
             {crowdStatus.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
-                fill={entry.teamName === "KT" ? "#FF5733" : "#404046"}
+                fill={entry.teamName === "KT" ? "#FF5733" : "#FFFFFF"}
               />
             ))}
           </Bar>
