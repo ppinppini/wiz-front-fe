@@ -110,7 +110,9 @@ const BatterRecordRankingTable: React.FC<{
               <tr key={row.id} className="bg-white">
                 {row.getVisibleCells().map((cell) => (
                   <td key={cell.id} className="border py-2 bg-black text-white">
-                    {String(cell.getValue())}{" "}
+                    {cell.getValue() !== undefined
+                      ? String(cell.getValue())
+                      : "0"}
                   </td>
                 ))}
               </tr>
