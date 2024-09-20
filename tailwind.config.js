@@ -17,6 +17,13 @@ export default {
         'diagonal-slide': 'diagonalSlide 0.5s ease-out forwards',
       },
     },
+    extend: {
+      colors: {
+        ktred: '#F53232',
+        ktDeepRed: '#D60C0C',
+        ktgray:'#231F20',
+      }
+    },
   },
   plugins: [],
 }
