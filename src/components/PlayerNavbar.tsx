@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 const PlayerNavbar = () => {
     const [isBlack, setIsBlack] = useState(false);
@@ -252,6 +252,9 @@ const PlayerNavbar = () => {
                     </div>
                 </div>
             </nav>
+            <div>
+                <Outlet />
+            </div> 
            
         </>
     );
