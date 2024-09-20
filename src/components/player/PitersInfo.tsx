@@ -88,7 +88,7 @@ const PitersInfo = () => {
       </div>
 
       {/* 선수 정보 */}
-      <div className="md:w-2/3 flex flex-col justify-center pl-6">
+      <div className="md:w-2/3 flex flex-col justify-center pl-6 ml-[150px]">
         <div className="flex  mb-4">
           <div className="text-gray-400 text-6xl font-bold mr-6">
             {playerData.backnum}

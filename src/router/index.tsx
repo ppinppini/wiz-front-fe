@@ -66,10 +66,7 @@ export const router = createBrowserRouter([
         path: "/game/ranking/crowd",
         element: <CrowdStatus />,
       },
-      {
-        path: "/player/pitcher/details",
-        element: <Pitchersdetail />,
-      },
+      
     ],
   },
   {
@@ -79,5 +76,9 @@ export const router = createBrowserRouter([
   {
     path: "/player/pitcher",
     element: <Pitchers />, // Pitchers 페이지 설정
+  },
+  {
+    path: "/player/pitcher/details",
+    element: <Pitchersdetail />,
   },
 ]);
