@@ -111,12 +111,12 @@ const TeamRanking = () => {
           </div>
 
           {/* 2024 SEASON 팀 간 승패표 */}
-          <div className="block mt-[100px] h-[400px]">
-            <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold">
-              2024 팀 간 승패표
-            </h4>
-            {/* <SeasonTeamvsRecordTable /> */}
-          </div>
+          {/* <div className="block mt-[100px] h-[400px]"> */}
+          {/* <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold"> */}
+          {/* 2024 팀 간 승패표 */}
+          {/* </h4> */}
+          {/* <SeasonTeamvsRecordTable /> */}
+          {/* </div> */}
         </div>
       </div>
     </>
