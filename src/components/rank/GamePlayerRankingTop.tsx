@@ -1,5 +1,8 @@
 import { TGameBatterRank, TGamePitcherRank } from "../../types/types";
 
+import { url } from "inspector";
+import Ribon from "./Ribon";
+
 const GamePlayerRankingTop: React.FC<{
   // player type data
   playerDataType: string;
@@ -32,7 +35,10 @@ const GamePlayerRankingTop: React.FC<{
                 <div className="w-[180px] h-full flex flex-row">
                   {/* ERA 1ST PITCHER IMG */}
                   {eraTop3?.[0]?.playerPrvwImg ? (
-                    <img src={eraTop3?.[0]?.playerPrvwImg} />
+                    <div className="relative">
+                      <Ribon innerText={"평균자책점"} />
+                      <img src={eraTop3?.[0]?.playerPrvwImg} alt="선수이미지" />
+                    </div>
                   ) : (
                     <div>no player image</div>
                   )}
@@ -57,7 +63,10 @@ const GamePlayerRankingTop: React.FC<{
                 <div className="w-[180px] h-full">
                   {/* WIN 1ST PLAYER IMG */}
                   {winTop3?.[0]?.playerPrvwImg ? (
-                    <img src={winTop3?.[0]?.playerPrvwImg} />
+                    <div className="relative">
+                      <Ribon innerText={"승리"} />
+                      <img src={winTop3?.[0]?.playerPrvwImg} />
+                    </div>
                   ) : (
                     <span>no player image</span>
                   )}
@@ -111,7 +120,10 @@ const GamePlayerRankingTop: React.FC<{
                 <div className="w-[180px] h-full flex flex-row">
                   {/* HRA 1ST PITCHER IMG */}
                   {hraTop3?.[0]?.playerPrvwImg ? (
-                    <img src={hraTop3?.[0]?.playerPrvwImg} />
+                    <div className="relative">
+                      <Ribon innerText={"타율"} />
+                      <img src={hraTop3?.[0]?.playerPrvwImg} />
+                    </div>
                   ) : (
                     <div>no player image</div>
                   )}
@@ -136,7 +148,10 @@ const GamePlayerRankingTop: React.FC<{
                 <div className="w-[180px] h-full">
                   {/* HR 1ST PLAYER IMG */}
                   {hrTop3?.[0]?.playerPrvwImg ? (
-                    <img src={hrTop3?.[0]?.playerPrvwImg} />
+                    <div className="relative">
+                      <Ribon innerText={"홈런"} />
+                      <img src={hrTop3?.[0]?.playerPrvwImg} />
+                    </div>
                   ) : (
                     <span>no player image</span>
                   )}

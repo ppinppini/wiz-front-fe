@@ -95,7 +95,7 @@ const PitcherRecordRankingTable: React.FC<{
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
-                    className="border py-2 bg-black text-white"
+                    className="border py-2 bg-gray-500 text-white"
                   >
                     {typeof header.column.columnDef.header === "function"
                       ? header.column.columnDef.header(header.getContext())

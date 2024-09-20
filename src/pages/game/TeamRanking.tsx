@@ -5,7 +5,7 @@ import {
   TGameSeasonTeamPitcherRank,
   TGameSeasonTeamRank,
   TGameSeasonTeamRecord,
-  TGameSeasonTeamvsRecord,
+  // TGameSeasonTeamvsRecord,
 } from "../../types/types";
 import { api } from "../../api/api";
 import SeasonTeamRankChart from "../../components/rank/SeasonTeamRankChart";
@@ -22,7 +22,7 @@ const TeamRanking = () => {
   const [batterRanking, setBatterRanking] = useState<TGameSeasonTeamBatterRank>(
     []
   );
-  const [teamvsRecord, setTeamvsRecord] = useState<TGameSeasonTeamvsRecord>([]);
+  // const [teamvsRecord, setTeamvsRecord] = useState<TGameSeasonTeamvsRecord>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -39,13 +39,13 @@ const TeamRanking = () => {
         const gameSeasonTeamBatterRankData =
           await api.getGameSeasonTeamBatterRank();
         // 팀 상대 전적
-        const gameSeasonTeamvsRecordData = await api.getGameSeasonTeamvsRank();
+        // const gameSeasonTeamvsRecordData = await api.getGameSeasonTeamvsRank();
         // state로 api값 관리
         setRankList(gameSeasonTeamRankData);
         setRecordList(gameSeasonTeamRecordData);
         setPitcherRanking(gameSeasonTeamPitcherRankData);
         setBatterRanking(gameSeasonTeamBatterRankData);
-        setTeamvsRecord(gameSeasonTeamvsRecordData);
+        // setTeamvsRecord(gameSeasonTeamvsRecordData);
       } catch (err) {
         if (err instanceof Error) {
           setError(err.message);
