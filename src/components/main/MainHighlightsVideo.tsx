@@ -35,9 +35,9 @@ const MainHighlightsVideo = () => {
                   <img
                     src={video.imgFilePath}
                     alt="썸네일 이미지"
-                    className="block w-full h-auto rounded-md"
+                    className="block w-full h-[73px] rounded-md"
                   />
-                  <div className="flex justify-between w-full mt-2">
+                  <div className="flex justify-between w-full  mt-2">
                     <div className="inline-block mb-4 rounded-[12px] bg-gradient-to-r from-[#f53232] via-[#cc65de] to-[#2ab2c6] px-2 py-1 text-[11px] text-white font-bold">
                       하이라이트
                     </div>

@@ -63,7 +63,7 @@ const TeamRanking = () => {
 
   return (
     <>
-      <div className='flex flex-col items-center'>
+      <div className='flex flex-col items-center bg-black'>
         {/* 메인 컨텐츠 컨테이너 */}
         <div className='w-[1100px] h-[1590.5px] mx-[25.1em] pt-[4.625em] relative'>
           {/* 페이지 로케이터 */}

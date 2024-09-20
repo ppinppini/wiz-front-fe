@@ -37,6 +37,7 @@ export type TMainHighlightVideo = {
   videoLink: string;
   viewCnt: number;
 };
+
 //KT Wiz란? 페이지의 구단 연혁 카드를 보여주는 컴포넌트의 타입
 export type THistoryDataType = {
   id: number;
@@ -48,6 +49,47 @@ export type TMainHighlightsVideoListType = {
   imgFilePath: string;
   contentsDate: string;
   artcTitle: string;
+};
+// Player 페이지의 투수 카드 컴포넌트의 타입들
+export type TPlayerPitcherProps = {
+  backnum: string;
+  energybar: number;
+  energybarName: string;
+  gyear: string;
+  hasFanpage: string;
+  hittype: string;
+  mobilePlayerImg: string;
+  mobilePlayerImg1: string;
+  mobilePlayerImg2: string;
+  pcode: string;
+  playerName: string;
+  playerPrvwImg: string;
+  position: string;
+  rank: number;
+  rankName: string;
+  teamName: string;
+};
+// Player 페이지의 코칭스탭 컴포넌트의 타입들
+export type TPlayerCoachProps = {
+  backnum: string;
+  birth: string;
+  career: string;
+  gyear: string;
+  height: string;
+  heightWeight: string;
+  hittype: string;
+  mobilePlayerImg1: string;
+  mobilePlayerImg2: string;
+  orderSeq: string;
+  pcode: string;
+  playerName: string;
+  playerPrvwImg: string;
+  playerPrvwImg2: string;
+  playerPrvwImg3: string;
+  position: string;
+  teamCode: string;
+  teamName: string;
+  weight: string;
 };
 // 정규리그 순위기록 / 팀순위 컴포넌트의 타입들
 export type TGameSeasonTeamRank = {
@@ -460,8 +502,6 @@ export interface GameBoxScoreMainRecordProps {
   etcgames: EtcGameRecord[];
 }
 
-
-
 export interface GameInfo {
   gameDate: string;
   gmkey: string;
@@ -514,7 +554,6 @@ export interface GameBoxScoreScheduleProps {
   schedule: Schedule;
 }
 
-
 // 박스스코어의 투수기록 타입
 export interface PitcherRecord {
   name: string;
@@ -536,5 +575,45 @@ export interface PitcherRecord {
 
 export interface GameBoxScorePitcherRecordProps {
   pitchers: PitcherRecord[]; // pitchers로 props 이름 변경
-  name: string
+  name: string;
+}
+
+// wiz 뉴스 리스트
+export interface NewsList {
+  artcContents: string;
+  artcNextSeq: number;
+  artcPrevSeq: number;
+  artcSeq: number;
+  artcTitle: string;
+  boardCatSeq: number;
+  boardCode: string;
+  delYn: string;
+  imgFilePath: string;
+  maxArticlePerPage: number;
+  regDttm: number;
+  regr: string;
+  totalPage: number;
+  updDttm: number;
+  updr: string;
+  useYn: string;
+  viewCnt: number;
+}
+//wiz 뉴스 상세
+export interface NewsDetail {
+  artcContents: string;
+  artcNextSeq: number;
+  artcPrevSeq: number;
+  artcSeq: number;
+  artcTitle: string;
+  boardCatSeq: number;
+  boardCode: string;
+  delYn: string;
+  imgFilePath?: string;
+  maxArticlePerPage: number;
+  regDttm: number;
+  regr: string;
+  updDttm: number;
+  updr: string;
+  useYn: string;
+  viewCnt: number;
 }
