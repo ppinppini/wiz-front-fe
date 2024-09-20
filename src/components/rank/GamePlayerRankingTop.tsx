@@ -25,7 +25,7 @@ const GamePlayerRankingTop: React.FC<{
       {playerDataType === "pitcher" ? (
         <article className="w-[1100px] h-[247px] mt-[40px] flex flex-row">
           {/* PITCHER TOP3 CARD */}
-          <div className="w-[75%] py-[30px] px-[35px] border-[1px] border-[#E4E4E4] justify-between bg-[#FCFCFC]">
+          <div className="w-[75%] py-[30px] px-[35px] border-[1px] border-[#E4E4E4] justify-between bg-black text-white">
             <ul className="flex flex-row">
               <li className="w-1/2 h-[185px] mr-[30px] flex">
                 {/* ERA TOP3 */}
@@ -82,11 +82,11 @@ const GamePlayerRankingTop: React.FC<{
 
           {/* PITCHER TOP5 PART */}
           <div className="w-[25%] mt-[20px] ml-[30px] inline-block">
-            <h5 className="text-lg font-bold text-[#ec0a0b]">
+            <h5 className="text-lg font-bold text-white">
               전체 투수 평균자책점
-              <span className="ml-2 text-[#000000]">TOP5</span>
+              <span className="ml-2 text-[#ec0a0b]">TOP5</span>
             </h5>
-            <ul className="mt-[12px]">
+            <ul className="mt-[12px] text-white">
               {eraTop5!.map((player, index) => (
                 <li className="h-[32px] py-[8px] px-[5px] border-b-[1px]">
                   <span>
@@ -96,7 +96,7 @@ const GamePlayerRankingTop: React.FC<{
                 </li>
               ))}
             </ul>
-            <span className="block text-right mt-[8px] text-[#44444] text-[15px]">
+            <span className="block text-right mt-[8px] text-[#44444] text-[15px] text-white">
               ※ 2024 정규리그 시즌
             </span>
           </div>
@@ -104,7 +104,7 @@ const GamePlayerRankingTop: React.FC<{
       ) : (
         <article className="w-[1100px] h-[247px] mt-[40px] flex flex-row">
           {/* BATTER TOP3 CARD */}
-          <div className="w-[75%] py-[30px] px-[35px] border-[1px] border-[#E4E4E4] justify-between bg-[#FCFCFC]">
+          <div className="w-[75%] py-[30px] px-[35px] border-[1px] border-[#E4E4E4] justify-between bg-black text-white">
             <ul className="flex flex-row">
               <li className="w-1/2 h-[185px] mr-[30px] flex">
                 {/* HRA TOP3 */}
@@ -161,11 +161,11 @@ const GamePlayerRankingTop: React.FC<{
 
           {/* BATTER TOP5 PART */}
           <div className="w-[25%] mt-[20px] ml-[30px] inline-block">
-            <h5 className="text-lg font-bold text-[#ec0a0b]">
-              전체 투수 평균자책점
-              <span className="ml-2 text-[#000000]">TOP5</span>
+            <h5 className="text-lg font-bold text-white">
+              전체 타자 타율
+              <span className="ml-2 text-[#ec0a0b]">TOP5</span>
             </h5>
-            <ul className="mt-[12px]">
+            <ul className="mt-[12px] text-white">
               {hraTop5!.map((player, index) => (
                 <li className="h-[32px] py-[8px] px-[5px] border-b-[1px]">
                   <span>
@@ -175,7 +175,7 @@ const GamePlayerRankingTop: React.FC<{
                 </li>
               ))}
             </ul>
-            <span className="block text-right mt-[8px] text-[#44444] text-[15px]">
+            <span className="block text-right mt-[8px] text-[#44444] text-[15px] text-white">
               ※ 2024 정규리그 시즌
             </span>
           </div>
