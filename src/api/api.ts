@@ -42,6 +42,26 @@ export const api = {
     const data = await apiFetch("/game/ktwizteamrank");
     return data.data.ktWizTeamRank;
   },
+  // 뉴스 소식 api
+  getNewsList: async (searchWord = "", itemCount = 5, pageNum = 1) => {
+    const endpoint = `/article/newslistpage?searchWord=${searchWord}&itemCount=${itemCount}&pageNum=${pageNum}`;
+    const data = await apiFetch(endpoint);
+    return data.data.list;
+  },
+  getNewsDetail: async (artcSeq: number) => {
+    const data = await apiFetch(`/article/newsdetail?artcSeq=${artcSeq}`);
+    return data.data.article;
+  },
+  // 보도자료 리스트 api
+  getPressList: async (searchWord = "", itemCount = 5, pageNum = 1) => {
+    const endpoint = `/article/wizpresslistpage?searchWord=${searchWord}&itemCount=${itemCount}&pageNum=${pageNum}`;
+    const data = await apiFetch(endpoint);
+    return data.data.list;
+  },
+  getPressDetail: async (artcSeq: number) => {
+    const data = await apiFetch(`/article/wizpressdetail?artcSeq=${artcSeq}`);
+    return data.data.article;
+  },
   // 메인 페이지 하단의 '이달의 선수' api
   getPlayerOfTheMonth: async () => {
     const data = await apiFetch("/media/monthlyPlayer");
