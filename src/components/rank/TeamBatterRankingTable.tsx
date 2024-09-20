@@ -115,12 +115,12 @@ const TeamBatterRankingTable: React.FC<{
               key={row.id}
               className={
                 row.getValue("teamName") === "KT"
-                  ? "bg-red-100 text-[#EC090C]"
-                  : "bg-white"
+                  ? "bg-red-200 text-[#EC090C] font-bold"
+                  : "bg-black text-white "
               }
             >
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="border py-2 bg-black text-white">
+                <td key={cell.id} className="border py-2">
                   {String(cell.getValue())}{" "}
                 </td>
               ))}
