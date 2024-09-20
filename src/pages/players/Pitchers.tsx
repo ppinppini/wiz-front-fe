@@ -37,7 +37,7 @@ const Pitchers = () => {
 
   return (
     <div>
-      <PlayerNavbar/>
+      <PlayerNavbar />
       <div className='relative'>
         <BackgroundImage imageUrl={playertogether} className="title-banner" height="782px" />
         <section className='content_block absolute top-[422px] px-[144.8px]'>

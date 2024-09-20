@@ -44,6 +44,7 @@ const PlayerPitcherCardList = () => {
               imageUrl={player.playerPrvwImg}
               pcode={player.pcode}
               playerData={player}
+              playerDatas={players}
             />
           </li>    
         ))}
