@@ -1,5 +1,4 @@
-import TopBanner from "../../components/TopBanner";
-import Tab from "../../components/Tab";
+
 import PageLocator from "../../components/PageLocator";
 import ScheduleTop from "../../components/game/ScheduleTop";
 import ScheduleCalendar from "../../components/game/ScheduleCalendar";
