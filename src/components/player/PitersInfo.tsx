@@ -4,6 +4,7 @@ import IconPlayerPitcher from '../../assets/IconPlayerPitcher.png';
 
 // 인터페이스 정의
 interface PlayerData {
+  playerPrvwImg: string; //이미지 api로 임시변경
   backnum: string;
   playerName: string;
   engName: string;
@@ -41,6 +42,7 @@ const PitersInfo = () => {
           const gamePlayer = data.data.gameplayer;
           // 데이터가 없을 경우 "N/A"로 표시
           setPlayerData({
+            playerPrvwImg: gamePlayer.playerPrvwImg || "N/A",
             backnum: gamePlayer.backnum || "N/A",
             playerName: gamePlayer.playerName || "N/A",
             engName: gamePlayer.engName || "N/A",
@@ -75,12 +77,14 @@ const PitersInfo = () => {
     <div className="flex flex-col md:flex-row items-start bg-black p-8 ">
       {/* 선수 이미지 */}
       <div className="relative w-full md:w-1/3 flex justify-center items-center mb-4 md:mb-0">
+        {/*팀로고 백그라운드로*/}
         <div
           className="w-full h-full bg-cover bg-center relative"
           style={{ backgroundImage: "url('/path/team-logo.png')" }}
         >
           <img
-            src={playerImage}
+            /*src={playerImage}*/
+            src={playerData.playerPrvwImg}
             alt={playerData.playerName}
             className="object-contain w-80 h-auto mx-auto"
           />
@@ -104,7 +108,7 @@ const PitersInfo = () => {
           <img
             src={IconPlayerPitcher}
             alt={playerData.playerName}
-            className="w-[87px] h-[87px] float-left mr-[15px]"
+            className="w-[87px] h-[87px] float-left mr-[15px] !rounded-lg"
           />
           <div className='pb-3 text-[26px] block'>{playerData.position}</div>
           <div className='block text-[26px]'>{playerData.hittype}</div>

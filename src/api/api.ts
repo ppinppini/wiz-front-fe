@@ -77,6 +77,11 @@ export const api = {
     const data = await apiFetch("/player/pitcherlist");
     return data; 
   },  
+  //상세페이지에서 pcode로 호출하기
+  getPlayerByPcode: async (pcode: string) => {
+    const data = await apiFetch(`/player/pitcherdetail?pcode=${pcode}`); 
+    return data;
+  },
   // 정규리그 페이지 시즌 팀 순위 api
   getGameSeasonTeamRank: async () => {
     const data = await apiFetch("/game/rank/periodteamrank");

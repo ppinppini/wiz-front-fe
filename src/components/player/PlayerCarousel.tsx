@@ -7,86 +7,68 @@ interface PlayerType {
   backnum: string;
   playerName: string;
   playerPrvwImg: string;
-  pcode:string;
-};
+  pcode: string;
+}
 
-const PlayerCarousel = () => {
-  
-    const [playerData, setPlayerData] = useState<PlayerType[]>([]);
-    const navigate =useNavigate();
-    
-    useEffect(() => {
-        const fetchPlayerData = async () => {
-        try {
-            const response = await fetch('http://3.35.51.214/api/player/pitcherlist');
-            const result = await response.json();
-            const players = result.map((player: any) => ({
-            backnum: player.backnum,
-            playerName: player.playerName,
-            playerPrvwImg: player.playerPrvwImg,
-            pcode:player.pcode,
-            }));
-            setPlayerData(players);
-        } catch (error) {
-            console.error('Error fetching player data:', error);
-        }
-        };
-        fetchPlayerData();
-    }, []);
+interface PlayerCarouselProps {
+  playerData: PlayerType[]; // props로 playerData를 받을 수 있도록 수정
+}
 
-    return (
-        <>
-        <h2 className="text-xl font-bold text-left mt-8">
-        KT Wiz 선수 목록 확인하기
-        </h2>
-        <Swiper spaceBetween={10} slidesPerView={4} loop={true}
-        className="!pt-0">
-            
-            {playerData.map((player, index) => (
-                <SwiperSlide key={index}>
-                <div className="relative group text-center hover-blur" >
-                    <img
-                    src={player.playerPrvwImg}
-                    alt={player.playerName}
-                    className="w-full h-auto rounded-lg"
-                    />
-                    <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 transition-opacity duration-300 
-                    group-hover:opacity-100 backdrop-filter backdrop-blur-lg">
-                    <button
-                        onClick={()=>navigate(`/player/pitcher/details?pcode=${player.pcode}`)}
-                        className="text-white border border-white py-2 px-4 rounded-lg cursor-pointer"
-                        >
-                        프로필
-                        </button>
-                    </div>
-                    <div className="inline-block relative text-left pl-[90px]">
-                    <p className="absolute top-0 left-0 w-20 font-semibold text-[74px] text-gray-400 text-center tracking-tight leading-[74px] mr-4">
-                        {player.backnum}
-                    </p>
-                    <p className="font-sans text-[20px] leading-[30px] pt-1">
-                        {player.playerName}
-                    </p>
-                    </div>
-                </div>
-                </SwiperSlide>
-            ))}
-    
-            {/* 목록버튼 */}
-            <div className="text-center mt-2">
+const PlayerCarousel: React.FC<PlayerCarouselProps> = ({ playerData }) => {
+  // props로 받은 playerData가 있을 때, data.gameplayer를 사용해 필요한 데이터만 추출
+  const [players, setPlayers] = useState<PlayerType[]>([]); 
+  const navigate = useNavigate();
+
+  // props로 받은 playerData가 변경될 때마다 players를 업데이트
+  useEffect(() => {
+    if (playerData && playerData.length > 0) {
+      setPlayers(playerData);
+    }
+  }, [playerData]);
+
+  return (
+    <>
+      <h2 className="text-xl font-bold text-left mt-8">KT Wiz 선수 목록 확인하기</h2>
+      <Swiper spaceBetween={10} slidesPerView={players.length < 4 ? players.length : 4} loop={true} className="!pt-0">
+        {players.map((player, index) => (
+          <SwiperSlide key={index}>
+            <div className="relative group text-center hover-blur">
+              <img
+                src={player.playerPrvwImg}
+                alt={player.playerName}
+                className="w-full h-auto rounded-lg"
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 backdrop-filter backdrop-blur-lg">
                 <button
-                className="text-white rounded-lg hover:bg-gray-600 transition h-13 leading-[52px] w-[200px] px-[52px] py-0 bg-transparent border border-[rgba(255,255,255,0.5)]"
-                onClick={() => window.location.href = '/player/pitcher'}
+                  onClick={() => navigate(`/player/pitcher/details?pcode=${player.pcode}`)}
+                  className="text-white border border-white py-2 px-4 rounded-lg cursor-pointer"
                 >
-                목록
+                  프로필
                 </button>
+              </div>
+              <div className="inline-block relative text-left pl-[90px]">
+                <p className="absolute top-0 left-0 w-20 font-semibold text-[74px] text-gray-400 text-center tracking-tight leading-[74px] mr-4">
+                  {player.backnum}
+                </p>
+                <p className="font-sans text-[20px] leading-[30px] pt-1">
+                  {player.playerName}
+                </p>
+              </div>
             </div>
-            
-            </Swiper>
-        </>
-        
+          </SwiperSlide>
+        ))}
+      </Swiper>
 
-        
-    );
+      <div className="text-center mt-2">
+        <button
+          className="text-white rounded-lg hover:bg-gray-600 transition h-13 leading-[52px] w-[200px] px-[52px] py-0 bg-transparent border border-[rgba(255,255,255,0.5)]"
+          onClick={() => (window.location.href = '/player/pitcher')}
+        >
+          목록
+        </button>
+      </div>
+    </>
+  );
 };
 
 export default PlayerCarousel;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import StatusArea from '../../../components/player/StatusArea';
 import PlayerCarousel from '../../../components/player/PlayerCarousel';
 import PitersInfo from '../../../components/player/PitersInfo';
@@ -6,22 +6,46 @@ import { useLocation } from 'react-router-dom';
 import TabMenuBar from '../../../components/TabMenuBar';
 import BackgroundImage from '../../../components/BackgroundImage';
 import playertogether from '../../../assets/kt4.png';
-import TabMenuNavbar from '../../../components/TabMenuNavbar'; // 추가
+import TabMenuNavbar from '../../../components/TabMenuNavbar';
 import '../../../styles/gradient.css';
 import PlayerNavbar from '../../../components/PlayerNavbar';
+import { api } from '../../../api/api';
+
+
+// 인터페이스 정의
+interface PlayerType {
+  backnum: string;
+  playerName: string;
+  playerPrvwImg: string;
+  pcode: string;
+}
 
 const Pitchersdetail = () => {
   const location = useLocation();
-  const pcode = location?.state?.pcode;
-
-  // 스크롤 상태를 관리하는 state
+  const pcode = new URLSearchParams(location.search).get('pcode'); // URL에서 pcode 추출
+  const [playerData, setPlayerData] = useState<PlayerType | null>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
 
-  // 스크롤을 감지해서 navbar 고정 상태를 설정하는 로직
+  // 선수 데이터를 불러오는 useEffect
+  useEffect(() => {
+    const fetchPlayerData = async () => {
+      try {
+        if (pcode) {
+          const data = await api.getPlayerPitcherImage(); // pcode로 API 호출하여 선수 데이터 가져오기
+          setPlayerData(data);
+        }
+      } catch (error) {
+        console.error("선수 데이터를 불러오는 중 오류 발생:", error);
+      }
+    };
+
+    fetchPlayerData();
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY >= 630) { // 특정 스크롤 위치에서 상단 고정
+      if (window.scrollY >= 630) {
         setIsSticky(true);
       } else {
         setIsSticky(false);
@@ -31,16 +55,18 @@ const Pitchersdetail = () => {
 
     window.addEventListener('scroll', handleScroll);
 
-    // 컴포넌트 언마운트 시 이벤트 리스너 제거
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
+  if (!playerData) {
+    return <div>Loading...</div>; // 데이터를 불러오기 전 로딩 상태 표시
+  }
+
   return (
-    
     <div className="bg-black min-h-screen w-full">
-      <PlayerNavbar/>
+      <PlayerNavbar />
 
       {/* 상단 배너 */}
       <div className="relative">
@@ -52,12 +78,9 @@ const Pitchersdetail = () => {
         </div>
       </div>
 
-      {/* 스크롤 시 나타나는 TabMenuNavbar 컴포넌트 */}
       {isSticky && (
         <div 
-          className={`fixed top-0 left-0 z-50 w-full ${
-            !hasAnimated ? 'animate-diagonal-slide' : ''
-          }`}
+          className={`fixed top-0 left-0 z-50 w-full ${!hasAnimated ? 'animate-diagonal-slide' : ''}`}
           onAnimationEnd={() => setHasAnimated(true)}
         >
           <TabMenuNavbar />
@@ -66,24 +89,25 @@ const Pitchersdetail = () => {
 
       {/* 아래 컴포넌트들 */}
       <div className="relative content_block mt-[40px] px-[144.8px] text-white">
+      
+      {/* 선수 기본 정보와 이미지 */}
+      <div className="w-full">
+        <PitersInfo  /> {/* playerData를 PitersInfo로 전달 */}
+      </div> 
 
-        {/* 플레이어 기본정보와 이미지 */}
-        <div className="w-full">
-          <PitersInfo />
-        </div>
+      {/* 2024 시즌 기록 */}
+       <div className="w-full mt-8">
+        <StatusArea /> {/* playerData를 StatusArea로 전달 */}
+       </div> 
 
-        {/* 2024 시즌 기록 */}
+        {/* 다른 선수 캐러셀 */}
         <div className="w-full mt-8">
-          <StatusArea />
+        <PlayerCarousel playerData={Array.isArray(playerData) ? playerData : [playerData]} />
+
         </div>
 
-        {/* 다른 플레이어 캐러셀 */}
-        <div className="w-full mt-8">
-          <PlayerCarousel />
-        </div>
         
       </div>
-
     </div>
   );
 };
