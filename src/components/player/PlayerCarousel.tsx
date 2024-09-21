@@ -35,53 +35,55 @@ const PlayerCarousel = () => {
     }, []);
 
     return (
-        <Swiper spaceBetween={10} slidesPerView={4} loop={true}>
-        {playerData.map((player, index) => (
-            <SwiperSlide key={index}>
-            <div className="relative group text-center hover-blur" >
-                <img
-                src={player.playerPrvwImg}
-                alt={player.playerName}
-                className="w-full h-auto rounded-lg"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 transition-opacity duration-300 
-                group-hover:opacity-100 backdrop-filter backdrop-blur-lg">
-                {/* <button
-                    onClick={() => window.location.href = `/player/pitcher/details/${pcode}`}
-                    className="text-white border border-white py-2 px-4 rounded-lg cursor-pointer"
-                    >
-                    프로필
-                    </button> */}
+        <>
+        <h2 className="text-xl font-bold text-left mt-8">
+        KT Wiz 선수 목록 확인하기
+        </h2>
+        <Swiper spaceBetween={10} slidesPerView={4} loop={true}
+        className="!pt-0">
+            
+            {playerData.map((player, index) => (
+                <SwiperSlide key={index}>
+                <div className="relative group text-center hover-blur" >
+                    <img
+                    src={player.playerPrvwImg}
+                    alt={player.playerName}
+                    className="w-full h-auto rounded-lg"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 transition-opacity duration-300 
+                    group-hover:opacity-100 backdrop-filter backdrop-blur-lg">
+                    <button
+                        onClick={()=>navigate(`/player/pitcher/details?pcode=${player.pcode}`)}
+                        className="text-white border border-white py-2 px-4 rounded-lg cursor-pointer"
+                        >
+                        프로필
+                        </button>
+                    </div>
+                    <div className="inline-block relative text-left pl-[90px]">
+                    <p className="absolute top-0 left-0 w-20 font-semibold text-[74px] text-gray-400 text-center tracking-tight leading-[74px] mr-4">
+                        {player.backnum}
+                    </p>
+                    <p className="font-sans text-[20px] leading-[30px] pt-1">
+                        {player.playerName}
+                    </p>
+                    </div>
+                </div>
+                </SwiperSlide>
+            ))}
+    
+            {/* 목록버튼 */}
+            <div className="text-center mt-2">
                 <button
-                    onClick={()=>navigate(`/player/pitcher/details?pcode=${player.pcode}`)}
-                    className="text-white border border-white py-2 px-4 rounded-lg cursor-pointer"
-                    >
-                    프로필
-                    </button>
-                </div>
-                <div className="inline-block relative text-left pl-[90px]">
-                <p className="absolute top-0 left-0 w-20 font-semibold text-[74px] text-gray-400 text-center tracking-tight leading-[74px] mr-4">
-                    {player.backnum}
-                </p>
-                <p className="font-sans text-[20px] leading-[30px] pt-1">
-                    {player.playerName}
-                </p>
-                </div>
+                className="text-white rounded-lg hover:bg-gray-600 transition h-13 leading-[52px] w-[200px] px-[52px] py-0 bg-transparent border border-[rgba(255,255,255,0.5)]"
+                onClick={() => window.location.href = '/player/pitcher'}
+                >
+                목록
+                </button>
             </div>
-            </SwiperSlide>
-        ))}
-
-        {/* 목록버튼 */}
-        <div className="text-center mt-8">
-            <button
-            className="text-white rounded-lg hover:bg-gray-600 transition h-13 leading-[52px] w-[200px] px-[52px] py-0 bg-transparent border border-[rgba(255,255,255,0.5)]"
-            onClick={() => window.location.href = '/player/pitcher'}
-            >
-            목록
-            </button>
-        </div>
+            
+            </Swiper>
+        </>
         
-        </Swiper>
 
         
     );
