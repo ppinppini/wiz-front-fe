@@ -30,9 +30,9 @@ const SeasonTeamRankChart: React.FC<TeamSeasonRankChartData> = ({
   }: TooltipProps<ValueType, NameType>) => {
     if (active && payload && payload.length) {
       // 날짜를 mm.dd 형식으로 변환
-      const date = `${label.slice(4, 6)}.${label.slice(6, 8)}`;
+      const date = `${label?.slice(4, 6)}.${label?.slice(6, 8)}`;
       // 순위 가져오기
-      const rank = payload[0].value;
+      const rank = payload[0]?.value;
 
       return (
         <div className="bg-red-500 text-white px-4 py-3 shadow-lg border rounded-lg text-center border-gray-300">
@@ -64,7 +64,7 @@ const SeasonTeamRankChart: React.FC<TeamSeasonRankChartData> = ({
             textAnchor="end"
             angle={-45}
             tick={{ fontSize: 12, fill: "white" }}
-            tickFormatter={(date) => `${date.slice(4, 6)}.${date.slice(6, 8)}`}
+            tickFormatter={(date) => `${date?.slice(4, 6)}.${date?.slice(6, 8)}`}
             tickMargin={10}
           />
           <YAxis
