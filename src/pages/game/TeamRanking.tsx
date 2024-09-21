@@ -33,7 +33,7 @@ const TeamRanking = () => {
     { title: "경기 일정", route: "../game/schedule" },
     { title: "박스 스코어", route: "../game/boxScore" },
     { title: "순위기록", route: "../game/ranking/team" },
-    { title: "관전포인트", route: "../game/watchPoint" },
+    // { title: "관전포인트", route: "../game/watchPoint" },
   ];
 
   const rankTabs = [

@@ -27,7 +27,7 @@ const BatterRanking = () => {
     { title: "경기 일정", route: "../game/schedule" },
     { title: "박스 스코어", route: "../game/boxScore" },
     { title: "순위기록", route: "../game/ranking/team" },
-    { title: "관전포인트", route: "../game/watchPoint" },
+    // { title: "관전포인트", route: "../game/watchPoint" },
   ];
 
   const rankTabs = [
@@ -101,7 +101,7 @@ const BatterRanking = () => {
         )}
 
         {/* 메인 컨텐츠 컨테이너 */}
-        <div className="w-[1100px] h-[2000px] mx-[25.1em] pt-[4.625em] relative">
+        <div className="w-[1100px] h-[2100px] mx-[25.1em] pt-[4.625em] relative">
           <PageLocator
             pagePath="> Game > 정규 리그 >"
             currentPage="타자 순위"
