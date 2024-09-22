@@ -9,12 +9,14 @@ import TabMenuBar from "../../components/TabMenuBar";
 import TabMenuNavbar from "../../components/TabMenuNavbar";
 import PageInnerTab from "../../components/PageInnerTab";
 import PageLocator from "../../components/PageLocator";
+import RectSkeleton from "../../components/skeleton/RectSkeleton";
 
 const PitcherRanking = () => {
   const [eraTop3, setEraTop3] = useState<TGamePitcherRank>([]);
   const [winTop3, setWinTop3] = useState<TGamePitcherRank>([]);
   const [eraTop5, setEraTop5] = useState<TGamePitcherRank>([]);
   const [pitcherRecord, setPitcherRecord] = useState<TPitcherRecordRank>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -36,6 +38,7 @@ const PitcherRanking = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         // 평균자책점 TOP3
         const eraTop3Data = await api.getGamePitcherEraTop3();
         // 승리 TOP3
@@ -48,6 +51,7 @@ const PitcherRanking = () => {
         setWinTop3(winTop3Data!);
         setEraTop5(eraTop5Data!);
         setPitcherRecord(pitcherRecordRanking!);
+        setLoading(false);
       } catch (err) {
         if (err instanceof Error) {
           setError(err.message);
@@ -114,6 +118,7 @@ const PitcherRanking = () => {
             eraTop3={eraTop3}
             winTop3={winTop3}
             eraTop5={eraTop5}
+            loading={loading}
           />
           {/* PITCHER BOTTOM PART CONTAINER*/}
           {/* BOTTOM PART HEADER CONTAINER */}
@@ -123,7 +128,13 @@ const PitcherRanking = () => {
             {/* SEASON FILTER */}
           </div>
           {/* TABLE */}
-          <PitcherRecordRankingTable pitcherRecord={pitcherRecord} />
+          {loading ? (
+            <div className="w-full mt-[100px]">
+              <RectSkeleton width="1100" height="891" />
+            </div>
+          ) : (
+            <PitcherRecordRankingTable pitcherRecord={pitcherRecord} />
+          )}
         </div>
       </div>
     </>

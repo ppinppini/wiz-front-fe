@@ -9,9 +9,11 @@ import playertogether from "../../assets/kt4.png";
 import TabMenuBar from "../../components/TabMenuBar";
 import TabMenuNavbar from "../../components/TabMenuNavbar";
 import PageInnerTab from "../../components/PageInnerTab";
+import RectSkeleton from "../../components/skeleton/RectSkeleton";
 
 const CrowdStatus = () => {
   const [crowdStatus, setCrowdStatus] = useState<TGameCrowdStatus>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -37,9 +39,11 @@ const CrowdStatus = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         // 관중현황
         const hraTop3Data = await api.getGameCrowdStatus();
         setCrowdStatus(hraTop3Data!);
+        setLoading(false);
       } catch (err) {
         if (err instanceof Error) {
           setError(err.message);
@@ -100,24 +104,52 @@ const CrowdStatus = () => {
           />
           {/* 순위기록 페이지 내부 탭 */}
           <PageInnerTab tabs={rankTabs} currentTab="관중현황" />
+
           {/* 2024 SEASON 누적 관중 차트 */}
           <div className="block mt-[40px] h-[400px]">
-            <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white">
-              2024 시즌 누적관중
-            </h4>
-            <div className="border-[1px] border-gray-500 w-full h-full">
-              <SeasonCrowdStatusChart crowdStatus={crowdStatus} />
-            </div>
+            {loading ? (
+              <>
+                <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white">
+                  <RectSkeleton width="170" height="28" />
+                </h4>
+                <div className="w-full h-full">
+                  <RectSkeleton width="1098" height="398" />
+                </div>
+              </>
+            ) : (
+              <>
+                <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white">
+                  2024 시즌 누적관중
+                </h4>
+                <div className="border-[1px] border-gray-500 w-full h-full">
+                  <SeasonCrowdStatusChart crowdStatus={crowdStatus} />
+                </div>
+              </>
+            )}
           </div>
           {/* 2024 SEASON 관중 기록 테이블 */}
           <div className="block mt-[100px] h-[400px]">
-            <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white">
-              2024 시즌 관중기록
-            </h4>
-            {/* 2024 SEASON 누적 관중 차트 */}
-            <div className="w-full h-full">
-              <SeasonCrowdStatusTable crowdStatus={crowdStatus} />
-            </div>
+            {loading ? (
+              <>
+                <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white">
+                  <RectSkeleton width="170" height="28" />
+                </h4>
+                {/* 2024 SEASON 누적 관중 차트 */}
+                <div className="w-full h-full">
+                  <RectSkeleton width="1100" height="370" />
+                </div>
+              </>
+            ) : (
+              <>
+                <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white">
+                  2024 시즌 관중기록
+                </h4>
+                {/* 2024 SEASON 누적 관중 차트 */}
+                <div className="w-full h-full">
+                  <SeasonCrowdStatusTable crowdStatus={crowdStatus} />
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

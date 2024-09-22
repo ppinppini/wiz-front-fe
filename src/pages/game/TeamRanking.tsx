@@ -16,6 +16,7 @@ import TabMenuBar from "../../components/TabMenuBar";
 import playertogether from "../../assets/kt4.png";
 import TabMenuNavbar from "../../components/TabMenuNavbar";
 import PageInnerTab from "../../components/PageInnerTab";
+import RectSkeleton from "../../components/skeleton/RectSkeleton";
 
 const TeamRanking = () => {
   const [rankList, setRankList] = useState<TGameSeasonTeamRank>([]);
@@ -25,6 +26,7 @@ const TeamRanking = () => {
   const [batterRanking, setBatterRanking] = useState<TGameSeasonTeamBatterRank>(
     []
   );
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -46,6 +48,7 @@ const TeamRanking = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         // 팀 순위
         const gameSeasonTeamRankData = await api.getGameSeasonTeamRank();
         // 팀 기록
@@ -61,6 +64,7 @@ const TeamRanking = () => {
         setRecordList(gameSeasonTeamRecordData);
         setPitcherRanking(gameSeasonTeamPitcherRankData);
         setBatterRanking(gameSeasonTeamBatterRankData);
+        setLoading(false);
       } catch (err) {
         if (err instanceof Error) {
           setError(err.message);
@@ -123,39 +127,84 @@ const TeamRanking = () => {
           {/* 순위기록 페이지 내부 탭 */}
           <PageInnerTab tabs={rankTabs} currentTab="팀순위" />
 
-          {/* 2024 SEASON 팀 순위 */}
+          {/* 2024 SEASON 팀 순위, 차트 */}
           <div className="block mt-[40px] h-[400px]">
-            <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold">
-              2024 시즌 팀 순위
-            </h4>
-            {/* 2024 SEASON 팀 순위 차트 */}
-            <div className="border-[1px] border-gray-500 w-full h-full">
-              <SeasonTeamRankChart rankList={rankList} />
-            </div>
+            {loading ? (
+              <>
+                <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold">
+                  <RectSkeleton width="160" height="28" />
+                </h4>
+                <div className="w-full h-full">
+                  <RectSkeleton width="1098" height="398" />
+                </div>
+              </>
+            ) : (
+              <>
+                <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold">
+                  2024 시즌 팀 순위
+                </h4>
+                <div className="border-[1px] border-gray-500 w-full h-full">
+                  <SeasonTeamRankChart rankList={rankList} />
+                </div>
+              </>
+            )}
           </div>
 
           {/* 2024 SEASON 팀 기록 */}
           <div className="block mt-[100px] h-[400px]">
-            <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold">
-              2024 시즌 팀 기록
-            </h4>
-            <SeasonTeamRankTable recordList={recordList} />
+            {loading ? (
+              <>
+                <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold">
+                  <RectSkeleton width="160" height="28" />
+                </h4>
+                <RectSkeleton width="1100" height="363" />
+              </>
+            ) : (
+              <>
+                <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold">
+                  2024 시즌 팀 기록
+                </h4>
+                <SeasonTeamRankTable recordList={recordList} />
+              </>
+            )}
           </div>
 
           {/* 2024 SEASON 팀 투수 기록 */}
           <div className="block mt-[100px] h-[400px]">
-            <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold">
-              2024 팀 투수 기록
-            </h4>
-            <TeamPitcherRankingTable pitcherRanking={pitcherRanking} />
+            {loading ? (
+              <>
+                <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold">
+                  <RectSkeleton width="160" height="28" />
+                </h4>
+                <RectSkeleton width="1100" height="363" />
+              </>
+            ) : (
+              <>
+                <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold">
+                  2024 시즌 투수 기록
+                </h4>
+                <TeamPitcherRankingTable pitcherRanking={pitcherRanking} />
+              </>
+            )}
           </div>
 
           {/* 2024 SEASON 팀 타자 기록 */}
           <div className="block mt-[100px] h-[500px]">
-            <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold">
-              2024 팀 타자 기록
-            </h4>
-            <TeamBatterRankingTable batterRanking={batterRanking} />
+            {loading ? (
+              <>
+                <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold">
+                  <RectSkeleton width="160" height="28" />
+                </h4>
+                <RectSkeleton width="1100" height="363" />
+              </>
+            ) : (
+              <>
+                <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold">
+                  2024 시즌 타자 기록
+                </h4>
+                <TeamBatterRankingTable batterRanking={batterRanking} />
+              </>
+            )}
           </div>
 
           {/* 2024 SEASON 팀 간 승패표 */}

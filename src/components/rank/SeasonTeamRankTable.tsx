@@ -102,7 +102,6 @@ const SeasonTeamRankTable: React.FC<{ recordList: TGameSeasonTeamRecord }> = ({
         </thead>
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            // KT만 배경색 다르게 처리해야함
             <tr
               key={row.id}
               className={
