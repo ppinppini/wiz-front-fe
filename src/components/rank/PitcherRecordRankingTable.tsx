@@ -4,6 +4,7 @@ import {
   ColumnDef,
 } from "@tanstack/react-table";
 import { TPitcherRecordRank } from "../../types/types";
+import React from "react";
 
 const PitcherRecordRankingTable: React.FC<{
   pitcherRecord: TPitcherRecordRank;
@@ -110,7 +111,7 @@ const PitcherRecordRankingTable: React.FC<{
               <tr key={row.id} className="bg-white">
                 {row.getVisibleCells().map((cell) => (
                   <td key={cell.id} className="border py-2 bg-black text-white">
-                    {String(cell.getValue())}{" "}
+                    {String(cell.getValue())}
                   </td>
                 ))}
               </tr>

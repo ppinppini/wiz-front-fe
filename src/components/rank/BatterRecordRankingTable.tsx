@@ -4,6 +4,7 @@ import {
   ColumnDef,
 } from "@tanstack/react-table";
 import { TBatterRecordRank } from "../../types/types";
+import React from "react";
 
 const BatterRecordRankingTable: React.FC<{
   batterRecord: TBatterRecordRank;

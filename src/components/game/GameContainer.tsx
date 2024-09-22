@@ -1,7 +1,7 @@
-import React from 'react';
-import TeamInfo from './TeamInfo';
-import GameResult from './GameResult';
-import GameInfo from './GameInfo';
+import React from "react";
+import TeamInfo from "./TeamInfo";
+import GameResult from "./GameResult";
+import GameInfo from "./GameInfo";
 
 interface GameContainerProps {
   gameInfo: {
@@ -17,66 +17,72 @@ interface GameContainerProps {
     homeLogo: string;
     visitLogo: string;
   };
-  handlePrevBtnClick: () => void
-  handleNextBtnClick: () => void
+  handlePrevBtnClick: () => void;
+  handleNextBtnClick: () => void;
 }
 
-const GameContainer: React.FC<GameContainerProps> = ({ gameInfo, handlePrevBtnClick, handleNextBtnClick }) => {
-  
+const GameContainer: React.FC<GameContainerProps> = ({
+  gameInfo,
+  handlePrevBtnClick,
+  handleNextBtnClick,
+}) => {
   return (
     <>
-      <div className='flex flex-col items-center'>
-          {/* GAME INFO CARD CONTAINER */}
-          <div className='w-[37.8125em] h-[13.875em] pr-[1.25em]'>
+      <div className="flex flex-col items-center">
+        {/* GAME INFO CARD CONTAINER */}
+        <div className="w-[37.8125em] h-[13.875em] pr-[1.25em]">
+          {/* GAME INFO CARD HEADER */}
+          <div className="flex flex-row justify-between items-center text-3xl border-b-[0.0625em] pb-3">
+            {/* 이전 경기 버튼 */}
+            <img
+              src="https://www.ktwiz.co.kr/v2/imgs/ico-24-navi-prev.svg"
+              alt="prev-game-button"
+              onClick={handlePrevBtnClick}
+              className="cursor-pointer "
+            />
 
-            {/* GAME INFO CARD HEADER */}
-            <div className='flex flex-row justify-between items-center text-3xl border-b-[0.0625em] pb-3'>
+            {/* 경기 시간 및 장소 */}
+            <GameInfo
+              gameDate={gameInfo.gameDate}
+              stadium={gameInfo.stadium}
+              gtime={gameInfo.gtime}
+            />
 
-              {/* 이전 경기 버튼 */}
-              <img
-                src='https://www.ktwiz.co.kr/v2/imgs/ico-24-navi-prev.svg'
-                alt='prev-game-button'
-                onClick={handlePrevBtnClick}
-                className='cursor-pointer '
-                />
+            {/* 다음 경기 버튼 */}
+            <img
+              src="https://www.ktwiz.co.kr/v2/imgs/ico-24-navi-next.svg"
+              alt="next-game-button"
+              onClick={handleNextBtnClick}
+              className="cursor-pointer "
+            />
+          </div>
 
-              {/* 경기 시간 및 장소 */}
-              <GameInfo
-                gameDate={gameInfo.gameDate}
-                stadium={gameInfo.stadium}
-                gtime={gameInfo.gtime}
-              />
+          {/* GAME INFO CARD BODY */}
+          <div className=" pt-[1.125em] w-[36.5625em] h-[9.375em] flex flex-row justify-between items-center">
+            {/* 원정팀 정보 */}
+            <TeamInfo
+              teamName={gameInfo.awayTeam}
+              teamLogo={gameInfo.homeLogo}
+            />
 
-                {/* 다음 경기 버튼 */}
-              <img
-                src='https://www.ktwiz.co.kr/v2/imgs/ico-24-navi-next.svg'
-                alt='next-game-button'
-                onClick={handleNextBtnClick}
-                className='cursor-pointer '
-              />
-            </div>
+            {/* 경기 결과 */}
+            <GameResult
+              homeScore={gameInfo.homeScore}
+              awayScore={gameInfo.awayScore}
+              gmkey={gameInfo.gmkey}
+              displayDate={gameInfo.displayDate}
+            />
 
-            {/* GAME INFO CARD BODY */}
-            <div className=' pt-[1.125em] w-[36.5625em] h-[9.375em] flex flex-row justify-between items-center'>
-              {/* 원정팀 정보 */}
-              <TeamInfo teamName={gameInfo.awayTeam} teamLogo={gameInfo.homeLogo} />        
-
-              {/* 경기 결과 */}
-              <GameResult 
-                homeScore={gameInfo.homeScore}
-                awayScore={gameInfo.awayScore}
-                gmkey={gameInfo.gmkey}
-                displayDate={gameInfo.displayDate}
-              />
-
-              {/* 홈팀 정보 */}
-              <TeamInfo teamName={gameInfo.homeTeam} teamLogo={gameInfo.visitLogo} />
-            </div>
-
+            {/* 홈팀 정보 */}
+            <TeamInfo
+              teamName={gameInfo.homeTeam}
+              teamLogo={gameInfo.visitLogo}
+            />
           </div>
         </div>
+      </div>
     </>
   );
 };
 
-export default React.memo(GameContainer);
+export default GameContainer;

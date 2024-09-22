@@ -4,6 +4,7 @@ import {
   ColumnDef,
 } from "@tanstack/react-table";
 import { TGameSeasonTeamRecord } from "../../types/types";
+import React from "react";
 
 const SeasonTeamRankTable: React.FC<{ recordList: TGameSeasonTeamRecord }> = ({
   recordList,
@@ -102,7 +103,6 @@ const SeasonTeamRankTable: React.FC<{ recordList: TGameSeasonTeamRecord }> = ({
         </thead>
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            // KT만 배경색 다르게 처리해야함
             <tr
               key={row.id}
               className={
@@ -113,7 +113,7 @@ const SeasonTeamRankTable: React.FC<{ recordList: TGameSeasonTeamRecord }> = ({
             >
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id} className="border py-2">
-                  {String(cell.getValue())}{" "}
+                  {String(cell.getValue())}
                 </td>
               ))}
             </tr>

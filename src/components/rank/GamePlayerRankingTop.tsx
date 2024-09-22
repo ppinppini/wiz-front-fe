@@ -1,6 +1,5 @@
+import React from "react";
 import { TGameBatterRank, TGamePitcherRank } from "../../types/types";
-
-import { url } from "inspector";
 import Ribon from "./Ribon";
 
 const GamePlayerRankingTop: React.FC<{

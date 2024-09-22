@@ -1,3 +1,4 @@
+import React from "react";
 import ribonImage from "../../assets/ribon.png";
 
 interface RibonProps {
