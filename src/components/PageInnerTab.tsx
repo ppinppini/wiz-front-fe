@@ -13,15 +13,15 @@ const PageInnerTab = ({ tabs, currentTab }: TabProps) => {
   const [activeTab, setActiveTab] = useState(currentTab);
   return (
     <>
-      <ul className="w-[1100px] my-[50px] flex justify-center space-x-4">
+      <ul className="w-[1100px] my-[70px] flex justify-center space-x-4">
         {tabs.map((tab, index) => (
           <li key={index}>
             <Link
               to={tab.route}
-              className={`py-2 px-4 transition-colors duration-300 
+              className={`py-4 px-4 transition-colors duration-300 text-lg
                         ${
                           activeTab === tab.title
-                            ? "border-b-2 border-red-500 text-red-500"
+                            ? "border-b-2 border-red-500 text-red-500 font-bold"
                             : "text-gray-500 hover:text-red-500"
                         }`}
               onClick={() => setActiveTab(tab.title)}
