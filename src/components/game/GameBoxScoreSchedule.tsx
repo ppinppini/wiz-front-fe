@@ -1,10 +1,11 @@
 import { useReactTable, getCoreRowModel, ColumnDef, flexRender } from "@tanstack/react-table";
 import { Navigate } from "react-router-dom";
-import { useState } from "react";
+import React, { useState } from "react";
 import { GameBoxScoreScheduleProps, TableRow } from "../../types/types";
 
 
 const GameBoxScoreSchedule = ({ scoreBoard, schedule }: GameBoxScoreScheduleProps) => {
+    console.log("박스스코퍼 점수 컴포넌트 렌더링!");
     const [navigateTo, setNavigateTo] = useState<string | null>(null); // State for navigation
 
     const columns: ColumnDef<TableRow>[] = [
@@ -58,14 +59,14 @@ const GameBoxScoreSchedule = ({ scoreBoard, schedule }: GameBoxScoreScheduleProp
     }
 
     return (
-        <div className="flex justify-center py-4 bg-[#fcfcfc] border-t-4 border-red-600 mt-4">
+        <div className="flex justify-center py-4 border-t-4 border-red-600 mt-32 bg-black">
             <div className="flex flex-col items-center">
                 {schedule?.current?.homeLogo ? <img src={schedule?.current?.homeLogo} alt="홈 로고 이미지" className="block" /> : <span>홈 로고가 없습니다</span>}
-                <div className="text-3xl">{schedule?.current?.hscore || "N/A"}</div>
-                <div>{schedule?.current?.home || "홈 팀"}</div>
+                <div className="text-3xl text-white">{schedule?.current?.hscore || "N/A"}</div>
+                <div className="text-white">{schedule?.current?.home || "홈 팀"}</div>
             </div>
             <div className="flex flex-col items-center gap-2">
-                <div className="flex text-3xl w-full justify-center gap-10">
+                <div className="flex text-3xl w-full justify-center gap-10 text-white">
                     <button
                         className="rounded-[50%] bg-black text-white"
                         onClick={() => {
@@ -86,14 +87,14 @@ const GameBoxScoreSchedule = ({ scoreBoard, schedule }: GameBoxScoreScheduleProp
                         &rarr;
                     </button>
                 </div>
-                <div>
+                <div className="text-white">
                     {schedule?.current?.gtime || "시간 정보 없음"} {schedule?.current?.stadium || "경기장 정보 없음"} | 관중 : {schedule?.current?.crowdCn || "N/A"}
                 </div>
-                <div className="overflow-x-auto w-full px-4">
-                    <table className="min-w-full bg-white border border-gray-300">
+                <div className="overflow-x-auto w-full px-4 bg-black ">
+                    <table className="min-w-full border border-gray-300 bg-black ">
                         <thead>
                             {table.getHeaderGroups().map((headerGroup) => (
-                                <tr key={headerGroup.id}>
+                                <tr key={headerGroup.id} className="bg-black ">
                                     {headerGroup.headers.map((header) => (
                                         <th key={header.id} className="bg-red-600 text-white px-4 py-2 text-center border border-gray-300">
                                             {flexRender(header.column.columnDef.header, header.getContext())}
@@ -102,11 +103,11 @@ const GameBoxScoreSchedule = ({ scoreBoard, schedule }: GameBoxScoreScheduleProp
                                 </tr>
                             ))}
                         </thead>
-                        <tbody>
+                        <tbody >
                             {table.getRowModel().rows.map((row, rowIndex) => (
-                                <tr key={row.id} className={rowIndex % 2 === 0 ? "bg-gray-100" : ""}>
+                                <tr key={row.id} className={rowIndex % 2 === 0 ? "bg-black " : ""}>
                                     {row.getVisibleCells().map((cell) => (
-                                        <td key={cell.id} className="px-4 py-2 text-center border border-gray-300">
+                                        <td key={cell.id} className="px-4 py-2 text-center border border-gray-300 text-white">
                                             {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                         </td>
                                     ))}
@@ -116,7 +117,7 @@ const GameBoxScoreSchedule = ({ scoreBoard, schedule }: GameBoxScoreScheduleProp
                     </table>
                 </div>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center text-white">
                 {schedule?.current?.visitLogo ? <img src={schedule?.current?.visitLogo} alt="원정 로고 이미지" className="block" /> : <span>원정 로고가 없습니다</span>}
                 <div className="text-3xl">{schedule?.current?.vscore || "N/A"}</div>
                 <div>{schedule?.current?.visit || "원정 팀"}</div>
@@ -125,4 +126,4 @@ const GameBoxScoreSchedule = ({ scoreBoard, schedule }: GameBoxScoreScheduleProp
     );
 };
 
-export default GameBoxScoreSchedule;
+export default React.memo(GameBoxScoreSchedule);
