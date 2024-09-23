@@ -9,12 +9,14 @@ import TabMenuNavbar from "../../components/TabMenuNavbar";
 import playertogether from "../../assets/kt4.png";
 import PageInnerTab from "../../components/PageInnerTab";
 import PageLocator from "../../components/PageLocator";
+import RectSkeleton from "../../components/skeleton/RectSkeleton";
 
 const BatterRanking = () => {
   const [hraTop3, setHraTop3] = useState<TGameBatterRank>([]);
   const [hrTop3, setWHrTop3] = useState<TGameBatterRank>([]);
   const [hraTop5, setHraTop5] = useState<TGameBatterRank>([]);
   const [batterRecord, setBatterRecord] = useState<TBatterRecordRank>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -40,6 +42,7 @@ const BatterRanking = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         // 평균자책점 TOP3
         const hraTop3Data = await api.getGameBatterHraTop3();
         // 승리 TOP3
@@ -52,6 +55,7 @@ const BatterRanking = () => {
         setWHrTop3(hrTop3Data!);
         setHraTop5(hraTop5Data!);
         setBatterRecord(batterRecordRanking!);
+        setLoading(false);
       } catch (err) {
         if (err instanceof Error) {
           setError(err.message);
@@ -115,6 +119,7 @@ const BatterRanking = () => {
             hraTop3={hraTop3}
             hrTop3={hrTop3}
             hraTop5={hraTop5}
+            loading={loading}
           />
           {/* PITCHER BOTTOM PART CONTAINER*/}
           {/* BOTTOM PART HEADER CONTAINER */}
@@ -124,7 +129,13 @@ const BatterRanking = () => {
             {/* SEASON FILTER */}
           </div>
           {/* TABLE */}
-          <BatterRecordRankingTable batterRecord={batterRecord} />
+          {loading ? (
+            <div className="w-full mt-[100px]">
+              <RectSkeleton width="1100" height="891" />
+            </div>
+          ) : (
+            <BatterRecordRankingTable batterRecord={batterRecord} />
+          )}
         </div>
       </div>
     </>
