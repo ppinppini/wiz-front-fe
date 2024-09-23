@@ -11,7 +11,6 @@ import '../../../styles/gradient.css';
 import PlayerNavbar from '../../../components/PlayerNavbar';
 import { api } from '../../../api/api';
 
-
 // 인터페이스 정의
 interface PlayerType {
   backnum: string;
@@ -22,7 +21,14 @@ interface PlayerType {
 
 const Pitchersdetail = () => {
   const location = useLocation();
-  const pcode = location?.state?.pcode;
+  const pcode = new URLSearchParams(location.search).get('pcode'); // URL에서 pcode를 추출
+
+  // 상태 관리
+  const [playerData, setPlayerData] = useState<PlayerType | null>(null); // 개별 선수 데이터
+  const [playerList, setPlayerList] = useState<PlayerType[] | null>(null); // 전체 선수 리스트
+  const [isSticky, setIsSticky] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
   const playerTabs = [
     { title: "코칭스텝", route: "../player/coach" },
     { title: "투수", route: "../player/pitcher" },
@@ -30,18 +36,15 @@ const Pitchersdetail = () => {
     { title: "내야수", route: "../player/infielder" },
     { title: "외야수", route: "../player/outfielder" },
     { title: "응원단", route: "../player/cheer" },
-];
-  // 스크롤 상태를 관리하는 state
-  const [isSticky, setIsSticky] = useState(false);
-  const [hasAnimated, setHasAnimated] = useState(false);
+  ];
 
-  // 선수 데이터를 불러오는 useEffect
+  // pcode로 개별 선수 데이터를 불러오는 useEffect
   useEffect(() => {
     const fetchPlayerData = async () => {
       try {
         if (pcode) {
-          const data = await api.getPlayerPitcherImage(); // pcode로 API 호출하여 선수 데이터 가져오기
-          setPlayerData(data);
+          const data = await api.getPlayerByPcode(pcode); // pcode로 API 호출하여 개별 선수 데이터 가져오기
+          setPlayerData(data); // 개별 선수 데이터를 상태에 저장
         }
       } catch (error) {
         console.error("선수 데이터를 불러오는 중 오류 발생:", error);
@@ -49,6 +52,20 @@ const Pitchersdetail = () => {
     };
 
     fetchPlayerData();
+  }, [pcode]);
+
+  // 전체 선수 리스트를 불러오는 useEffect
+  useEffect(() => {
+    const fetchPlayerList = async () => {
+      try {
+        const data = await api.getPlayerPitcherImage(); // 전체 선수 리스트 API 호출
+        setPlayerList(data); // 전체 선수 리스트를 상태에 저장
+      } catch (error) {
+        console.error("선수 리스트를 불러오는 중 오류 발생:", error);
+      }
+    };
+
+    fetchPlayerList();
   }, []);
 
   useEffect(() => {
@@ -68,7 +85,7 @@ const Pitchersdetail = () => {
     };
   }, []);
 
-  if (!playerData) {
+  if (!playerData || !playerList) {
     return <div>Loading...</div>; // 데이터를 불러오기 전 로딩 상태 표시
   }
 
@@ -82,7 +99,7 @@ const Pitchersdetail = () => {
         
         {/* TabMenuBar는 배너 위로 오도록 설정 */}
         <div className="absolute top-[422px] w-full px-[144.8px]">
-          <TabMenuBar tabs={playerTabs}/>
+          <TabMenuBar tabs={playerTabs} />
         </div>
       </div>
 
@@ -91,30 +108,26 @@ const Pitchersdetail = () => {
           className={`fixed top-0 left-0 z-50 w-full ${!hasAnimated ? 'animate-diagonal-slide' : ''}`}
           onAnimationEnd={() => setHasAnimated(true)}
         >
-          <TabMenuNavbar menuItems={playerTabs}/>
+          <TabMenuNavbar menuItems={playerTabs} />
         </div>
       )}
 
       {/* 아래 컴포넌트들 */}
       <div className="relative content_block mt-[40px] px-[144.8px] text-white">
-      
-      {/* 선수 기본 정보와 이미지 */}
-      <div className="w-full">
-        <PitersInfo  /> {/* playerData를 PitersInfo로 전달 */}
-      </div> 
+        {/* 개별 선수 기본 정보와 이미지 */}
+        <div className="w-full">
+          <PitersInfo pcode={pcode} /> {/* pcode에 맞는 선수 데이터를 PitersInfo로 전달 */}
+        </div>
 
-      {/* 2024 시즌 기록 */}
-       <div className="w-full mt-8">
-        <StatusArea /> {/* playerData를 StatusArea로 전달 */}
-       </div> 
+        {/* 2024 시즌 기록 */}
+        <div className="w-full mt-8">
+          <StatusArea pcode={pcode} /> {/* pcode에 맞는 선수 데이터를 StatusArea로 전달 */}
+        </div>
 
         {/* 다른 선수 캐러셀 */}
         <div className="w-full mt-8">
-        <PlayerCarousel playerData={Array.isArray(playerData) ? playerData : [playerData]} />
-
+          <PlayerCarousel playerData={playerList} /> {/* 모든 선수 리스트를 PlayerCarousel로 전달 */}
         </div>
-
-        
       </div>
     </div>
   );

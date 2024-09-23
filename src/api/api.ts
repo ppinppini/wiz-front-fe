@@ -78,6 +78,13 @@ export const api = {
     const data = await apiFetch("/player/pitcherlist");
     return data;
   },
+
+  // 특정 pcode에 따른 선수 데이터를 불러오는 API
+  getPlayerByPcode: async (pcode: string) => {
+    const data = await apiFetch(`/player/pitcherdetail?pcode=${pcode}`); // pcode를 URL에 포함
+    return data;
+  },
+
    //Player 포수 페이지의 이미지를 불러오는 api
    getPlayerCatcherImage: async () => {
     const data = await apiFetch("/player/catcherlist");

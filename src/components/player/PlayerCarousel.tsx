@@ -8,24 +8,32 @@ interface PlayerType {
   playerName: string;
   playerPrvwImg: string;
   pcode: string;
+  title:string;
+  route:string;
+}
+
+interface TPlayerTabs {
+  title:string;
+  route:string;
 }
 
 interface PlayerCarouselProps {
-  playerData: PlayerType[]; // props로 playerData를 받을 수 있도록 수정
+  playerTabs: PlayerType[]; // props로 playerTabs를 받을 수 있도록 수정
 }
 
-const PlayerCarousel: React.FC<PlayerCarouselProps> = ({ playerData }) => {
-  // props로 받은 playerData가 있을 때, data.gameplayer를 사용해 필요한 데이터만 추출
+const PlayerCarousel: React.FC<PlayerCarouselProps> = ({ playerTabs }:PlayerCarouselProps) => {
+  // props로 받은 playerTabs가 있을 때, data.gameplayer를 사용해 필요한 데이터만 추출
   const [players, setPlayers] = useState<PlayerType[]>([]); 
   const navigate = useNavigate();
 
-  // props로 받은 playerData가 변경될 때마다 players를 업데이트
+  // props로 받은 playerTabs가 변경될 때마다 players를 업데이트
   useEffect(() => {
-    if (playerData && playerData.length > 0) {
-      setPlayers(playerData);
+    if (playerTabs && playerTabs.length > 0) {
+      setPlayers(playerTabs);
     }
-  }, [playerData]);
-
+  }, [playerTabs]);
+  console.log(players);
+  
   return (
     <>
       <h2 className="text-xl font-bold text-left mt-8">KT Wiz 선수 목록 확인하기</h2>
