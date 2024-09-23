@@ -30,10 +30,6 @@ const CrowdStatus = () => {
     { title: "관중현황", route: "../game/ranking/crowd" },
   ];
 
-  if (error) {
-    <div>error..!</div>;
-  }
-
   useEffect(() => {
     const fetchData = async () => {
       try {

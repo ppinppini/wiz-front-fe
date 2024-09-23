@@ -19,8 +19,6 @@ import BatterRanking from "../pages/game/BatterRanking";
 import CrowdStatus from "../pages/game/CrowdStatus";
 import Staff from "../pages/players/Staff";
 import Pitchers from "../pages/players/Pitchers";
-import BoxScore from "../pages/game/BoxScore";
-
 
 export const router = createBrowserRouter([
   {
@@ -52,10 +50,6 @@ export const router = createBrowserRouter([
         element: <Schedule />,
       },
       {
-        path: "/game/boxscore",
-        element: <BoxScore />,
-      },
-      {
         path: "/game/ranking/team",
         element: <TeamRanking />,
       },
@@ -71,7 +65,6 @@ export const router = createBrowserRouter([
         path: "/game/ranking/crowd",
         element: <CrowdStatus />,
       },
-      
     ],
   },
   {
