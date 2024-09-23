@@ -130,16 +130,16 @@ const PlayerNavbar = () => {
                                         <Link to="/player/pitcher">투수</Link>
                                     </li>
                                     <li>
-                                        <Link to="/player/catcher">타자</Link>
+                                        <Link to="/player/catcher">포수</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/player/infielder">내야수</Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/player/outfielder">외야수</Link>
                                     </li>
                                     <li>
                                         <Link to="/player/cheer">응원단</Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/player/song">응원가</Link>
-                                    </li>
-                                    <li>
-                                        <Link to="/player/song-copyright">응원가 저작권</Link>
                                     </li>
                                 </ul>
                             </li>

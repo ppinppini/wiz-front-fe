@@ -6,7 +6,7 @@ import TabMenuBar from "../../components/TabMenuBar";
 import BackgroundImage from "../../components/BackgroundImage";
 import playertogether from "../../assets/kt4.png";
 import PlayerPitcherCardList from "../../components/PlayerPitcherCardList";
-import "../../styles/gradient.css";
+import "../../styles/gradientnew.css";
 import TabMenuNavbar from "../../components/TabMenuNavbar";
 
 const Pitchers = () => {
@@ -42,31 +42,36 @@ const Pitchers = () => {
     }, []);
 
     return (
-        <div>
-            <PlayerNavbar />
-            <div className="relative">
-                <BackgroundImage imageUrl={playertogether} className="title-banner" height="782px" />
-                <section className="content_block absolute top-[422px] px-[144.8px]">
-                    <div className="mt-[40px]">
-                        <TabMenuBar tabs={playerTabs} />
-                    </div>
-                    <div>
-                        <h4 className="text-2xl text-white mt-[80px]">투수</h4>
-                        <div className="mt-[100px] content_detail w-[1240px]">
-                            <PlayerPitcherCardList />
+        <>
+            <div className="relative flex flex-col items-center">
+                <PlayerNavbar />
+                <BackgroundImage imageUrl={playertogether} className="title-banner" height="782px" zIndex={-1} />
+                <div className="flex flex-col justify-center w-full">
+                    <section className="content_block z-40 w-full pb-[300px] -mt-[100px]">
+                        <div className="mt-[40px]">
+                            <TabMenuBar tabs={playerTabs} />
                         </div>
-                    </div>
-                </section>
-                
-                {/* 스크롤 시 나타나는 TabMenuNavbar 컴포넌트 */}
-                {isSticky && (
-                    <div className={`fixed top-0 left-0 z-50 w-full ${!hasAnimated ? "animate-diagonal-slide" : ""}`} onAnimationEnd={() => setHasAnimated(true)}>
-                        <TabMenuNavbar  menuItems={playerTabs}/>
-                    </div>
-                )}
+                        <div className="flex flex-col items-center mx-auto">
+                            <h4 className="text-2xl text-white mt-[80px] w-[1240px]">투수</h4>
+                            <div className="mt-[100px] content_detail w-[1240px]">
+                                <PlayerPitcherCardList />
+                            </div>
+                        </div>
+                    </section>
+                    
+                    {/* 스크롤 시 나타나는 TabMenuNavbar 컴포넌트 */}
+                    {isSticky && (
+                        <div className={`fixed top-0 left-0 z-50 w-full ${!hasAnimated ? "animate-diagonal-slide" : ""}`} onAnimationEnd={() => setHasAnimated(true)}>
+                            <TabMenuNavbar  menuItems={playerTabs}/>
+                        </div>
+                    )}
 
+                </div>
             </div>
-        </div>
+            <footer className="relative py-6 text-center text-white bg-gray-800">
+                <p>© 2024 Your Company Name. All rights reserved.</p>
+            </footer> 
+        </>    
     );
 };
 

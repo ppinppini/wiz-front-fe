@@ -19,6 +19,11 @@ import BatterRanking from "../pages/game/BatterRanking";
 import CrowdStatus from "../pages/game/CrowdStatus";
 import Staff from "../pages/players/Staff";
 import Pitchers from "../pages/players/Pitchers";
+import Catchers from "../pages/players/Catchers";
+import Infielders from "../pages/players/Infielders";
+import Outfielders from "../pages/players/Outfielders";
+import CheerTeam from "../pages/players/CheerTeam";
+import BoxScore from "../pages/game/BoxScore";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +55,10 @@ export const router = createBrowserRouter([
         element: <Schedule />,
       },
       {
+        path: "/game/boxscore",
+        element: <BoxScore />,
+      },
+      {
         path: "/game/ranking/team",
         element: <TeamRanking />,
       },
@@ -78,5 +87,21 @@ export const router = createBrowserRouter([
   {
     path: "/player/pitcher/details",
     element: <Pitchersdetail />,
+  },
+  {
+    path: "/player/catcher",
+    element: <Catchers />, // Catchers 페이지 설정
+  },
+  {
+    path: "/player/infielder",
+    element: <Infielders />, // Infielders 페이지 설정
+  },
+  {
+    path: "/player/outfielder",
+    element: <Outfielders />, // Outfielders 페이지 설정
+  },
+  {
+    path: "/player/cheer",
+    element: <CheerTeam />, // CheerTeam 페이지 설정
   },
 ]);

@@ -73,9 +73,30 @@ export const api = {
     const data = await apiFetch("/player/coachlist");
     return data.data.list;
   },
+  //Player 투수 페이지의 이미지를 불러오는 api
   getPlayerPitcherImage: async () => {
     const data = await apiFetch("/player/pitcherlist");
     return data;
+  },
+   //Player 포수 페이지의 이미지를 불러오는 api
+   getPlayerCatcherImage: async () => {
+    const data = await apiFetch("/player/catcherlist");
+    return data;
+  },
+  //Player 내야수 페이지의 이미지를 불러오는 api
+  getPlayerInfielderImage: async () => {
+    const data = await apiFetch("/player/infielderlist");
+    return data;
+  },
+  //Player 외야수 페이지의 이미지를 불러오는 api
+  getPlayerOutfielderImage: async () => {
+    const data = await apiFetch("/player/outfielderlist");
+    return data;
+  },
+  //Player 응원단 페이지의 이미지를 불러오는 api
+  getPlayerCheerImage: async () => {
+    const data = await apiFetch("/player/cheerleader");
+    return data.data.list;
   },
   // 정규리그 페이지 시즌 팀 순위 api
   getGameSeasonTeamRank: async () => {
