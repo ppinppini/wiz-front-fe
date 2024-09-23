@@ -9,8 +9,13 @@ import Pagination from "../../components/media/Pagination";
 import { api } from "../../api/api";
 import NewsDetailModal from "./NewsDetailModal";
 import NewsList from "../../components/media/NewsList";
+import TabMenuBar from "../../components/TabMenuBar";
+import TabMenuNavbar from "../../components/TabMenuNavbar";
 
 const WizPress = () => {
+  const [isSticky, setIsSticky] = useState(false);
+
+  const [hasAnimated, setHasAnimated] = useState(false);
   const [news, setNews] = useState<newsListType[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -30,7 +35,7 @@ const WizPress = () => {
 
   const fetchNews = useCallback(async () => {
     const data = await api.getPressList(searchTerm, 10, currentPage);
-    setNews(data);
+    setNews(data.list);
     setTotalPages(Math.ceil(data.searchCount / 10));
   }, [searchTerm, currentPage]);
 
@@ -42,18 +47,42 @@ const WizPress = () => {
     setSearchTerm(term);
     setCurrentPage(1);
   };
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY >= 630) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+        setHasAnimated(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // 클린업 함수에서 이벤트 리스너 제거
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const mediaTabs = [
     { title: "wiz 소식", route: "/media/wiznews" },
     { title: "wiz 보도자료", route: "/media/wizpress" },
   ];
   return (
-    <div className="flex flex-col items-center">
-      {/* 상단 배너 */}
-      <TopBanner />
-
+    <div className="flex flex-col items-center bg-black">
       {/* 탭 구현 */}
-      <Tab tabs={mediaTabs} />
+      <div className="mt-[40px]">
+        <TabMenuBar tabs={mediaTabs} />
+      </div>
+      {isSticky && (
+        <div
+          className={`fixed top-0 left-0 z-50 w-full ${!hasAnimated ? "animate-diagonal-slide" : ""}`}
+          onAnimationEnd={() => setHasAnimated(true)}
+        >
+          <TabMenuNavbar menuItems={mediaTabs} />
+        </div>
+      )}
 
       {/* 메인 컨텐츠 컨테이너 */}
       <div className="w-[1100px] h-[1590.5px] mx-[25.1em] pt-[4.625em] relative">

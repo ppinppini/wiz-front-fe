@@ -5,16 +5,19 @@ interface BackgroundImageProps {
     children?: React.ReactNode;
     className?: string;
     height?: string;
+    zIndex?: number;
 }
 
-const BackgroundImage = ({ imageUrl, children, className, height }: BackgroundImageProps) => {
+const BackgroundImage = ({ imageUrl, children, className, height, zIndex }: BackgroundImageProps) => {
 
   const backgroundStyle = {
     backgroundImage: `url(${imageUrl})`,
     backgroundRepeat: 'no-repeat',
     width: '100%',
     backgroundPosition: 'center',
-    zIndex: -1,
+
+    zIndex: zIndex || 999, //zIndex props를 사용, 기본값 999
+
     backgroundAttachment: 'fixed',
     backgroundSize: '100% 100%',
     height: height || '900px',

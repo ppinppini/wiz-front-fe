@@ -6,12 +6,19 @@ import TabMenuBar from '../../components/TabMenuBar';
 import BackgroundImage from '../../components/BackgroundImage';
 import playertogether from '../../assets/kt6.jpg';
 import PlayerCoachCardList from '../../components/PlayerCoachCardList';
-import '../../styles/gradient.css';
+import '../../styles/gradientnew.css';
 import TabMenuNavbar from '../../components/TabMenuNavbar';
 
 
 const Staff = () => {
-
+  const playerTabs = [
+    { title: "코칭스텝", route: "../player/coach" },
+    { title: "투수", route: "../player/pitcher" },
+    { title: "포수", route: "../player/catcher" },
+    { title: "내야수", route: "../player/infielder" },
+    { title: "외야수", route: "../player/outfielder" },
+    { title: "응원단", route: "../player/cheer" },
+];
   const [isSticky, setIsSticky] = useState(false);
 
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -36,16 +43,17 @@ const Staff = () => {
   }, []);
 
   return (
-    <div>
+  <> 
+    <div className='relative flex flex-col items-center'>
       <PlayerNavbar/>
-      <div className='relative'>
-        <BackgroundImage imageUrl={playertogether} className="title-banner" height="782px" />
-        <section className='content_block absolute top-[422px] px-[144.8px]'>
+      <BackgroundImage imageUrl={playertogether} className="title-banner" height="782px" zIndex={-1} />
+      <div className='flex flex-col justify-center w-full'>
+        <section className='z-40 w-full content_block pb-[300px] -mt-[100px]'>
             <div className='mt-[40px]'>
-              <TabMenuBar />
+              <TabMenuBar tabs={playerTabs} />
             </div>
-            <div>
-              <h4 className='text-2xl text-white mt-[80px]'>코칭스탭</h4>
+            <div className='flex flex-col items-center mx-auto'>
+              <h4 className='text-2xl text-white mt-[80px] w-[1240px]'>코칭스탭</h4>
               <div className='mt-[100px] content_detail w-[1240px]'>
                 <PlayerCoachCardList />
               </div>
@@ -60,12 +68,16 @@ const Staff = () => {
             }`}
             onAnimationEnd={() => setHasAnimated(true)}
           >
-            <TabMenuNavbar />
+            <TabMenuNavbar menuItems={playerTabs}/>
           </div>
         )}
-
+       
       </div>
-    </div>   
+    </div>  
+    <footer className="relative py-6 text-center text-white bg-gray-800">
+      <p>© 2024 Your Company Name. All rights reserved.</p>
+    </footer> 
+  </> 
   );
 };
 

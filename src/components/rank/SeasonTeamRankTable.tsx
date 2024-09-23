@@ -88,7 +88,7 @@ const SeasonTeamRankTable: React.FC<{ recordList: TGameSeasonTeamRecord }> = ({
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id} className="bg-gray-100">
               {headerGroup.headers.map((header) => (
-                <th key={header.id} className="border py-2">
+                <th key={header.id} className="border py-2 bg-black text-white">
                   {typeof header.column.columnDef.header === "function"
                     ? header.column.columnDef.header(header.getContext())
                     : header.column.columnDef.header}
@@ -104,8 +104,8 @@ const SeasonTeamRankTable: React.FC<{ recordList: TGameSeasonTeamRecord }> = ({
               key={row.id}
               className={
                 row.getValue("teamName") === "KT"
-                  ? "bg-red-100 text-[#EC090C]"
-                  : "bg-white"
+                  ? "bg-red-200 text-[#EC090C] font-bold"
+                  : "bg-black text-white "
               }
             >
               {row.getVisibleCells().map((cell) => (

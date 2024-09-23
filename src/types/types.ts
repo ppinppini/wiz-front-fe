@@ -91,6 +91,95 @@ export type TPlayerCoachProps = {
   teamName: string;
   weight: string;
 };
+// Player 페이지의 포수 카드 컴포넌트의 타입들
+export type TPlayerCatcherProps = {
+  backnum: string;
+  energybar: number;
+  energybarName: string;
+  gyear: string;
+  hasFanpage: string;
+  hittype: string;
+  mobilePlayerImg: string;
+  mobilePlayerImg1: string;
+  mobilePlayerImg2: string;
+  pcode: string;
+  playerName: string;
+  playerPrvwImg: string;
+  position: string;
+  rank: number;
+  rankName: string;
+  teamName: string;
+};
+// Player 페이지의 내야수 컴포넌트의 타입들
+export type TPlayerInfielderProps = {
+  backnum: string;
+  energybar: number;
+  energybarName: string;
+  gyear: string;
+  hasFanpage: string;
+  hittype: string;
+  mobilePlayerImg: string;
+  mobilePlayerImg1: string;
+  mobilePlayerImg2: string;
+  pcode: string;
+  playerName: string;
+  playerPrvwImg: string;
+  position: string;
+  rank: number;
+  rankName: string;
+  teamName: string;
+};
+// Player 페이지의 외야수 컴포넌트의 타입들
+export type TPlayerOutfielderProps = {
+  backnum: string;
+  energybar: number;
+  energybarName: string;
+  gyear: string;
+  hasFanpage: string;
+  hittype: string;
+  mobilePlayerImg: string;
+  mobilePlayerImg1: string;
+  mobilePlayerImg2: string;
+  pcode: string;
+  playerName: string;
+  playerPrvwImg: string;
+  position: string;
+  rank: number;
+  rankName: string;
+  teamName: string;
+};
+// Player 페이지의 응원단 컴포넌트의 타입들
+export type TPlayerCheerProps = {
+  delYn: string;
+  imgPath: string;
+  imgPrvwPath: string;
+  leaderBirthDay: string;
+  leaderBloodGroups: string;
+  leaderCareer: string;
+  leaderEngName: string;
+  leaderGreeting: string;
+  leaderHeight: string;
+  leaderHobby: string;
+  leaderLikePlayer: string;
+  leaderMotto: string;
+  leaderName: string;
+  leaderNickName: string;
+  leaderPosition: string;
+  leaderSeq: number;
+  leaderType: string;
+  listImgPath: string;
+  regDttm: number;
+  regr: string;
+  snsId: string;
+  snsMemberId: string;
+  thumbOffImgPath: string;
+  thumbOnImgPath: string;
+  titleImgPath: string;
+  updDttm: number;
+  updr: string;
+  webviewDetailImgPath: string;
+  webviewListImgPath: string;
+};
 // 정규리그 순위기록 / 팀순위 컴포넌트의 타입들
 export type TGameSeasonTeamRank = {
   date: string;

@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import PlayerPitcherCard from './PlayerPitcherCard';
+import PlayerCatcherCard from './PlayerCatcherCard';
 import { api } from '../api/api';
-import { TPlayerPitcherProps } from '../types/types';
+import { TPlayerCatcherProps } from '../types/types';
 
 
-const PlayerPitcherCardList = () => {
+const PlayerCatcherCardList = () => {
 
-   
-  const [players, setPlayers] = useState<TPlayerPitcherProps[]>([]);
+  
+  const [players, setPlayers] = useState<TPlayerCatcherProps[]>([]);
   
   useEffect(()=>{
     const fetchPlayers = async () => {
       try {
-        const playerData = await api.getPlayerPitcherImage();
+        const playerData = await api.getPlayerCatcherImage();
         setPlayers(playerData);
       } catch (error) {
         console.error("선수 데이터를 불러오는데 실페했습니다:", error);
@@ -28,15 +28,14 @@ const PlayerPitcherCardList = () => {
         {players.map((player) => (
           <li
             key={player.pcode}
-            className='w-[320px] py-[68px] ml-[70px]'
+            className='w-[320px] py-[68px] ml-[70px]' 
           >
-            <PlayerPitcherCard
+            <PlayerCatcherCard
               number={player.backnum}
               name={player.playerName}
               imageUrl={player.playerPrvwImg}
               pcode={player.pcode}
               playerData={player}
-              playerDatas={players}
             />
           </li>    
         ))}
@@ -45,4 +44,4 @@ const PlayerPitcherCardList = () => {
   );
 };
 
-export default PlayerPitcherCardList;
+export default PlayerCatcherCardList;

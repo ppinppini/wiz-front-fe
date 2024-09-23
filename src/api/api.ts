@@ -46,7 +46,7 @@ export const api = {
   getNewsList: async (searchWord = "", itemCount = 5, pageNum = 1) => {
     const endpoint = `/article/newslistpage?searchWord=${searchWord}&itemCount=${itemCount}&pageNum=${pageNum}`;
     const data = await apiFetch(endpoint);
-    return data.data.list;
+    return data.data;
   },
   getNewsDetail: async (artcSeq: number) => {
     const data = await apiFetch(`/article/newsdetail?artcSeq=${artcSeq}`);
@@ -56,7 +56,7 @@ export const api = {
   getPressList: async (searchWord = "", itemCount = 5, pageNum = 1) => {
     const endpoint = `/article/wizpresslistpage?searchWord=${searchWord}&itemCount=${itemCount}&pageNum=${pageNum}`;
     const data = await apiFetch(endpoint);
-    return data.data.list;
+    return data.data;
   },
   getPressDetail: async (artcSeq: number) => {
     const data = await apiFetch(`/article/wizpressdetail?artcSeq=${artcSeq}`);
@@ -71,16 +71,32 @@ export const api = {
   //Player 코칭스탭 페이지의 이미지를 불러오는 api
   getPlayerCoachImage: async () => {
     const data = await apiFetch("/player/coachlist");
-    return data.data.list; 
+    return data.data.list;
   },
+  //Player 투수 페이지의 이미지를 불러오는 api
   getPlayerPitcherImage: async () => {
     const data = await apiFetch("/player/pitcherlist");
-    return data; 
-  },  
-  //상세페이지에서 pcode로 호출하기
-  getPlayerByPcode: async (pcode: string) => {
-    const data = await apiFetch(`/player/pitcherdetail?pcode=${pcode}`); 
     return data;
+  },
+   //Player 포수 페이지의 이미지를 불러오는 api
+   getPlayerCatcherImage: async () => {
+    const data = await apiFetch("/player/catcherlist");
+    return data;
+  },
+  //Player 내야수 페이지의 이미지를 불러오는 api
+  getPlayerInfielderImage: async () => {
+    const data = await apiFetch("/player/infielderlist");
+    return data;
+  },
+  //Player 외야수 페이지의 이미지를 불러오는 api
+  getPlayerOutfielderImage: async () => {
+    const data = await apiFetch("/player/outfielderlist");
+    return data;
+  },
+  //Player 응원단 페이지의 이미지를 불러오는 api
+  getPlayerCheerImage: async () => {
+    const data = await apiFetch("/player/cheerleader");
+    return data.data.list;
   },
   // 정규리그 페이지 시즌 팀 순위 api
   getGameSeasonTeamRank: async () => {
@@ -157,20 +173,25 @@ export const api = {
     return data.data.list;
   },
   // 정규리그 페이지의 '경기 일정'탭의 '월 스케줄' 데이터를 요청하는 코드
-  monthSceduleFetcher: async (yearMonth:string) => {
-      const response = await apiFetch(`/game/monthschedule?yearMonth=${yearMonth}`);
-      return response.json();
+  monthSceduleFetcher: async (yearMonth: string) => {
+    const response = await apiFetch(
+      `/game/monthschedule?yearMonth=${yearMonth}`
+    );
+    return response;
   },
   // 정규리그 페이지의 '경기 일정'탭의 '모든 팀월 스케줄' 데이터를 요청하는 코드
-  allGameScheduleFetcher: async (yearMonth:string) => {
-      const response = await apiFetch(`/game/allgameschedule?yearMonth=${yearMonth}`);
-      return response.json();
+  allGameScheduleFetcher: async (yearMonth: string) => {
+    const response = await apiFetch(
+      `/game/allgameschedule?yearMonth=${yearMonth}`
+    );
+    return response;
   },
 
   // 정규리그 페이지의 '박스스코어' 데이터를 요청하는 코드
   boxScoreFetcher: async (gameDate: string, gmKey: string) => {
-      const response = await apiFetch(`/game/boxscore?gameDate=${gameDate}&gmkey=${gmKey}`);
-      return response.json();
-
+    const response = await apiFetch(
+      `/game/boxscore?gameDate=${gameDate}&gmkey=${gmKey}`
+    );
+    return response;
   },
 };
