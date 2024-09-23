@@ -181,13 +181,13 @@ const GamePlayerRankingTop: React.FC<{
                   {loading ? (
                     <>
                       <li className="py-[12px]">
-                        <RectSkeleton width="140" height="25" />
+                        <RectSkeleton width="140" height="20" />
                       </li>
                       <li className="py-[12px]">
-                        <RectSkeleton width="110" height="25" />
+                        <RectSkeleton width="110" height="20" />
                       </li>
                       <li className="py-[12px]">
-                        <RectSkeleton width="110" height="25" />
+                        <RectSkeleton width="110" height="20" />
                       </li>
                     </>
                   ) : (
@@ -223,13 +223,13 @@ const GamePlayerRankingTop: React.FC<{
                   {loading ? (
                     <>
                       <li className="py-[12px]">
-                        <RectSkeleton width="140" height="25" />
+                        <RectSkeleton width="140" height="20" />
                       </li>
                       <li className="py-[12px]">
-                        <RectSkeleton width="110" height="25" />
+                        <RectSkeleton width="110" height="20" />
                       </li>
                       <li className="py-[12px]">
-                        <RectSkeleton width="110" height="25" />
+                        <RectSkeleton width="110" height="20" />
                       </li>
                     </>
                   ) : (
