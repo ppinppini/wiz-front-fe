@@ -73,14 +73,18 @@ export const api = {
     const data = await apiFetch("/player/coachlist");
     return data.data.list;
   },
+  // 특정 pcode에 따른 코칭스탭 데이터를 불러오는 API
+  getPlayerCoachByPcode: async (pcode: string) => {
+    const data = await apiFetch(`/player/coachdetail?pcode=${pcode}`); // pcode를 URL에 포함
+    return data;
+  },
   //Player 투수 페이지의 이미지를 불러오는 api
   getPlayerPitcherImage: async () => {
     const data = await apiFetch("/player/pitcherlist");
     return data;
   },
-
-  // 특정 pcode에 따른 선수 데이터를 불러오는 API
-  getPlayerByPcode: async (pcode: string) => {
+  // 특정 pcode에 따른 투수 데이터를 불러오는 API
+  getPlayerPitcherByPcode: async (pcode: string) => {
     const data = await apiFetch(`/player/pitcherdetail?pcode=${pcode}`); // pcode를 URL에 포함
     return data;
   },
@@ -88,6 +92,11 @@ export const api = {
    //Player 포수 페이지의 이미지를 불러오는 api
    getPlayerCatcherImage: async () => {
     const data = await apiFetch("/player/catcherlist");
+    return data;
+  },
+  // 특정 pcode에 따른 포수 데이터를 불러오는 API
+  getPlayerCatcherByPcode: async (pcode: string) => {
+    const data = await apiFetch(`/player/catcherdetail?pcode=${pcode}`); // pcode를 URL에 포함
     return data;
   },
   //Player 내야수 페이지의 이미지를 불러오는 api

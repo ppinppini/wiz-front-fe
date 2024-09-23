@@ -12,18 +12,33 @@ interface PlayerType {
 
 interface PlayerCarouselProps {
   playerList: PlayerType[]; // props로 playerList를 받음
+  position: string; //각 선수포지션별로 api불러오도록 분기
 }
 
-const PlayerCarousel: React.FC<PlayerCarouselProps> = ({ playerList }) => {
+const PlayerCarousel: React.FC<PlayerCarouselProps> = ({ playerList, position }) => {
   const [players, setPlayers] = useState<PlayerType[]>([]); 
   const navigate = useNavigate();
 
+  //API 호출 함수
+  const fetchPlayerByPosition=async(position: string)=>{
+    let url='';
+    if (position === 'pitcher') {
+      url = 'http://3.35.51.214/api/player/pitcherlist'; // pitcher API 경로
+    } else if (position === 'catcher') {
+      url = 'http://3.35.51.214/api/player/catcherlist'; // catcher API 경로가 있을 경우
+    }
+    const response = await fetch(url); // fetch 사용
+    const data = await response.json();
+    setPlayers(data); // 받아온 데이터를 상태에 저장
+  };
+
+
   // playerList가 변경될 때마다 players 상태 업데이트
   useEffect(() => {
-    if (playerList && playerList.length > 0) {
-      setPlayers(playerList);
+    if (position) {
+      fetchPlayerByPosition(position);
     }
-  }, [playerList]);
+  }, [position]);
 
   return (
     <>
@@ -40,7 +55,7 @@ const PlayerCarousel: React.FC<PlayerCarouselProps> = ({ playerList }) => {
               <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 backdrop-filter backdrop-blur-lg">
                 <button
                   onClick={() => {
-                    navigate(`/player/pitcher/details?pcode=${player.pcode}`);
+                    navigate(`/player/${position}/details?pcode=${player.pcode}`);
                     window.scrollTo(0,0);
                   }}
                   className="text-white border border-white py-2 px-4 rounded-lg cursor-pointer"
@@ -65,7 +80,7 @@ const PlayerCarousel: React.FC<PlayerCarouselProps> = ({ playerList }) => {
         <button
           className="text-white rounded-lg hover:bg-gray-600 transition h-13 leading-[52px] w-[200px] px-[52px] py-0 bg-transparent border border-[rgba(255,255,255,0.5)]"
           onClick={() => {
-            navigate('/player/pitcher');
+            navigate(`/player/${position}`);
             window.scrollTo(0,0);
           }} // 목록 페이지로 이동
         >
