@@ -114,6 +114,11 @@ export const api = {
     const data = await apiFetch("/player/outfielderlist");
     return data;
   },
+  // 특정 pcode에 따른 내야수 데이터를 불러오는 API
+  getPlayerOutfielderByPcode: async (pcode: string) => {
+    const data = await apiFetch(`/player/outfielderdetail?pcode=${pcode}`); // pcode를 URL에 포함
+    return data;
+  },
   //Player 응원단 페이지의 이미지를 불러오는 api
   getPlayerCheerImage: async () => {
     const data = await apiFetch("/player/cheerleader");
