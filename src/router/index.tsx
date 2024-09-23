@@ -25,6 +25,7 @@ import Outfielders from "../pages/players/Outfielders";
 import CheerTeam from "../pages/players/CheerTeam";
 import BoxScore from "../pages/game/BoxScore";
 import Catchersdetail from "../pages/players/details/Catchersdetail";
+import Infieldersdetail from "../pages/players/details/Infieldersdetail";
 
 
 export const router = createBrowserRouter([
@@ -102,6 +103,10 @@ export const router = createBrowserRouter([
   {
     path: "/player/infielder",
     element: <Infielders />, // Infielders 페이지 설정
+  },
+  {
+    path: "/player/infielder/details",
+    element: <Infieldersdetail />, // Infielders 페이지 설정
   },
   {
     path: "/player/outfielder",
