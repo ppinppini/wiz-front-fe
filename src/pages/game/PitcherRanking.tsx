@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { api } from "../../api/api";
 import { TGamePitcherRank, TPitcherRecordRank } from "../../types/types";
 import GamePlayerRankingTop from "../../components/rank/GamePlayerRankingTop";
-import PitcherRecordRankingTable from "../../components/rank/PitcherRecordRankingTable";
+import PitcherRecordRankingTable from "../../components/rank/TeamPitcherRecordRankingTable";
 import BackgroundImage from "../../components/BackgroundImage";
 import playertogether from "../../assets/kt4.png";
 import TabMenuBar from "../../components/TabMenuBar";
@@ -20,6 +20,7 @@ const PitcherRanking = () => {
   const [error, setError] = useState<string | null>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
+  const [activeTab, setActiveTab] = useState<"TEAM" | "ALL">("TEAM");
 
   const gameTabs = [
     { title: "경기 일정", route: "../game/schedule" },
@@ -56,6 +57,7 @@ const PitcherRanking = () => {
           setError(err.message);
         } else {
           setError("알 수 없는 에러 발생");
+          setLoading(false);
         }
       }
     };
@@ -122,17 +124,63 @@ const PitcherRanking = () => {
           {/* PITCHER BOTTOM PART CONTAINER*/}
           {/* BOTTOM PART HEADER CONTAINER */}
           <div>
-            {/* KT/ALL TAB */}
+            {/* TABLE TAB */}
+            {loading ? (
+              <div className="flex justify-start space-x-4 mt-[100px]">
+                {/* TEAM TAB SKELETON*/}
+                <div>
+                  <RectSkeleton width="117" height="40" />
+                </div>
+                {/* ALL TAB SKELETON*/}
+                <div>
+                  <RectSkeleton width="110" height="40" />
+                </div>
+              </div>
+            ) : (
+              <div className="flex justify-start space-x-4 mt-[100px]">
+                {/* TEAM TAB */}
+                <button
+                  className={`px-4 py-2 rounded-lg ${
+                    activeTab === "TEAM"
+                      ? "bg-red-500 text-white"
+                      : "bg-gray-300 hover:bg-red-500 hover:text-white duration-300"
+                  }`}
+                  onClick={() => setActiveTab("TEAM")}
+                >
+                  TEAM Table
+                </button>
+
+                {/* ALL TAB */}
+                <button
+                  className={`px-4 py-2 rounded-lg ${
+                    activeTab === "ALL"
+                      ? "bg-red-500 text-white"
+                      : "bg-gray-300 hover:bg-red-500 hover:text-white duration-300"
+                  }`}
+                  onClick={() => setActiveTab("ALL")}
+                >
+                  ALL Table
+                </button>
+              </div>
+            )}
             {/* SEARCH BAR */}
             {/* SEASON FILTER */}
           </div>
           {/* TABLE */}
-          {loading ? (
-            <div className="w-full mt-[100px]">
+          {activeTab === "TEAM" ? (
+            loading ? (
+              <div className="w-full mt-[10px]">
+                <RectSkeleton width="1100" height="891" />
+              </div>
+            ) : (
+              <PitcherRecordRankingTable pitcherRecord={pitcherRecord} />
+            )
+          ) : loading ? (
+            <div className="w-full mt-[10px]">
               <RectSkeleton width="1100" height="891" />
             </div>
           ) : (
-            <PitcherRecordRankingTable pitcherRecord={pitcherRecord} />
+            <div>TEAM TABLE</div>
           )}
         </div>
       </div>

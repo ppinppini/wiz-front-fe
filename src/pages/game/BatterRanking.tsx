@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { api } from "../../api/api";
 import { TBatterRecordRank, TGameBatterRank } from "../../types/types";
 import GamePlayerRankingTop from "../../components/rank/GamePlayerRankingTop";
-import BatterRecordRankingTable from "../../components/rank/BatterRecordRankingTable";
+import TeamBatterRecordRankingTable from "../../components/rank/TeamBatterRecordRankingTable";
 import BackgroundImage from "../../components/BackgroundImage";
 import TabMenuBar from "../../components/TabMenuBar";
 import TabMenuNavbar from "../../components/TabMenuNavbar";
@@ -20,6 +20,7 @@ const BatterRanking = () => {
   const [error, setError] = useState<string | null>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
+  const [activeTab, setActiveTab] = useState<"TEAM" | "ALL">("TEAM");
 
   if (error) {
     <div>error..!</div>;
@@ -60,6 +61,7 @@ const BatterRanking = () => {
           setError(err.message);
         } else {
           setError("알 수 없는 에러 발생");
+          setLoading(false);
         }
       }
     };
@@ -123,17 +125,63 @@ const BatterRanking = () => {
           {/* PITCHER BOTTOM PART CONTAINER*/}
           {/* BOTTOM PART HEADER CONTAINER */}
           <div>
-            {/* KT/ALL TAB */}
+            {/* TABLE TAB */}
+            {loading ? (
+              <div className="flex justify-start space-x-4 mt-[100px]">
+                {/* TEAM TAB SKELETON*/}
+                <div>
+                  <RectSkeleton width="117" height="40" />
+                </div>
+                {/* ALL TAB SKELETON*/}
+                <div>
+                  <RectSkeleton width="110" height="40" />
+                </div>
+              </div>
+            ) : (
+              <div className="flex justify-start space-x-4 mt-[100px]">
+                {/* TEAM TAB */}
+                <button
+                  className={`px-4 py-2 rounded-lg ${
+                    activeTab === "TEAM"
+                      ? "bg-red-500 text-white"
+                      : "bg-gray-300 hover:bg-red-500 hover:text-white duration-300"
+                  }`}
+                  onClick={() => setActiveTab("TEAM")}
+                >
+                  TEAM Table
+                </button>
+
+                {/* ALL TAB */}
+                <button
+                  className={`px-4 py-2 rounded-lg ${
+                    activeTab === "ALL"
+                      ? "bg-red-500 text-white"
+                      : "bg-gray-300 hover:bg-red-500 hover:text-white duration-300"
+                  }`}
+                  onClick={() => setActiveTab("ALL")}
+                >
+                  ALL Table
+                </button>
+              </div>
+            )}
             {/* SEARCH BAR */}
             {/* SEASON FILTER */}
           </div>
           {/* TABLE */}
-          {loading ? (
-            <div className="w-full mt-[100px]">
+          {activeTab === "TEAM" ? (
+            loading ? (
+              <div className="w-full mt-[10px]">
+                <RectSkeleton width="1100" height="891" />
+              </div>
+            ) : (
+              <TeamBatterRecordRankingTable batterRecord={batterRecord} />
+            )
+          ) : loading ? (
+            <div className="w-full mt-[10px]">
               <RectSkeleton width="1100" height="891" />
             </div>
           ) : (
-            <BatterRecordRankingTable batterRecord={batterRecord} />
+            <div>TEAM TABLE</div>
           )}
         </div>
       </div>
