@@ -126,7 +126,7 @@ const Pitchersdetail = () => {
 
         {/* 다른 선수 캐러셀 */}
         <div className="w-full mt-8">
-          <PlayerCarousel playerData={playerList} /> {/* 모든 선수 리스트를 PlayerCarousel로 전달 */}
+          <PlayerCarousel playerList={playerList} /> {/* 모든 선수 리스트를 PlayerCarousel로 전달 */}
         </div>
       </div>
     </div>
