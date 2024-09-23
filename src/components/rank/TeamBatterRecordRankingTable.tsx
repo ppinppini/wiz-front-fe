@@ -3,13 +3,13 @@ import {
   useReactTable,
   ColumnDef,
 } from "@tanstack/react-table";
-import { TPitcherRecordRank } from "../../types/types";
+import { TBatterRecordRank } from "../../types/types";
 import React from "react";
 
-const PitcherRecordRankingTable: React.FC<{
-  pitcherRecord: TPitcherRecordRank;
-}> = ({ pitcherRecord }) => {
-  const columns: ColumnDef<TPitcherRecordRank[0]>[] = [
+const TeamBatterRecordRankingTable: React.FC<{
+  batterRecord: TBatterRecordRank;
+}> = ({ batterRecord }) => {
+  const columns: ColumnDef<TBatterRecordRank[0]>[] = [
     {
       accessorKey: "playerName",
       header: "선수명",
@@ -19,44 +19,44 @@ const PitcherRecordRankingTable: React.FC<{
       header: "팀명",
     },
     {
-      accessorKey: "era",
-      header: "평균자책점",
+      accessorKey: "bra",
+      header: "타율",
     },
     {
       accessorKey: "gamenum",
       header: "경기",
     },
     {
-      accessorKey: "w",
-      header: "승",
+      accessorKey: "ab",
+      header: "타수",
     },
     {
-      accessorKey: "l",
-      header: "패",
-    },
-    {
-      accessorKey: "sv",
-      header: "세",
-    },
-    {
-      accessorKey: "hold",
-      header: "홀",
-    },
-    {
-      accessorKey: "wra",
-      header: "승률",
-    },
-    {
-      accessorKey: "inn",
-      header: "이닝",
+      accessorKey: "run",
+      header: "득점",
     },
     {
       accessorKey: "hit",
-      header: "피안타",
+      header: "안타",
+    },
+    {
+      accessorKey: "h2",
+      header: "2루타",
+    },
+    {
+      accessorKey: "h3",
+      header: "3루타",
     },
     {
       accessorKey: "hr",
-      header: "피홈런",
+      header: "홈런",
+    },
+    {
+      accessorKey: "rbi",
+      header: "타점",
+    },
+    {
+      accessorKey: "sb",
+      header: "도루",
     },
     {
       accessorKey: "bb",
@@ -68,20 +68,20 @@ const PitcherRecordRankingTable: React.FC<{
     },
     {
       accessorKey: "kk",
-      header: "탈삼진",
+      header: "삼진",
     },
     {
-      accessorKey: "r",
-      header: "실점",
+      accessorKey: "slg",
+      header: "장타율",
     },
     {
-      accessorKey: "er",
-      header: "자책점",
+      accessorKey: "lba",
+      header: "출루율",
     },
   ];
 
   const table = useReactTable({
-    data: pitcherRecord,
+    data: batterRecord,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
@@ -111,7 +111,9 @@ const PitcherRecordRankingTable: React.FC<{
               <tr key={row.id} className="bg-white">
                 {row.getVisibleCells().map((cell) => (
                   <td key={cell.id} className="border py-2 bg-black text-white">
-                    {String(cell.getValue())}
+                    {cell.getValue() !== undefined
+                      ? String(cell.getValue())
+                      : "0"}
                   </td>
                 ))}
               </tr>
@@ -122,5 +124,4 @@ const PitcherRecordRankingTable: React.FC<{
     </>
   );
 };
-
-export default PitcherRecordRankingTable;
+export default TeamBatterRecordRankingTable;
