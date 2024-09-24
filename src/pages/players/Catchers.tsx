@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
-//import topBanner from '../../assets/top-banner-image.png';
+import { useEffect, useState } from 'react';
 import PlayerNavbar from '../../components/PlayerNavbar';
 import TabMenuBar from '../../components/TabMenuBar';
-//import TabMenuNavbar from '../../components/TabMenuNavbar';
 import BackgroundImage from '../../components/BackgroundImage';
 import playertogether from '../../assets/kt4.png';
 import PlayerCatcherCardList from '../../components/PlayerCatcherCardList';

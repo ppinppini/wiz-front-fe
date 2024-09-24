@@ -1,4 +1,3 @@
-import React from 'react'
 import { TPlayerCheerProps } from '../types/types';
 
 interface PlayerCardProps {

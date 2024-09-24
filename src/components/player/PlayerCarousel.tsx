@@ -15,7 +15,7 @@ interface PlayerCarouselProps {
   position: string; //각 선수포지션별로 api불러오도록 분기
 }
 
-const PlayerCarousel: React.FC<PlayerCarouselProps> = ({ playerList, position }) => {
+const PlayerCarousel: React.FC<PlayerCarouselProps> = ({ position }) => {
   const [players, setPlayers] = useState<PlayerType[]>([]); 
   const navigate = useNavigate();
 
