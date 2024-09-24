@@ -19,7 +19,7 @@ interface PlayerType {
   pcode: string;
 }
 
-const Pitchersdetail = () => {
+const Outfieldersdetail = () => {
   const location = useLocation();
   const pcode = new URLSearchParams(location.search).get('pcode'); // URL에서 pcode를 추출
 
@@ -43,7 +43,7 @@ const Pitchersdetail = () => {
     const fetchPlayerData = async () => {
       try {
         if (pcode) {
-          const data = await api.getPlayerCatcherByPcode(pcode); // pcode로 API 호출하여 개별 선수 데이터 가져오기
+          const data = await api.getPlayerOutfielderByPcode(pcode); // pcode로 API 호출하여 개별 선수 데이터 가져오기
           setPlayerData(data); // 개별 선수 데이터를 상태에 저장
         }
       } catch (error) {
@@ -58,7 +58,7 @@ const Pitchersdetail = () => {
   useEffect(() => {
     const fetchPlayerList = async () => {
       try {
-        const data = await api.getPlayerPitcherImage(); // 전체 선수 리스트 API 호출
+        const data = await api.getPlayerOutfielderImage(); // 전체 선수 리스트 API 호출
         setPlayerList(data); // 전체 선수 리스트를 상태에 저장
       } catch (error) {
         console.error("선수 리스트를 불러오는 중 오류 발생:", error);
@@ -126,11 +126,11 @@ const Pitchersdetail = () => {
 
         {/* 다른 선수 캐러셀 */}
         <div className="w-full mt-8">
-          <PlayerCarousel playerList={playerList} position='pitcher' /> {/* 모든 선수 리스트를 PlayerCarousel로 전달 */}
+          <PlayerCarousel playerList={playerList} position="outfielder" /> {/* 모든 선수 리스트를 PlayerCarousel로 전달 */}
         </div>
       </div>
     </div>
   );
 };
 
-export default Pitchersdetail;
+export default Outfieldersdetail;

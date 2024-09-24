@@ -24,6 +24,10 @@ import Infielders from "../pages/players/Infielders";
 import Outfielders from "../pages/players/Outfielders";
 import CheerTeam from "../pages/players/CheerTeam";
 import BoxScore from "../pages/game/BoxScore";
+import Catchersdetail from "../pages/players/details/Catchersdetail";
+import Infieldersdetail from "../pages/players/details/Infieldersdetail";
+import Outfieldersdetail from "../pages/players/details/Outfieldersdetail";
+import Staffdetail from "../pages/players/details/Staffdetail";
 
 
 export const router = createBrowserRouter([
@@ -83,6 +87,10 @@ export const router = createBrowserRouter([
     element: <Staff />, // CoachStaff 페이지 설정
   },
   {
+    path: "/player/coach/details",
+    element: <Staffdetail />, // CoachStaff 상세페이지 설정
+  },
+  {
     path: "/player/pitcher",
     element: <Pitchers />, // Pitchers 페이지 설정
   },
@@ -95,12 +103,24 @@ export const router = createBrowserRouter([
     element: <Catchers />, // Catchers 페이지 설정
   },
   {
+    path: "/player/catcher/details",
+    element: <Catchersdetail />,
+  },
+  {
     path: "/player/infielder",
     element: <Infielders />, // Infielders 페이지 설정
   },
   {
+    path: "/player/infielder/details",
+    element: <Infieldersdetail />, // Infielders 상세페이지 설정
+  },
+  {
     path: "/player/outfielder",
     element: <Outfielders />, // Outfielders 페이지 설정
+  },
+  {
+    path: "/player/outfielder/details",
+    element: <Outfieldersdetail />, // Outfielders 상세페이지 설정
   },
   {
     path: "/player/cheer",

@@ -7,7 +7,11 @@ interface ChartDataType {
   statValue: number;
 };
 
-const StatusArea = () => {
+interface StatusAreaProps {
+  pcode: string | null;
+}
+
+const StatusArea = ({pcode}: StatusAreaProps) => {
   const [data, setData] = useState<ChartDataType[]>([]);
   const [stats, setStats] = useState({
     era: "0",
@@ -21,7 +25,7 @@ const StatusArea = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://3.35.51.214/api/player/pitcherdetail?pcode=53006');
+        const response = await fetch(`http://3.35.51.214/api/player/pitcherdetail?pcode=${pcode}`);
         const result = await response.json();
         const season = result.data.seasonsummary;
 

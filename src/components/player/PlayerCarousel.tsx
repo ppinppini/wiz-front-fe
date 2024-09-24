@@ -11,20 +11,40 @@ interface PlayerType {
 }
 
 interface PlayerCarouselProps {
-  playerData: PlayerType[]; // props로 playerData를 받을 수 있도록 수정
+  playerList: PlayerType[]; // props로 playerList를 받음
+  position: string; //각 선수포지션별로 api불러오도록 분기
 }
 
-const PlayerCarousel: React.FC<PlayerCarouselProps> = ({ playerData }) => {
-  // props로 받은 playerData가 있을 때, data.gameplayer를 사용해 필요한 데이터만 추출
+const PlayerCarousel: React.FC<PlayerCarouselProps> = ({ playerList, position }) => {
   const [players, setPlayers] = useState<PlayerType[]>([]); 
   const navigate = useNavigate();
 
-  // props로 받은 playerData가 변경될 때마다 players를 업데이트
-  useEffect(() => {
-    if (playerData && playerData.length > 0) {
-      setPlayers(playerData);
+  //API 호출 함수
+  const fetchPlayerByPosition=async(position: string)=>{
+    let url='';
+    if (position === 'pitcher') {
+      url = 'http://3.35.51.214/api/player/pitcherlist'; // pitcher API 경로
+    } else if (position === 'catcher') {
+      url = 'http://3.35.51.214/api/player/catcherlist'; // catcher API 경로
+    } else if (position ==='infielder'){ //infielder API 경로
+      url = 'http://3.35.51.214/api/player/infielderlist';
+    } else if (position ==='outfielder') { //outfielder API 경로
+      url = 'http://3.35.51.214/api/player/outfielderlist';
+    } else if (position==='coach'){
+      url = 'http://3.35.51.214/api/player/coachlist';
     }
-  }, [playerData]);
+    const response = await fetch(url); // fetch 사용
+    const data = await response.json();
+    setPlayers(data); // 받아온 데이터를 상태에 저장
+  };
+
+
+  // playerList가 변경될 때마다 players 상태 업데이트
+  useEffect(() => {
+    if (position) {
+      fetchPlayerByPosition(position);
+    }
+  }, [position]);
 
   return (
     <>
@@ -40,7 +60,10 @@ const PlayerCarousel: React.FC<PlayerCarouselProps> = ({ playerData }) => {
               />
               <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 backdrop-filter backdrop-blur-lg">
                 <button
-                  onClick={() => navigate(`/player/pitcher/details?pcode=${player.pcode}`)}
+                  onClick={() => {
+                    navigate(`/player/${position}/details?pcode=${player.pcode}`);
+                    window.scrollTo(0,0);
+                  }}
                   className="text-white border border-white py-2 px-4 rounded-lg cursor-pointer"
                 >
                   프로필
@@ -62,7 +85,10 @@ const PlayerCarousel: React.FC<PlayerCarouselProps> = ({ playerData }) => {
       <div className="text-center mt-2">
         <button
           className="text-white rounded-lg hover:bg-gray-600 transition h-13 leading-[52px] w-[200px] px-[52px] py-0 bg-transparent border border-[rgba(255,255,255,0.5)]"
-          onClick={() => (window.location.href = '/player/pitcher')}
+          onClick={() => {
+            navigate(`/player/${position}`);
+            window.scrollTo(0,0);
+          }} // 목록 페이지로 이동
         >
           목록
         </button>
