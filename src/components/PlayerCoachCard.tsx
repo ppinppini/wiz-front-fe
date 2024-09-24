@@ -15,7 +15,7 @@ const PlayerCoachCard: React.FC<PlayerCardProps> = ({ number, name, imageUrl, pc
   const navigate = useNavigate();
   
   const handleClick = () => {
-    navigate(`/player/coach/detail?pcode=${pcode}`, {
+    navigate(`/player/coach/details?pcode=${pcode}`, {
       state: { playerData },
     });
   };

@@ -1,16 +1,19 @@
-import { useRef, useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { useRef, useState } from "react";
+import { Link, Outlet } from "react-router-dom";
 
 const PlayerNavbar = () => {
     const [isBlack, setIsBlack] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
     const navRef = useRef<HTMLDivElement>(null);
 
+    const navHeight = navRef.current?.offsetHeight;
+    console.log(navHeight);
+
     return (
         <>
             <nav
                 ref={navRef}
-                className="absolute z-50 w-full transition-all duration-700 ease-in-out group"
+                className="absolute z-50 w-full transition-all duration-700 ease-in-out group pb-24"
                 onMouseEnter={() => {
                     setIsBlack(true);
                     setIsExpanded(true);
@@ -80,7 +83,6 @@ const PlayerNavbar = () => {
                                     <li>
                                         <Link to="/wizpark/intro">
                                             수원 kt wiz
-                                            <br />
                                             park
                                         </Link>
                                     </li>
@@ -138,8 +140,8 @@ const PlayerNavbar = () => {
                                     <li>
                                         <Link to="/player/outfielder">외야수</Link>
                                     </li>
-                                    <li>
-                                        <Link to="/player/cheer">응원단</Link>
+                                    <li className="w-[200px]">
+                                        <Link to="/player/song-copyright">응원가 저작권</Link>
                                     </li>
                                 </ul>
                             </li>
@@ -168,7 +170,7 @@ const PlayerNavbar = () => {
                                     <li>
                                         <Link to="/media/photos/1">하이라이트</Link>
                                     </li>
-                                    <li>
+                                    <li className="w-[200px]">
                                         <Link to="/media/live/pts">Live 영상모음</Link>
                                     </li>
                                 </ul>
@@ -226,7 +228,9 @@ const PlayerNavbar = () => {
                 </div>
             </nav>
 
-            <Outlet />
+            <div className="">
+                <Outlet />
+            </div>
         </>
     );
 };
