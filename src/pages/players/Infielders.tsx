@@ -48,7 +48,7 @@ const Infielders = () => {
       <div className='flex flex-col justify-center w-full'>
         <section className='z-40 w-full content_block pb-[300px] -mt-[100px]'>
             <div className='mt-[40px]'>
-              <TabMenuBar tabs={playerTabs} />
+              <TabMenuBar tabs={playerTabs} tabtitle='내야수'/>
             </div>
             <div className='flex flex-col items-center mx-auto'>
               <h4 className='text-2xl text-white mt-[80px] w-[1240px]'>내야수</h4>
@@ -66,7 +66,7 @@ const Infielders = () => {
             }`}
             onAnimationEnd={() => setHasAnimated(true)}
           >
-            <TabMenuNavbar menuItems={playerTabs}/>
+            <TabMenuNavbar menuItems={playerTabs} tabtitle='내야수' />
           </div>
         )}
        

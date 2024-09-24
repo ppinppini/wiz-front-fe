@@ -47,7 +47,7 @@ const Pitchers = () => {
                 <div className="flex flex-col justify-center w-full">
                     <section className="content_block z-40 w-full pb-[300px] -mt-[100px]">
                         <div className="mt-[40px]">
-                            <TabMenuBar tabs={playerTabs} />
+                            <TabMenuBar tabs={playerTabs} tabtitle="투수"/>
                         </div>
                         <div className="flex flex-col items-center mx-auto">
                             <h4 className="text-2xl text-white mt-[80px] w-[1240px]">투수</h4>
@@ -60,7 +60,7 @@ const Pitchers = () => {
                     {/* 스크롤 시 나타나는 TabMenuNavbar 컴포넌트 */}
                     {isSticky && (
                         <div className={`fixed top-0 left-0 z-50 w-full ${!hasAnimated ? "animate-diagonal-slide" : ""}`} onAnimationEnd={() => setHasAnimated(true)}>
-                            <TabMenuNavbar  menuItems={playerTabs}/>
+                            <TabMenuNavbar  menuItems={playerTabs} tabtitle='투수'/>
                         </div>
                     )}
 
