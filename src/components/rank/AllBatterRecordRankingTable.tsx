@@ -4,10 +4,11 @@ import {
   ColumnDef,
 } from "@tanstack/react-table";
 import { TBatterRecordRank } from "../../types/types";
+import React from "react";
 
-const BatterRecordRankingTable: React.FC<{
-  batterRecord: TBatterRecordRank;
-}> = ({ batterRecord }) => {
+const AllBatterRecordRankingTable: React.FC<{
+  allBatterRecord: TBatterRecordRank;
+}> = ({ allBatterRecord }) => {
   const columns: ColumnDef<TBatterRecordRank[0]>[] = [
     {
       accessorKey: "playerName",
@@ -18,7 +19,7 @@ const BatterRecordRankingTable: React.FC<{
       header: "팀명",
     },
     {
-      accessorKey: "bra",
+      accessorKey: "hra",
       header: "타율",
     },
     {
@@ -80,22 +81,22 @@ const BatterRecordRankingTable: React.FC<{
   ];
 
   const table = useReactTable({
-    data: batterRecord,
+    data: allBatterRecord,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
 
   return (
     <>
-      <div className="w-full text-xs text-center border-t-2 mt-[100px] border-t-[#DC2626]">
-        <table className="w-full border border-gray-200">
+      <div className='w-full text-xs text-center border-t-2 mt-[10px] border-t-[#DC2626]'>
+        <table className='w-full border border-gray-200'>
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id} className="bg-gray-100">
+              <tr key={headerGroup.id} className='bg-gray-100'>
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
-                    className="border py-2 bg-black text-white"
+                    className='border py-2 bg-gray-500 text-white'
                   >
                     {typeof header.column.columnDef.header === "function"
                       ? header.column.columnDef.header(header.getContext())
@@ -107,10 +108,10 @@ const BatterRecordRankingTable: React.FC<{
           </thead>
           <tbody>
             {table.getRowModel().rows.map((row) => (
-              <tr key={row.id} className="bg-white">
+              <tr key={row.id} className='bg-white'>
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className="border py-2 bg-black text-white">
-                    {String(cell.getValue())}{" "}
+                  <td key={cell.id} className='border py-2 bg-black text-white'>
+                    {String(cell.getValue())}
                   </td>
                 ))}
               </tr>
@@ -121,4 +122,5 @@ const BatterRecordRankingTable: React.FC<{
     </>
   );
 };
-export default BatterRecordRankingTable;
+
+export default AllBatterRecordRankingTable;

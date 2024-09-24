@@ -29,7 +29,6 @@ import Infieldersdetail from "../pages/players/details/Infieldersdetail";
 import Outfieldersdetail from "../pages/players/details/Outfieldersdetail";
 import Staffdetail from "../pages/players/details/Staffdetail";
 
-
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -79,7 +78,6 @@ export const router = createBrowserRouter([
         path: "/game/ranking/crowd",
         element: <CrowdStatus />,
       },
-      
     ],
   },
   {
