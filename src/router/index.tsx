@@ -1,17 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
-// import Nav from "../components/Navbar";
-
 import KtWizHistory from "../pages/info/History";
 import KtWizAbout from "../pages/info/About";
-
 import Layouts from "../layouts/Layouts";
-//import Slide from '../components/Slide';
-
 import WizNews from "../pages/meida/WizNews";
 import WizPress from "../pages/meida/WizPress";
 import Main from "../pages/main/Main";
 import Schedule from "../pages/game/Schedule";
-
 import TeamRanking from "../pages/game/TeamRanking";
 import Pitchersdetail from "../pages/players/details/Pitchersdetail";
 import PitcherRanking from "../pages/game/PitcherRanking";

@@ -1,8 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "../../api/api";
 import { Link } from "react-router-dom";
-import { FaAngleLeft } from "react-icons/fa6";
-import { FaAngleRight } from "react-icons/fa6";
 
 const MainHeader = () => {
     const { isError, isLoading, data } = useQuery({
