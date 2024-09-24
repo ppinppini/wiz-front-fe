@@ -85,6 +85,5 @@ const MainHighlightsVideo = () => {
       <MainHighlightsVideoList />
     </>
   );
-
 };
-export default React.memo(MainHighlightsVideo);
+export default MainHighlightsVideo;

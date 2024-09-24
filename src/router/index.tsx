@@ -1,17 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
-// import Nav from "../components/Navbar";
-
 import KtWizHistory from "../pages/info/History";
 import KtWizAbout from "../pages/info/About";
-
 import Layouts from "../layouts/Layouts";
-//import Slide from '../components/Slide';
-
 import WizNews from "../pages/meida/WizNews";
 import WizPress from "../pages/meida/WizPress";
 import Main from "../pages/main/Main";
 import Schedule from "../pages/game/Schedule";
-
 import TeamRanking from "../pages/game/TeamRanking";
 import Pitchersdetail from "../pages/players/details/Pitchersdetail";
 import PitcherRanking from "../pages/game/PitcherRanking";
@@ -24,7 +18,10 @@ import Infielders from "../pages/players/Infielders";
 import Outfielders from "../pages/players/Outfielders";
 import CheerTeam from "../pages/players/CheerTeam";
 import BoxScore from "../pages/game/BoxScore";
-
+import Catchersdetail from "../pages/players/details/Catchersdetail";
+import Infieldersdetail from "../pages/players/details/Infieldersdetail";
+import Outfieldersdetail from "../pages/players/details/Outfieldersdetail";
+import Staffdetail from "../pages/players/details/Staffdetail";
 
 export const router = createBrowserRouter([
   {
@@ -75,12 +72,15 @@ export const router = createBrowserRouter([
         path: "/game/ranking/crowd",
         element: <CrowdStatus />,
       },
-      
     ],
   },
   {
     path: "/player/coach",
     element: <Staff />, // CoachStaff 페이지 설정
+  },
+  {
+    path: "/player/coach/details",
+    element: <Staffdetail />, // CoachStaff 상세페이지 설정
   },
   {
     path: "/player/pitcher",
@@ -95,12 +95,24 @@ export const router = createBrowserRouter([
     element: <Catchers />, // Catchers 페이지 설정
   },
   {
+    path: "/player/catcher/details",
+    element: <Catchersdetail />,
+  },
+  {
     path: "/player/infielder",
     element: <Infielders />, // Infielders 페이지 설정
   },
   {
+    path: "/player/infielder/details",
+    element: <Infieldersdetail />, // Infielders 상세페이지 설정
+  },
+  {
     path: "/player/outfielder",
     element: <Outfielders />, // Outfielders 페이지 설정
+  },
+  {
+    path: "/player/outfielder/details",
+    element: <Outfieldersdetail />, // Outfielders 상세페이지 설정
   },
   {
     path: "/player/cheer",

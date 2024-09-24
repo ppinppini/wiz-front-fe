@@ -1,3 +1,4 @@
+import React from "react";
 import {
   LineChart,
   Line,
@@ -29,10 +30,8 @@ const SeasonTeamRankChart: React.FC<TeamSeasonRankChartData> = ({
     label,
   }: TooltipProps<ValueType, NameType>) => {
     if (active && payload && payload.length) {
-      // 날짜를 mm.dd 형식으로 변환
-      const date = `${label.slice(4, 6)}.${label.slice(6, 8)}`;
-      // 순위 가져오기
-      const rank = payload[0].value;
+      const date = `${label?.slice(4, 6)}.${label?.slice(6, 8)}`;
+      const rank = payload[0]?.value;
 
       return (
         <div className="bg-red-500 text-white px-4 py-3 shadow-lg border rounded-lg text-center border-gray-300">
@@ -64,7 +63,9 @@ const SeasonTeamRankChart: React.FC<TeamSeasonRankChartData> = ({
             textAnchor="end"
             angle={-45}
             tick={{ fontSize: 12, fill: "white" }}
-            tickFormatter={(date) => `${date.slice(4, 6)}.${date.slice(6, 8)}`}
+            tickFormatter={(date) =>
+              `${date?.slice(4, 6)}.${date?.slice(6, 8)}`
+            }
             tickMargin={10}
           />
           <YAxis
@@ -82,21 +83,16 @@ const SeasonTeamRankChart: React.FC<TeamSeasonRankChartData> = ({
             dataKey="rank"
             stroke="#EC0A0B"
             dot={{
-              // 기본 dot설정
-              r: 4, // 반지름
+              r: 4,
               fill: "#EC0A0B",
             }}
             activeDot={{
-              // 마우스 호버링으로 활성화된 dot설정
-              r: 8, // 반지름
+              r: 8,
               stroke: "#FAC1C2",
               strokeWidth: 4,
             }}
           />
-          <Tooltip
-            content={<CustomTooltip />} // 툴팁은 커스텀 툴팁으로 설정
-            cursor={false} // dot에 호버링시 십자선 숨김
-          />
+          <Tooltip content={<CustomTooltip />} cursor={false} />
         </LineChart>
       </ResponsiveContainer>
     </>

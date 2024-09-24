@@ -15,7 +15,9 @@ const PlayerOutfielderCard: React.FC<PlayerCardProps> = ({ number, name, imageUr
   
   const handleClick = () => {
     navigate(`/player/outfielder/details?pcode=${pcode}`, {
+
       state: { playerData, pcode },
+
     });
   };
   

@@ -4,6 +4,7 @@ import {
   ColumnDef,
 } from "@tanstack/react-table";
 import { TGameSeasonTeamBatterRank } from "../../types/types";
+import React from "react";
 
 const TeamBatterRankingTable: React.FC<{
   batterRanking: TGameSeasonTeamBatterRank;
@@ -100,7 +101,10 @@ const TeamBatterRankingTable: React.FC<{
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id} className="bg-gray-100">
               {headerGroup.headers.map((header) => (
-                <th key={header.id} className="border py-2 bg-black text-white">
+                <th
+                  key={header.id}
+                  className="border py-2 bg-gray-500 text-white"
+                >
                   {typeof header.column.columnDef.header === "function"
                     ? header.column.columnDef.header(header.getContext())
                     : header.column.columnDef.header}
@@ -115,13 +119,13 @@ const TeamBatterRankingTable: React.FC<{
               key={row.id}
               className={
                 row.getValue("teamName") === "KT"
-                  ? "bg-red-200 text-[#EC090C] font-bold"
+                  ? "bg-red-300 text-[#EC090C] font-bold"
                   : "bg-black text-white "
               }
             >
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id} className="border py-2">
-                  {String(cell.getValue())}{" "}
+                  {String(cell.getValue())}
                 </td>
               ))}
             </tr>

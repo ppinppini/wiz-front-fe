@@ -73,14 +73,30 @@ export const api = {
     const data = await apiFetch("/player/coachlist");
     return data.data.list;
   },
+  // 특정 pcode에 따른 코칭스탭 데이터를 불러오는 API
+  getPlayerCoachByPcode: async (pcode: string) => {
+    const data = await apiFetch(`/player/coachdetail?pcode=${pcode}`); // pcode를 URL에 포함
+    return data;
+  },
   //Player 투수 페이지의 이미지를 불러오는 api
   getPlayerPitcherImage: async () => {
     const data = await apiFetch("/player/pitcherlist");
     return data;
   },
-   //Player 포수 페이지의 이미지를 불러오는 api
-   getPlayerCatcherImage: async () => {
+  // 특정 pcode에 따른 투수 데이터를 불러오는 API
+  getPlayerPitcherByPcode: async (pcode: string) => {
+    const data = await apiFetch(`/player/pitcherdetail?pcode=${pcode}`); // pcode를 URL에 포함
+    return data;
+  },
+
+  //Player 포수 페이지의 이미지를 불러오는 api
+  getPlayerCatcherImage: async () => {
     const data = await apiFetch("/player/catcherlist");
+    return data;
+  },
+  // 특정 pcode에 따른 포수 데이터를 불러오는 API
+  getPlayerCatcherByPcode: async (pcode: string) => {
+    const data = await apiFetch(`/player/catcherdetail?pcode=${pcode}`); // pcode를 URL에 포함
     return data;
   },
   //Player 내야수 페이지의 이미지를 불러오는 api
@@ -88,9 +104,19 @@ export const api = {
     const data = await apiFetch("/player/infielderlist");
     return data;
   },
+  // 특정 pcode에 따른 내야수 데이터를 불러오는 API
+  getPlayerInfielderByPcode: async (pcode: string) => {
+    const data = await apiFetch(`/player/infielderdetail?pcode=${pcode}`); // pcode를 URL에 포함
+    return data;
+  },
   //Player 외야수 페이지의 이미지를 불러오는 api
   getPlayerOutfielderImage: async () => {
     const data = await apiFetch("/player/outfielderlist");
+    return data;
+  },
+  // 특정 pcode에 따른 내야수 데이터를 불러오는 API
+  getPlayerOutfielderByPcode: async (pcode: string) => {
+    const data = await apiFetch(`/player/outfielderdetail?pcode=${pcode}`); // pcode를 URL에 포함
     return data;
   },
   //Player 응원단 페이지의 이미지를 불러오는 api
@@ -159,16 +185,46 @@ export const api = {
     return data.data.list;
   },
   // 정규리그 페이지 순위기록 탭 투수기록 테이블 api
-  getGamePitcherRecordRanking: async () => {
+  getGamePitcherRecordRanking: async (
+    gyear: string,
+    pname: string,
+    sortKey: string
+  ) => {
     const data = await apiFetch(
-      "/game/rank/kt/pitcher?gyear=2024&pname=&sortKey=ERA"
+      `/game/rank/kt/pitcher?gyear=${gyear}&pname=${pname}&sortKey=${sortKey}`
+    );
+    return data.data.list;
+  },
+  // 정규리그 페이지 순위기록 탭 전체투수기록 테이블 api
+  getGameAllPitcherRecordRanking: async (
+    gyear: string,
+    pname: string,
+    sortKey: string
+  ) => {
+    const data = await apiFetch(
+      `/game/rank/total/pitcher?gyear=${gyear}&pname=${pname}&sortKey=${sortKey}`
     );
     return data.data.list;
   },
   // 정규리그 페이지 순위기록 탭 타자기록 테이블 api
-  getGameBatterRecordRanking: async () => {
+  getGameBatterRecordRanking: async (
+    gyear: string,
+    pname: string,
+    sortKey: string
+  ) => {
     const data = await apiFetch(
-      "/game/rank/kt/batter?gyear=2024&pname=&sortKey=ERA"
+      `/game/rank/kt/batter?gyear=${gyear}&pname=${pname}&sortKey=${sortKey}`
+    );
+    return data.data.list;
+  },
+  // 정규리그 페이지 순위기록 탭 전체타자기록 테이블 api
+  getGameAllBatterRecordRanking: async (
+    gyear: string,
+    pname: string,
+    sortKey: string
+  ) => {
+    const data = await apiFetch(
+      `/game/rank/total/batter?gyear=${gyear}&pname=${pname}&sortKey=${sortKey}`
     );
     return data.data.list;
   },

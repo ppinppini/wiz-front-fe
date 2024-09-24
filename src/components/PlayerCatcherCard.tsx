@@ -15,7 +15,9 @@ const PlayerCatcherCard: React.FC<PlayerCardProps> = ({ number, name, imageUrl, 
   
   const handleClick = () => {
     navigate(`/player/catcher/details?pcode=${pcode}`, {
+
       state: { playerData, pcode },
+
     });
   };
   
