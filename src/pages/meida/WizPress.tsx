@@ -1,7 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import TopBanner from "../../components/TopBanner";
 import PageLocator from "../../components/PageLocator";
-import Tab from "../../components/Tab";
 import { NewsList as newsListType, NewsDetail } from "../../types/types";
 import SearchBar from "../../components/media/SearchBar";
 //import NewsCard from "../../components/media/NewsCard";
