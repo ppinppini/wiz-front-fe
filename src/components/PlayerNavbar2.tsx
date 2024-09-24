@@ -4,15 +4,6 @@ import { Link } from "react-router-dom";
 const PlayerNavbar2 = () => {
     const [isBlack, isSetBlack] = useState(false);
     const navRef = useRef<HTMLDivElement>(null);
-    //const [navHeight, setNavHeight] = useState(0);
-
-    // useEffect(() => {
-    //     // 약간의 지연을 두고 높이를 다시 계산
-
-    //     if (navRef.current) {
-    //         setNavHeight(navRef.current.offsetHeight);
-    //     }
-    // }, []);
 
     return (
         <>
@@ -171,7 +162,7 @@ const PlayerNavbar2 = () => {
                     </div>
                 </div>
             </nav>
-            {/* 기존에 있던 것 삭제 */}
+            
         </>
     );
 };

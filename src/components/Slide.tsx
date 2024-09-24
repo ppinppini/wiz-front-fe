@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import '../styles/slide.css';
@@ -46,7 +46,6 @@ const Slide = () => {
           nextEl: '.swiper-button-next', //커스텀 '다음' 버튼
           prevEl: '.swiper-button-prev' //커스텀 '이전' 버튼
         }}
-        //modules={[Navigation]}
       >
         {pictures.map((picture, index) => (
             <SwiperSlide key={index}>
