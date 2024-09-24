@@ -6,24 +6,20 @@ import {
 import { TBatterRecordRank } from "../../types/types";
 import React from "react";
 
-const TeamBatterRecordRankingTable: React.FC<{
-  batterRecord: TBatterRecordRank;
-}> = ({ batterRecord }) => {
+const AllBatterRecordRankingTable: React.FC<{
+  allBatterRecord: TBatterRecordRank;
+}> = ({ allBatterRecord }) => {
   const columns: ColumnDef<TBatterRecordRank[0]>[] = [
     {
       accessorKey: "playerName",
       header: "선수명",
     },
     {
-      accessorKey: "rank",
-      header: "순위",
-    },
-    {
       accessorKey: "teamName",
       header: "팀명",
     },
     {
-      accessorKey: "avg",
+      accessorKey: "hra",
       header: "타율",
     },
     {
@@ -79,13 +75,13 @@ const TeamBatterRecordRankingTable: React.FC<{
       header: "장타율",
     },
     {
-      accessorKey: "obp",
+      accessorKey: "lba",
       header: "출루율",
     },
   ];
 
   const table = useReactTable({
-    data: batterRecord,
+    data: allBatterRecord,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
@@ -115,9 +111,7 @@ const TeamBatterRecordRankingTable: React.FC<{
               <tr key={row.id} className='bg-white'>
                 {row.getVisibleCells().map((cell) => (
                   <td key={cell.id} className='border py-2 bg-black text-white'>
-                    {cell.getValue() !== undefined
-                      ? String(cell.getValue())
-                      : "0"}
+                    {String(cell.getValue())}
                   </td>
                 ))}
               </tr>
@@ -128,4 +122,5 @@ const TeamBatterRecordRankingTable: React.FC<{
     </>
   );
 };
-export default TeamBatterRecordRankingTable;
+
+export default AllBatterRecordRankingTable;
