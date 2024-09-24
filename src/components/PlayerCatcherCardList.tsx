@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import PlayerCatcherCard from './PlayerCatcherCard';
 import { api } from '../api/api';
 import { TPlayerCatcherProps } from '../types/types';

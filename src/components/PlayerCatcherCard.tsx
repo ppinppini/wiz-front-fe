@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { TPlayerCatcherProps } from '../types/types';
 
@@ -16,7 +15,9 @@ const PlayerCatcherCard: React.FC<PlayerCardProps> = ({ number, name, imageUrl, 
   
   const handleClick = () => {
     navigate(`/player/catcher/details?pcode=${pcode}`, {
-      state: { playerData },
+
+      state: { playerData, pcode },
+
     });
   };
   

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import PlayerCoachCard from './PlayerCoachCard';
 import { api } from '../api/api';
 import { TPlayerCoachProps } from '../types/types';
