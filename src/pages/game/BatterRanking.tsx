@@ -114,35 +114,35 @@ const BatterRanking = () => {
 
   return (
     <>
-      <div className='flex flex-col items-center bg-black'>
+      <div className="flex flex-col items-center bg-black">
         <BackgroundImage
           imageUrl={playertogether}
-          className='title-banner'
-          height='782px'
+          className="title-banner"
+          height="782px"
         />
-        <TabMenuBar tabs={gameTabs} />
+        <TabMenuBar tabs={gameTabs} tabtitle={"순위기록"} />
         {/* 스크롤 시 나타나는 TabMenuNavbar 컴포넌트 */}
         {isSticky && (
           <div
             className={`fixed top-0 left-0 z-50 w-full ${!hasAnimated ? "animate-diagonal-slide" : ""}`}
             onAnimationEnd={() => setHasAnimated(true)}
           >
-            <TabMenuNavbar menuItems={gameTabs} />
+            <TabMenuNavbar menuItems={gameTabs} tabtitle={"순위기록"} />
           </div>
         )}
 
         {/* 메인 컨텐츠 컨테이너 */}
-        <div className='w-[1100px] h-[2600px] mx-[25.1em] pt-[4.625em] relative'>
+        <div className="w-[1100px] h-[2600px] mx-[25.1em] pt-[4.625em] relative">
           <PageLocator
-            pagePath='> Game > 정규 리그 > 순위 기록 > '
-            currentPage='타자 순위'
+            pagePath="> Game > 정규 리그 > 순위 기록 > "
+            currentPage="타자 순위"
           />
 
           {/* 순위기록 페이지 내부 탭 */}
-          <PageInnerTab tabs={rankTabs} currentTab='타자순위' />
+          <PageInnerTab tabs={rankTabs} currentTab="타자순위" />
           {/* BATTER TOP PART CONTAINER*/}
           <GamePlayerRankingTop
-            playerDataType='batter'
+            playerDataType="batter"
             hraTop3={hraTop3}
             hrTop3={hrTop3}
             hraTop5={hraTop5}
@@ -150,21 +150,21 @@ const BatterRanking = () => {
           />
           {/* BATTER BOTTOM PART CONTAINER*/}
           {/* BOTTOM PART HEADER CONTAINER */}
-          <div className='flex flex-row justify-between items-center h-[50px] mt-[100px]'>
+          <div className="flex flex-row justify-between items-center h-[50px] mt-[100px]">
             {/* TABLE TAB */}
             {loading ? (
-              <div className='flex justify-start space-x-4'>
+              <div className="flex justify-start space-x-4">
                 {/* TEAM TAB SKELETON*/}
                 <div>
-                  <RectSkeleton width='117' height='40' />
+                  <RectSkeleton width="117" height="40" />
                 </div>
                 {/* ALL TAB SKELETON*/}
                 <div>
-                  <RectSkeleton width='110' height='40' />
+                  <RectSkeleton width="110" height="40" />
                 </div>
               </div>
             ) : (
-              <div className='flex h-[40px] space-x-4'>
+              <div className="flex h-[40px] space-x-4">
                 {/* TEAM TAB */}
                 <button
                   className={`px-4 py-2 rounded-lg ${
@@ -194,14 +194,14 @@ const BatterRanking = () => {
               {/* SEARCH BAR */}
               <div>
                 <input
-                  type='text'
+                  type="text"
                   value={searchKeyword}
                   onChange={(e) => setSearchKeyword(e.target.value)}
-                  placeholder='선수 이름을 입력하세요.'
-                  className='w-[200px] h-[30px] pl-[5px] ml-[10px] rounded-lg'
+                  placeholder="선수 이름을 입력하세요."
+                  className="w-[200px] h-[30px] pl-[5px] ml-[10px] rounded-lg"
                 />
                 <button
-                  className='text-white font-bold ml-[10px] px-[15px] py-[3px] rounded-lg border-gray-300 border-[1px]'
+                  className="text-white font-bold ml-[10px] px-[15px] py-[3px] rounded-lg border-gray-300 border-[1px]"
                   onClick={() => {
                     searchBtnHandler(activeTab);
                     console.log(batterRecord);
@@ -216,15 +216,15 @@ const BatterRanking = () => {
           {/* TABLE */}
           {activeTab === "TEAM" ? (
             loading ? (
-              <div className='w-full mt-[10px]'>
-                <RectSkeleton width='1100' height='891' />
+              <div className="w-full mt-[10px]">
+                <RectSkeleton width="1100" height="891" />
               </div>
             ) : (
               <TeamBatterRecordRankingTable batterRecord={batterRecord} />
             )
           ) : loading ? (
-            <div className='w-full mt-[10px]'>
-              <RectSkeleton width='1100' height='891' />
+            <div className="w-full mt-[10px]">
+              <RectSkeleton width="1100" height="891" />
             </div>
           ) : (
             <AllBatterRecordRankingTable allBatterRecord={allBatterRecord} />

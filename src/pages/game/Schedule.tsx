@@ -40,14 +40,14 @@ const Schedule = () => {
         className="title-banner"
         height="782px"
       />
-      <TabMenuBar tabs={gameTabs} />
+      <TabMenuBar tabs={gameTabs} tabtitle="경기 일정" />
       {/* 스크롤 시 나타나는 TabMenuNavbar 컴포넌트 */}
       {isSticky && (
         <div
           className={`fixed top-0 left-0 z-50 w-full ${!hasAnimated ? "animate-diagonal-slide" : ""}`}
           onAnimationEnd={() => setHasAnimated(true)}
         >
-          <TabMenuNavbar menuItems={gameTabs} />
+          <TabMenuNavbar menuItems={gameTabs} tabtitle="경기 일정" />
         </div>
       )}
 
