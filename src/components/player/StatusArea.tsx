@@ -68,7 +68,7 @@ const StatusArea = ({pcode}: StatusAreaProps) => {
             <PolarGrid />
             <PolarAngleAxis dataKey="stat" />
             <Radar dataKey="statValue" stroke="#231F20" fill="#F53232" fillOpacity={0.4} />
-            <Tooltip formatter={(value: any, name: string, props: any) => [props.payload.description]} />
+            <Tooltip formatter={( props: any) => [props.payload.description]} />
           </RadarChart>
         </ResponsiveContainer>
         </div>
