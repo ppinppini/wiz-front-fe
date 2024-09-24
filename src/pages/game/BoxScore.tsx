@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { api } from "../../api/api";
 import GameBoxScoreSchedule from "../../components/game/GameBoxScoreSchedule";
 import GameBoxScoreMainRecord from "../../components/game/GameBoxScoreMainRecord";
@@ -8,17 +8,11 @@ import GameBoxScorePitcherRecord from "../../components/game/GameBoxScorePitcher
 import React, { useMemo } from "react";
 
 const BoxScore = () => {
-    console.log("박스스코퍼 페이지 렌더링 !");
-
-    // 쿼리스트링을 읽기 위한 useSearchParams 사용
+    
     const [searchParams] = useSearchParams();
     const gameDate = searchParams.get("gameDate");
     const gmkey = searchParams.get("gmkey");
 
-    // location에서 홈과 원정 팀 로고 값은 전달받음
-    const location = useLocation();
-    const homeLogo = location?.state?.homeLogo || null;
-    const visitLogo = location?.state?.visitLogo || null;
 
     if (!gameDate || !gmkey) {
         return <h1>데이터가 없습니다. URL이 잘못되었습니다.</h1>;

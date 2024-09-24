@@ -6,7 +6,7 @@ import { GameBoxScoreScheduleProps, TableRow } from "../../types/types";
 
 const GameBoxScoreSchedule = ({ scoreBoard, schedule }: GameBoxScoreScheduleProps) => {
     console.log("박스스코퍼 점수 컴포넌트 렌더링!");
-    const [navigateTo, setNavigateTo] = useState<string | null>(null); // State for navigation
+    const [navigateTo, setNavigateTo] = useState<string | null>(null)
 
     const columns: ColumnDef<TableRow>[] = [
         { accessorKey: "team", header: "팀" },
@@ -71,7 +71,7 @@ const GameBoxScoreSchedule = ({ scoreBoard, schedule }: GameBoxScoreScheduleProp
                         className="rounded-[50%] bg-black text-white"
                         onClick={() => {
                             const prevGame = `/game/boxscore/?gameDate=${schedule.prev?.gameDate}&gmkey=${schedule.prev?.gmkey}`;
-                            setNavigateTo(prevGame); // Set the route to navigate
+                            setNavigateTo(prevGame);
                         }}
                     >
                         &larr;
@@ -81,7 +81,7 @@ const GameBoxScoreSchedule = ({ scoreBoard, schedule }: GameBoxScoreScheduleProp
                         className="rounded-[50%] bg-black text-white"
                         onClick={() => {
                             const nextGame = `/game/boxscore/?gameDate=${schedule.next?.gameDate}&gmkey=${schedule.next?.gmkey}`;
-                            setNavigateTo(nextGame); // Set the route to navigate
+                            setNavigateTo(nextGame);
                         }}
                     >
                         &rarr;

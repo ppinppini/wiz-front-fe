@@ -5,10 +5,7 @@ import { Skeleton } from "./GameBoxScoreSkeleton";
 
 
 const GameBoxScoreBatterRecord = ({ batters, name }: GameBoxScoreBatterRecordProps) => {
-    const [loading, setLoading] = useState(true); // 로딩 상태 추가
-
-    
-
+    const [loading, setLoading] = useState(true); 
     const columns: ColumnDef<BatterRecord>[] = [
         {
             accessorKey: "position",
