@@ -5,11 +5,13 @@ import "react-calendar/dist/Calendar.css";
 import "../../styles/calendar.css";
 import { api } from "../../api/api";
 import { useNavigate } from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const ScheduleCalendar = () => {
     const today = new Date();
     const initialYearMonth = today.toLocaleDateString("en-CA").slice(0, 7).replace("-", "");
-    const [newYearMonth, setNewYearMonth] = useState<string>(initialYearMonth); // 기본 값 2024년 9월
+    const [newYearMonth, setNewYearMonth] = useState<string>(initialYearMonth);
 
     const {
         data: monthData,
@@ -21,25 +23,56 @@ const ScheduleCalendar = () => {
         queryFn: () => api.monthSceduleFetcher(newYearMonth),
     });
 
-    const { data: allGamesData } = useQuery({
+    const { data: allGamesData, isLoading: isAllGamesLoading } = useQuery({
         queryKey: ["allgameschedule", newYearMonth],
         queryFn: () => api.allGameScheduleFetcher(newYearMonth),
     });
 
-  
     const [value, setValue] = useState<Date | [Date, Date] | null>(new Date());
 
     const [activeTab, setActiveTab] = useState<"wiz" | "all">("wiz");
     const navigate = useNavigate();
 
-    if (!monthData || !allGamesData) return <h1>Loading...</h1>;
-    if (isMonthError) return <h1>{monthError.message}</h1>;
-    if (isMonthLoading) return <h1>Loading ...</h1>;
+    if (isMonthLoading || isAllGamesLoading) {
+        // 로딩 상태일 때 스켈레톤을 보여줍니다.
+        return (
+            <div className="p-4 w-full max-w-4xl mx-auto bg-gray-500 text-gray-600 rounded-lg">
+                <div className="flex gap-2  ">
+                    {/* 기본 Skeleton 컴포넌트 */}
+                    <Skeleton
+                        width={83}
+                        height={50}
+                        baseColor="gray" // 기본 배경색 설정
+                        highlightColor="lightgray" // 하이라이트 색상 설정
+                        style={{
+                            marginBottom: "1rem",
+                            padding: "16px",
+                            backgroundColor: "gray !important", // 우선순위 높이기
+                        }}
+                    />
+                    <Skeleton
+                        width={83}
+                        height={50}
+                        baseColor="gray" // 기본 배경색 설정
+                        highlightColor="lightgray" // 하이라이트 색상 설정
+                        style={{
+                            marginBottom: "1rem",
+                            padding: "16px",
+                            backgroundColor: "gray !important", // 우선순위 높이기
+                        }}
+                    />
+                </div>
 
-    console.log(monthData);
-    
+                {/* 캘린더 스켈레톤 */}
+                <Skeleton height={848} baseColor="gray" highlightColor="lightgray" style={{ backgroundColor: "gray !important" }} />
+            </div>
+        );
+    }
+
+    if (isMonthError) return <h1>{monthError.message}</h1>;
+
     // 월간 일정 데이터 처리
-    const gameData = monthData.data.list.reduce(
+    const gameData = monthData?.data?.list.reduce(
         (acc: any, game: any) => {
             const formattedDate = `${game.displayDate.slice(0, 4)}-${game.displayDate.slice(4, 6)}-${game.displayDate.slice(6, 8)}`;
             acc[formattedDate] = game;
@@ -48,15 +81,13 @@ const ScheduleCalendar = () => {
         {} as { [key: string]: (typeof monthData.data.list)[0] }
     );
 
-    
     // 전체 경기 일정 데이터 처리
-    const allGameDataMap = allGamesData.data.list.reduce((acc: any, game: any) => {
+    const allGameDataMap = allGamesData?.data?.list.reduce((acc: any, game: any) => {
         const formattedDate = `${game.displayDate.slice(0, 4)}-${game.displayDate.slice(4, 6)}-${game.displayDate.slice(6, 8)}`;
-        acc[formattedDate] = acc[formattedDate] || []; // 배열 초기화
-        acc[formattedDate].push(game); // 같은 날짜의 경기들을 배열에 저장
+        acc[formattedDate] = acc[formattedDate] || [];
+        acc[formattedDate].push(game);
         return acc;
     }, {});
-
 
     // onChange 핸들러
     const handleChange: CalendarProps["onChange"] = (newValue) => {
@@ -65,7 +96,6 @@ const ScheduleCalendar = () => {
 
             const selectedDate = newValue.toLocaleDateString("en-CA");
             const selectedGameData = gameData[selectedDate];
-            console.log(selectedGameData);
 
             if (selectedGameData) {
                 navigate(`/game/boxscore?gameDate=${selectedGameData.displayDate}&gmkey=${selectedGameData.gmkey}`, {
@@ -77,11 +107,11 @@ const ScheduleCalendar = () => {
             }
         }
     };
+
     const handleMonthChange = ({ activeStartDate }: { activeStartDate: Date | null }) => {
         if (activeStartDate) {
             const formattedYearMonth = activeStartDate.toLocaleDateString("en-CA").slice(0, 7).replace("-", "");
-            setNewYearMonth(formattedYearMonth); // newYearMonth 상태 업데이트
-            console.log("Updated newYearMonth:", formattedYearMonth); // 콘솔에 출력
+            setNewYearMonth(formattedYearMonth);
         }
     };
 
@@ -104,18 +134,16 @@ const ScheduleCalendar = () => {
                 </span>
             </div>
 
-            {/* KT Wiz 경기 */}
             {activeTab === "wiz" && (
                 <Calendar
                     onChange={handleChange}
                     value={value}
-                    onActiveStartDateChange={handleMonthChange} // 월 변경 시 호출
+                    onActiveStartDateChange={handleMonthChange}
                     tileClassName={({ date, view }) => {
-                        // 오늘 날짜와 비교하여 스타일 지정
                         if (view === "month" && date.getFullYear() === today.getFullYear() && date.getMonth() === today.getMonth() && date.getDate() === today.getDate()) {
-                            return "border-2 border-red-500"; // 오늘 날짜에 대한 스타일 적용
+                            return "border-2 border-red-500";
                         }
-                        return ""; // 기본 클래스
+                        return "";
                     }}
                     tileContent={({ date, view }) => {
                         const dateString = date.toLocaleDateString("en-CA");
@@ -135,7 +163,6 @@ const ScheduleCalendar = () => {
                 />
             )}
 
-            {/* 전체 경기 */}
             {activeTab === "all" && (
                 <Calendar
                     value={value}
