@@ -73,17 +73,17 @@ const WizNews = () => {
       {/* 메인 컨텐츠 컨테이너 */}
       <div className="w-[1100px] h-[1590.5px] mx-[25.1em] pt-[4.625em] relative">
         {/* 페이지 로케이터 */}
-        <PageLocator pagePath="> MEDIA >" currentPage="wiz 뉴스" />{" "}
+        <PageLocator pagePath="> MEDIA >" currentPage="wiz 뉴스" />
         {/* 탭 구현 */}
         <div className="mt-[40px]">
-          <TabMenuBar tabs={mediaTabs} />
+          <TabMenuBar tabs={mediaTabs} tabtitle="wiz 소식" />
         </div>
         {isSticky && (
           <div
             className={`fixed top-0 left-0 z-50 w-full ${!hasAnimated ? "animate-diagonal-slide" : ""}`}
             onAnimationEnd={() => setHasAnimated(true)}
           >
-            <TabMenuNavbar menuItems={mediaTabs} />
+            <TabMenuNavbar menuItems={mediaTabs} tabtitle="wiz 소식" />
           </div>
         )}
         {/* 검색 컴포넌트 */}

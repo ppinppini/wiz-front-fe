@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
-import StatusArea from '../../../components/player/StatusArea';
-import PlayerCarousel from '../../../components/player/PlayerCarousel';
-import PitersInfo from '../../../components/player/PitersInfo';
-import { useLocation } from 'react-router-dom';
-import TabMenuBar from '../../../components/TabMenuBar';
-import BackgroundImage from '../../../components/BackgroundImage';
-import playertogether from '../../../assets/kt4.png';
-import TabMenuNavbar from '../../../components/TabMenuNavbar';
-import '../../../styles/gradient.css';
-import PlayerNavbar from '../../../components/PlayerNavbar';
-import { api } from '../../../api/api';
+import { useEffect, useState } from "react";
+import StatusArea from "../../../components/player/StatusArea";
+import PlayerCarousel from "../../../components/player/PlayerCarousel";
+import PitersInfo from "../../../components/player/PitersInfo";
+import { useLocation } from "react-router-dom";
+import TabMenuBar from "../../../components/TabMenuBar";
+import BackgroundImage from "../../../components/BackgroundImage";
+import playertogether from "../../../assets/kt4.png";
+import TabMenuNavbar from "../../../components/TabMenuNavbar";
+import "../../../styles/gradient.css";
+import PlayerNavbar from "../../../components/PlayerNavbar";
+import { api } from "../../../api/api";
 
 // 인터페이스 정의
 interface PlayerType {
@@ -21,7 +21,7 @@ interface PlayerType {
 
 const Staffdetail = () => {
   const location = useLocation();
-  const pcode = new URLSearchParams(location.search).get('pcode'); // URL에서 pcode를 추출
+  const pcode = new URLSearchParams(location.search).get("pcode"); // URL에서 pcode를 추출
 
   // 상태 관리
   const [playerData, setPlayerData] = useState<PlayerType | null>(null); // 개별 선수 데이터
@@ -78,10 +78,10 @@ const Staffdetail = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -95,20 +95,24 @@ const Staffdetail = () => {
 
       {/* 상단 배너 */}
       <div className="relative">
-        <BackgroundImage imageUrl={playertogether} className="w-full title-banner" height="782px" />
-        
+        <BackgroundImage
+          imageUrl={playertogether}
+          className="w-full title-banner"
+          height="782px"
+        />
+
         {/* TabMenuBar는 배너 위로 오도록 설정 */}
         <div className="absolute top-[422px] w-full px-[144.8px]">
-          <TabMenuBar tabs={playerTabs} />
+          <TabMenuBar tabs={playerTabs} tabtitle="코칭스텝" />
         </div>
       </div>
 
       {isSticky && (
-        <div 
-          className={`fixed top-0 left-0 z-50 w-full ${!hasAnimated ? 'animate-diagonal-slide' : ''}`}
+        <div
+          className={`fixed top-0 left-0 z-50 w-full ${!hasAnimated ? "animate-diagonal-slide" : ""}`}
           onAnimationEnd={() => setHasAnimated(true)}
         >
-          <TabMenuNavbar menuItems={playerTabs} />
+          <TabMenuNavbar menuItems={playerTabs} tabtitle="코칭스텝" />
         </div>
       )}
 
@@ -116,17 +120,20 @@ const Staffdetail = () => {
       <div className="relative content_block mt-[40px] px-[144.8px] text-white">
         {/* 개별 선수 기본 정보와 이미지 */}
         <div className="w-full">
-          <PitersInfo pcode={pcode} /> {/* pcode에 맞는 선수 데이터를 PitersInfo로 전달 */}
+          <PitersInfo pcode={pcode} />{" "}
+          {/* pcode에 맞는 선수 데이터를 PitersInfo로 전달 */}
         </div>
 
         {/* 2024 시즌 기록 */}
         <div className="w-full mt-8">
-          <StatusArea pcode={pcode} /> {/* pcode에 맞는 선수 데이터를 StatusArea로 전달 */}
+          <StatusArea pcode={pcode} />{" "}
+          {/* pcode에 맞는 선수 데이터를 StatusArea로 전달 */}
         </div>
 
         {/* 다른 선수 캐러셀 */}
         <div className="w-full mt-8">
-          <PlayerCarousel playerList={playerList} position='coach'/> {/* 모든 선수 리스트를 PlayerCarousel로 전달 */}
+          <PlayerCarousel playerList={playerList} position="coach" />{" "}
+          {/* 모든 선수 리스트를 PlayerCarousel로 전달 */}
         </div>
       </div>
     </div>

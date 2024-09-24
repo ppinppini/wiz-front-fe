@@ -71,14 +71,14 @@ const WizPress = () => {
     <div className="flex flex-col items-center bg-black">
       {/* 탭 구현 */}
       <div className="mt-[40px]">
-        <TabMenuBar tabs={mediaTabs} />
+        <TabMenuBar tabs={mediaTabs} tabtitle="wiz 보도자료" />
       </div>
       {isSticky && (
         <div
           className={`fixed top-0 left-0 z-50 w-full ${!hasAnimated ? "animate-diagonal-slide" : ""}`}
           onAnimationEnd={() => setHasAnimated(true)}
         >
-          <TabMenuNavbar menuItems={mediaTabs} />
+          <TabMenuNavbar menuItems={mediaTabs} tabtitle="wiz 보도자료" />
         </div>
       )}
 

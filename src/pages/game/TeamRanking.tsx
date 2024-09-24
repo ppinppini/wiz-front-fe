@@ -94,55 +94,55 @@ const TeamRanking = () => {
   }, []);
 
   if (error) {
-    return <div className='flex flex-col items-center'>에러 발생: {error}</div>;
+    return <div className="flex flex-col items-center">에러 발생: {error}</div>;
   }
 
   return (
     <>
-      <div className='flex flex-col items-center bg-black'>
+      <div className="flex flex-col items-center bg-black">
         <BackgroundImage
           imageUrl={playertogether}
-          className='title-banner'
-          height='782px'
+          className="title-banner"
+          height="782px"
         />
-        <TabMenuBar tabs={gameTabs} />
+        <TabMenuBar tabs={gameTabs} tabtitle="순위기록" />
         {/* 스크롤 시 나타나는 TabMenuNavbar 컴포넌트 */}
         {isSticky && (
           <div
             className={`fixed top-0 left-0 z-50 w-full ${!hasAnimated ? "animate-diagonal-slide" : ""}`}
             onAnimationEnd={() => setHasAnimated(true)}
           >
-            <TabMenuNavbar menuItems={gameTabs} />
+            <TabMenuNavbar menuItems={gameTabs} tabtitle="순위기록" />
           </div>
         )}
         {/* 메인 컨텐츠 컨테이너 */}
-        <div className='w-[1100px] h-[2700px] mx-[25.1em] pt-[4.625em] relative'>
+        <div className="w-[1100px] h-[2700px] mx-[25.1em] pt-[4.625em] relative">
           {/* 페이지 로케이터 */}
           <PageLocator
-            pagePath='> Game > 정규 리그 > 순위 기록 > '
-            currentPage='경기 일정'
+            pagePath="> Game > 정규 리그 > 순위 기록 > "
+            currentPage="경기 일정"
           />
 
           {/* 순위기록 페이지 내부 탭 */}
-          <PageInnerTab tabs={rankTabs} currentTab='팀순위' />
+          <PageInnerTab tabs={rankTabs} currentTab="팀순위" />
 
           {/* 2024 SEASON 팀 순위, 차트 */}
-          <div className='block mt-[40px] h-[400px]'>
+          <div className="block mt-[40px] h-[400px]">
             {loading ? (
               <>
-                <h4 className='text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold'>
-                  <RectSkeleton width='160' height='28' />
+                <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold">
+                  <RectSkeleton width="160" height="28" />
                 </h4>
-                <div className='w-full h-full'>
-                  <RectSkeleton width='1098' height='398' />
+                <div className="w-full h-full">
+                  <RectSkeleton width="1098" height="398" />
                 </div>
               </>
             ) : (
               <>
-                <h4 className='text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold'>
+                <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold">
                   2024 시즌 팀 순위
                 </h4>
-                <div className='border-[1px] border-gray-500 w-full h-full'>
+                <div className="border-[1px] border-gray-500 w-full h-full">
                   <SeasonTeamRankChart rankList={rankList} />
                 </div>
               </>
@@ -150,17 +150,17 @@ const TeamRanking = () => {
           </div>
 
           {/* 2024 SEASON 팀 기록 */}
-          <div className='block mt-[100px] h-[400px]'>
+          <div className="block mt-[100px] h-[400px]">
             {loading ? (
               <>
-                <h4 className='text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold'>
-                  <RectSkeleton width='160' height='28' />
+                <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold">
+                  <RectSkeleton width="160" height="28" />
                 </h4>
-                <RectSkeleton width='1100' height='363' />
+                <RectSkeleton width="1100" height="363" />
               </>
             ) : (
               <>
-                <h4 className='text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold'>
+                <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold">
                   2024 시즌 팀 기록
                 </h4>
                 <SeasonTeamRankTable recordList={recordList} />
@@ -169,17 +169,17 @@ const TeamRanking = () => {
           </div>
 
           {/* 2024 SEASON 팀 투수 기록 */}
-          <div className='block mt-[100px] h-[400px]'>
+          <div className="block mt-[100px] h-[400px]">
             {loading ? (
               <>
-                <h4 className='text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold'>
-                  <RectSkeleton width='160' height='28' />
+                <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold">
+                  <RectSkeleton width="160" height="28" />
                 </h4>
-                <RectSkeleton width='1100' height='363' />
+                <RectSkeleton width="1100" height="363" />
               </>
             ) : (
               <>
-                <h4 className='text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold'>
+                <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold">
                   2024 시즌 투수 기록
                 </h4>
                 <TeamPitcherRankingTable pitcherRanking={pitcherRanking} />
@@ -188,17 +188,17 @@ const TeamRanking = () => {
           </div>
 
           {/* 2024 SEASON 팀 타자 기록 */}
-          <div className='block mt-[100px] h-[500px]'>
+          <div className="block mt-[100px] h-[500px]">
             {loading ? (
               <>
-                <h4 className='text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold'>
-                  <RectSkeleton width='160' height='28' />
+                <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold">
+                  <RectSkeleton width="160" height="28" />
                 </h4>
-                <RectSkeleton width='1100' height='363' />
+                <RectSkeleton width="1100" height="363" />
               </>
             ) : (
               <>
-                <h4 className='text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold'>
+                <h4 className="text-lg border-l-4 pl-3 mb-3 border-red-500 text-white font-bold">
                   2024 시즌 타자 기록
                 </h4>
                 <TeamBatterRankingTable batterRanking={batterRanking} />

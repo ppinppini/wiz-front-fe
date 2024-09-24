@@ -13,7 +13,7 @@ const PlayerNavbar = () => {
         <>
             <nav
                 ref={navRef}
-                className="absolute z-50 w-full transition-all duration-700 ease-in-out group pb-24"
+                className="absolute z-50 w-full pb-24 transition-all duration-700 ease-in-out group"
                 onMouseEnter={() => {
                     setIsBlack(true);
                     setIsExpanded(true);
@@ -141,7 +141,7 @@ const PlayerNavbar = () => {
                                         <Link to="/player/outfielder">외야수</Link>
                                     </li>
                                     <li className="w-[200px]">
-                                        <Link to="/player/song-copyright">응원가 저작권</Link>
+                                        <Link to="/player/cheer">응원단</Link>
                                     </li>
                                 </ul>
                             </li>
