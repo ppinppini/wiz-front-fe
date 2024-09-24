@@ -1,0 +1,25 @@
+.title-banner::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 360px; /* 하단 360px 영역 */
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1),
+    rgba(0, 0, 0, 0.53) 65%,
+    rgba(0, 0, 0, 0)
+  );
+}
+
+.content_block::after {
+  content: "";
+  position: absolute;
+  top: 782px; /* 782px 아래부터 */
+  left: 0;
+  width: 100%;
+  height: calc(100% - 782px); /* 남은 높이만큼 */
+  background-color: black;
+  z-index: -2; /* 배경이 내용 아래로 들어가도록 */
+}

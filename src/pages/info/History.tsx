@@ -1,9 +1,16 @@
-import classNames from "classnames";
 import HistoryCard from "../../components/HistoryCard";
 import PageLocator from "../../components/PageLocator";
-import TopBanner from "../../components/TopBanner";
+import playertogether from "../../assets/kt6.jpg";
+import TabMenuBar from "../../components/TabMenuBar";
+import BackgroundImage from "../../components/BackgroundImage";
+import { useEffect, useState } from "react";
+import TabMenuNavbar from "../../components/TabMenuNavbar";
 
 const KtWizHistory = () => {
+    const aboutTabs = [
+        { title: "kt Wiz는?", route: "../ktwiz/about" },
+        { title: "BI는?", route: "../ktwiz/history" },
+    ];
     const historyData = [
         {
             id: 0,
@@ -61,13 +68,39 @@ const KtWizHistory = () => {
             text: "kt wiz 창단 10주년,7.11 김재윤 kt 최초 150세이브 (역대 9번째),9.20 쿠에바스 KBO 8월 월간 MVP 수상,10.7 강백호, 박영현 2022 항저우 아시안게임 금메달,10.10 정규리그 2위 및 4년 연속 포스트시즌 진출 확정 (79승 62패),10.10 구단 한 시즌 역대 최다 관중 달성 (697,350명),- 종전 : 2017년 686,541명,11.13 한국시리즈 준우승,11.27 2023 KBO 시상식,-쿠에바스 승률상,-박영현 홀드상,-박병호 수비상 1루수",
         },
     ];
-    return (
-        <>
-            <TopBanner />
-            <PageLocator pagePath="> kt wiz > kt wiz는?>" currentPage="구단 연혁" />
+    const [isSticky, setIsSticky] = useState(false);
 
+    const [hasAnimated, setHasAnimated] = useState(false);
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY >= 630) {
+                setIsSticky(true);
+            } else {
+                setIsSticky(false);
+                setHasAnimated(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        // 클린업 함수에서 이벤트 리스너 제거
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+    return (
+        <div className="bg-black text-white -z-10">
+            <BackgroundImage imageUrl={playertogether} className="title-banner" height="782px" />
+            <TabMenuBar tabs={aboutTabs} />
+            <PageLocator pagePath="> kt wiz > kt wiz는?>" currentPage="구단 연혁" />
             <HistoryCard historyData={historyData} />
-        </>
+            {/* 스크롤 시 나타나는 TabMenuNavbar 컴포넌트 */}
+            {isSticky && (
+                <div className={`fixed top-0 left-0 z-50 w-full ${!hasAnimated ? "animate-diagonal-slide" : ""}`} onAnimationEnd={() => setHasAnimated(true)}>
+                    <TabMenuNavbar menuItems={aboutTabs} />
+                </div>
+            )}
+        </div>
     );
 };
 export default KtWizHistory;
