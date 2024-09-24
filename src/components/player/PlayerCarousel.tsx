@@ -28,8 +28,10 @@ const PlayerCarousel: React.FC<PlayerCarouselProps> = ({ playerList, position })
       url = 'http://3.35.51.214/api/player/catcherlist'; // catcher API 경로
     } else if (position ==='infielder'){ //infielder API 경로
       url = 'http://3.35.51.214/api/player/infielderlist';
-    } else { //outfielder API 경로
+    } else if (position ==='outfielder') { //outfielder API 경로
       url = 'http://3.35.51.214/api/player/outfielderlist';
+    } else if (position==='coach'){
+      url = 'http://3.35.51.214/api/player/coachlist';
     }
     const response = await fetch(url); // fetch 사용
     const data = await response.json();

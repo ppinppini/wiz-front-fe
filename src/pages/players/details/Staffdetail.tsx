@@ -58,7 +58,7 @@ const Staffdetail = () => {
   useEffect(() => {
     const fetchPlayerList = async () => {
       try {
-        const data = await api.getPlayerPitcherImage(); // 전체 선수 리스트 API 호출
+        const data = await api.getPlayerCoachImage(); // 전체 선수 리스트 API 호출
         setPlayerList(data); // 전체 선수 리스트를 상태에 저장
       } catch (error) {
         console.error("선수 리스트를 불러오는 중 오류 발생:", error);
@@ -126,7 +126,7 @@ const Staffdetail = () => {
 
         {/* 다른 선수 캐러셀 */}
         <div className="w-full mt-8">
-          <PlayerCarousel playerList={playerList} /> {/* 모든 선수 리스트를 PlayerCarousel로 전달 */}
+          <PlayerCarousel playerList={playerList} position='coach'/> {/* 모든 선수 리스트를 PlayerCarousel로 전달 */}
         </div>
       </div>
     </div>

@@ -27,6 +27,7 @@ import BoxScore from "../pages/game/BoxScore";
 import Catchersdetail from "../pages/players/details/Catchersdetail";
 import Infieldersdetail from "../pages/players/details/Infieldersdetail";
 import Outfieldersdetail from "../pages/players/details/Outfieldersdetail";
+import Staffdetail from "../pages/players/details/Staffdetail";
 
 
 export const router = createBrowserRouter([
@@ -84,6 +85,10 @@ export const router = createBrowserRouter([
   {
     path: "/player/coach",
     element: <Staff />, // CoachStaff 페이지 설정
+  },
+  {
+    path: "/player/coach/details",
+    element: <Staffdetail />, // CoachStaff 상세페이지 설정
   },
   {
     path: "/player/pitcher",
