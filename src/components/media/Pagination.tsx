@@ -30,7 +30,7 @@ function Pagination({
       <button
         onClick={() => onPageChange(Math.max(1, currentPage - 1))}
         disabled={currentPage <= 1}
-        className={`p-2 ${currentPage <= 1 ? "bg-gray-300" : "bg-white"} border`}
+        className={`p-2 bg-gray-300 border`}
       >
         이전
       </button>
@@ -38,7 +38,7 @@ function Pagination({
         <button
           key={page}
           onClick={() => onPageChange(page)}
-          className={`p-2 ${currentPage === page ? "bg-red-500" : "bg-white"} border`}
+          className={`p-2 ${currentPage === page ? "bg-red-500" : "bg-white"} min-w-[40px] text-center border`}
         >
           {page}
         </button>
@@ -46,7 +46,7 @@ function Pagination({
       <button
         onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
         disabled={currentPage >= totalPages}
-        className={`p-2 ${currentPage >= totalPages ? "bg-gray-300" : "bg-white"} border`}
+        className={`p-2 bg-gray-300 border`}
       >
         다음
       </button>
