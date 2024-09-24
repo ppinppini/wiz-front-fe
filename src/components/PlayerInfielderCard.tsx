@@ -1,25 +1,22 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import { TPlayerPitcherProps } from '../types/types';
+import { TPlayerInfielderProps } from '../types/types';
 
 interface PlayerCardProps {
     number: string;
     name: string;
     imageUrl: string;
     pcode: string;
-    playerData: TPlayerPitcherProps;
-    playerDatas: TPlayerPitcherProps[];
+    playerData: TPlayerInfielderProps;
 }
 
-const PlayerPitcherCard: React.FC<PlayerCardProps> = ({ number, name, imageUrl, pcode, playerData }) => {
+const PlayerInfielderCard: React.FC<PlayerCardProps> = ({ number, name, imageUrl, pcode, playerData }) => {
   
   const navigate = useNavigate();
   
   const handleClick = () => {
-
-    navigate(`/player/pitcher/details?pcode=${pcode}`, {
-      state: { playerData, pcode },
-
+    navigate(`/player/infielder/detail?pcode=${pcode}`, {
+      state: { playerData },
     });
   };
   
@@ -33,14 +30,14 @@ const PlayerPitcherCard: React.FC<PlayerCardProps> = ({ number, name, imageUrl, 
       {/* 약력 카드 */}
       <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100">
         <div 
-          className="relative w-[82%] h-[75%] border-none bg-transparent overflow-hidden flex items-center justify-center rounded-xl cursor-pointer transition-shadow duration-300 ease-in-out hover:shadow-xl"
+          className="relative w-[82%] h-[75%] border-none bg-transparent overflow-hidden flex items-center justify-center rounded-xl cursor-pointer transition-shadow duration-300 ease-in-out hover:shadow-2xl"
           onClick={handleClick}
         >
           {/* 배경색 채우기 */}
           <div className="absolute inset-0 transition-transform duration-700 ease-in-out transform -translate-x-full bg-red-500 bg-opacity-50 pointer-events-none group-hover:translate-x-0"></div>
           {/* 'Profile' 텍스트 */}
           <div className='flex flex-col items-start justify-center space-y-3'>
-            <span className="relative z-10 text-[19px] font-semibold text-black">투타: {playerData.hittype}</span>
+            <span className="relative z-10 text-[19px] font-semibold text-black">투타: {playerData.hittype} </span>
             <span className="relative z-10 text-[19px] font-semibold text-black">랭크: {playerData.rankName}</span>
             <span className="relative z-10 text-[19px] font-semibold text-black">스코어: {playerData.energybarName}</span>
           </div>
@@ -55,4 +52,4 @@ const PlayerPitcherCard: React.FC<PlayerCardProps> = ({ number, name, imageUrl, 
   );
 };
 
-export default PlayerPitcherCard;
+export default PlayerInfielderCard;
