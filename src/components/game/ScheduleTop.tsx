@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ScheduleTopCard from "./ScheduleTopCard";
 import { TGameInfo } from "../../types/types";
 import { api } from "../../api/api";
@@ -28,12 +28,12 @@ const ScheduleTop = () => {
   }, []);
 
   if (error) {
-    return <div className="flex flex-col items-center">에러 발생: {error}</div>;
+    return <div className='flex flex-col items-center'>에러 발생: {error}</div>;
   }
 
   if (!currentGame || !prevGame || !nextGame) {
     return (
-      <div className="flex flex-col items-center">
+      <div className='flex flex-col items-center'>
         경기정보를 읽어오는데 문제가 발생하였습니다.
       </div>
     );
@@ -42,10 +42,10 @@ const ScheduleTop = () => {
   return (
     <>
       {/* Game Schedule Top Area */}
-      <div className="flex flex-col w-[1100px] h-[302px] py-[38px] text-white">
+      <div className='flex flex-col w-[1100px] h-[302px] py-[38px] text-white'>
         {/* Game Schedule Top Container */}
-        <div className="w-[1100px] h-[226px]">
-          <ul className="flex flex-row">
+        <div className='w-[1100px] h-[226px]'>
+          <ul className='flex flex-row'>
             <ScheduleTopCard
               isCurrent={false}
               gameInfo={{

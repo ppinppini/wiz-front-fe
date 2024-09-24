@@ -1,4 +1,3 @@
-import classNames from "classnames";
 import HistoryCard from "../../components/HistoryCard";
 import PageLocator from "../../components/PageLocator";
 import playertogether from "../../assets/kt6.jpg";
