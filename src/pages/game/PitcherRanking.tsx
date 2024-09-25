@@ -26,6 +26,7 @@ const PitcherRanking = () => {
   const [hasAnimated, setHasAnimated] = useState(false);
   const [activeTab, setActiveTab] = useState<"TEAM" | "ALL">("TEAM");
   const [searchKeyword, setSearchKeyword] = useState<string>("");
+  const [selectedOption, setSelectedOption] = useState<string>("");
 
   const gameTabs = [
     { title: "경기 일정", route: "../game/schedule" },
@@ -104,7 +105,19 @@ const PitcherRanking = () => {
     tabType === "TEAM"
       ? setPitcherRecord(searchPlayer)
       : setAllPitcherRecord(searchPlayer);
-    return searchPlayer;
+    return;
+  };
+
+  const filterBtnHandler = async (tabType: string) => {
+    const filteredSeason = await api.getGamePitcherRecordRanking(
+      selectedOption,
+      "",
+      "ERA"
+    );
+    tabType === "TEAM"
+      ? setPitcherRecord(filteredSeason)
+      : setAllPitcherRecord(filteredSeason);
+    return;
   };
 
   if (error) {
@@ -154,11 +167,11 @@ const PitcherRanking = () => {
               <div className="flex justify-start space-x-4">
                 {/* TEAM TAB SKELETON*/}
                 <div>
-                  <RectSkeleton width="117" height="40" />
+                  <RectSkeleton width="75" height="40" />
                 </div>
                 {/* ALL TAB SKELETON*/}
                 <div>
-                  <RectSkeleton width="110" height="40" />
+                  <RectSkeleton width="60" height="40" />
                 </div>
               </div>
             ) : (
@@ -188,9 +201,9 @@ const PitcherRanking = () => {
                 </button>
               </div>
             )}
-            <div>
+            <div className="flex flex-row items-center">
               {/* SEARCH BAR */}
-              <div>
+              <div className="mr-[50px]">
                 <input
                   type="text"
                   value={searchKeyword}
@@ -202,15 +215,41 @@ const PitcherRanking = () => {
                   className="text-white font-bold ml-[10px] px-[15px] py-[3px] rounded-lg border-gray-300 border-[1px]"
                   onClick={() => {
                     searchBtnHandler(activeTab);
-                    console.log(pitcherRecord);
                   }}
                 >
                   검색
                 </button>
               </div>
               {/* SEASON FILTER */}
-              <div></div>
-              {/* FILTER FUNCTION */}
+              <div className="flex flex-row">
+                <select
+                  id="season-select"
+                  value={selectedOption}
+                  onChange={(e) => setSelectedOption(e.target.value)}
+                  className="w-[150px] h-[30px] pl-[5px] ml-[10px] rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500"
+                >
+                  <option value="">-- 시즌 선택 --</option>
+                  <option value="2024">2024 시즌</option>
+                  <option value="2023">2023 시즌</option>
+                  <option value="2022">2022 시즌</option>
+                  <option value="2021">2021 시즌</option>
+                  <option value="2020">2020 시즌</option>
+                  <option value="2019">2019 시즌</option>
+                  <option value="2018">2018 시즌</option>
+                  <option value="2017">2017 시즌</option>
+                  <option value="2016">2016 시즌</option>
+                  <option value="2015">2015 시즌</option>
+                  <option value="2014">2014 시즌</option>
+                </select>
+                <button
+                  className="text-white font-bold ml-[10px] px-[15px] py-[3px] rounded-lg border-gray-300 border-[1px]"
+                  onClick={() => {
+                    filterBtnHandler(activeTab);
+                  }}
+                >
+                  검색
+                </button>
+              </div>
             </div>
           </div>
           {/* TABLE */}
