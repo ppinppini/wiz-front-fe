@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback } from "react";
 import PageLocator from "../../components/PageLocator";
 import { NewsList as newsListType, NewsDetail } from "../../types/types";
 import SearchBar from "../../components/media/SearchBar";
-//import NewsCard from "../../components/media/NewsCard";
 import Pagination from "../../components/media/Pagination";
 import { api } from "../../api/api";
 import NewsDetailModal from "./NewsDetailModal";
@@ -12,13 +11,11 @@ import TabMenuNavbar from "../../components/TabMenuNavbar";
 
 const WizPress = () => {
   const [isSticky, setIsSticky] = useState(false);
-
   const [hasAnimated, setHasAnimated] = useState(false);
   const [news, setNews] = useState<newsListType[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [totalPages, setTotalPages] = useState<number>(0);
-
   const [selectedArticle, setSelectedArticle] = useState<NewsDetail | null>(
     null
   );
@@ -67,26 +64,25 @@ const WizPress = () => {
     { title: "wiz 소식", route: "/media/wiznews" },
     { title: "wiz 보도자료", route: "/media/wizpress" },
   ];
+
   return (
     <div className="flex flex-col items-center bg-black">
-      {/* 탭 구현 */}
-      <div className="mt-[40px]">
-        <TabMenuBar tabs={mediaTabs} tabtitle="wiz 보도자료" />
-      </div>
-      {isSticky && (
-        <div
-          className={`fixed top-0 left-0 z-50 w-full ${!hasAnimated ? "animate-diagonal-slide" : ""}`}
-          onAnimationEnd={() => setHasAnimated(true)}
-        >
-          <TabMenuNavbar menuItems={mediaTabs} tabtitle="wiz 보도자료" />
-        </div>
-      )}
-
       {/* 메인 컨텐츠 컨테이너 */}
       <div className="w-[1100px] h-[1590.5px] mx-[25.1em] pt-[4.625em] relative">
         {/* 페이지 로케이터 */}
         <PageLocator pagePath="> MEDIA >" currentPage="wiz 보도자료" />
-
+        {/* 탭 구현 */}
+        <div className="mt-[40px]">
+          <TabMenuBar tabs={mediaTabs} tabtitle="wiz 보도자료" />
+        </div>
+        {isSticky && (
+          <div
+            className={`fixed top-0 left-0 z-50 w-full ${!hasAnimated ? "animate-diagonal-slide" : ""}`}
+            onAnimationEnd={() => setHasAnimated(true)}
+          >
+            <TabMenuNavbar menuItems={mediaTabs} tabtitle="wiz 보도자료" />
+          </div>
+        )}
         {/* 검색 컴포넌트 */}
         <SearchBar onSearch={handleSearch} />
 

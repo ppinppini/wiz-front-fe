@@ -1,7 +1,8 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 interface PlayerType {
   backnum: string;
@@ -16,28 +17,29 @@ interface PlayerCarouselProps {
 }
 
 const PlayerCarousel: React.FC<PlayerCarouselProps> = ({ position }) => {
-  const [players, setPlayers] = useState<PlayerType[]>([]); 
+  const [players, setPlayers] = useState<PlayerType[]>([]);
   const navigate = useNavigate();
 
   //API 호출 함수
-  const fetchPlayerByPosition=async(position: string)=>{
-    let url='';
-    if (position === 'pitcher') {
-      url = 'http://3.35.51.214/api/player/pitcherlist'; // pitcher API 경로
-    } else if (position === 'catcher') {
-      url = 'http://3.35.51.214/api/player/catcherlist'; // catcher API 경로
-    } else if (position ==='infielder'){ //infielder API 경로
-      url = 'http://3.35.51.214/api/player/infielderlist';
-    } else if (position ==='outfielder') { //outfielder API 경로
-      url = 'http://3.35.51.214/api/player/outfielderlist';
-    } else if (position==='coach'){
-      url = 'http://3.35.51.214/api/player/coachlist';
+  const fetchPlayerByPosition = async (position: string) => {
+    let url = "";
+    if (position === "pitcher") {
+      url = `${API_BASE_URL}/player/pitcherlist`; // pitcher API 경로
+    } else if (position === "catcher") {
+      url = `${API_BASE_URL}/player/catcherlist`; // catcher API 경로
+    } else if (position === "infielder") {
+      //infielder API 경로
+      url = `${API_BASE_URL}/player/infielderlist`;
+    } else if (position === "outfielder") {
+      //outfielder API 경로
+      url = `${API_BASE_URL}/player/outfielderlist`;
+    } else if (position === "coach") {
+      url = `${API_BASE_URL}/player/coachlist`;
     }
     const response = await fetch(url); // fetch 사용
     const data = await response.json();
     setPlayers(data); // 받아온 데이터를 상태에 저장
   };
-
 
   // playerList가 변경될 때마다 players 상태 업데이트
   useEffect(() => {
@@ -48,8 +50,15 @@ const PlayerCarousel: React.FC<PlayerCarouselProps> = ({ position }) => {
 
   return (
     <>
-      <h2 className="text-xl font-bold text-left mt-8">KT Wiz 선수 목록 확인하기</h2>
-      <Swiper spaceBetween={10} slidesPerView={players.length < 4 ? players.length : 4} loop={true} className="!pt-0">
+      <h2 className="text-xl font-bold text-left mt-8">
+        KT Wiz 선수 목록 확인하기
+      </h2>
+      <Swiper
+        spaceBetween={10}
+        slidesPerView={players.length < 4 ? players.length : 4}
+        loop={true}
+        className="!pt-0"
+      >
         {players.map((player, index) => (
           <SwiperSlide key={index}>
             <div className="relative group text-center hover-blur">
@@ -61,8 +70,10 @@ const PlayerCarousel: React.FC<PlayerCarouselProps> = ({ position }) => {
               <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 backdrop-filter backdrop-blur-lg">
                 <button
                   onClick={() => {
-                    navigate(`/player/${position}/details?pcode=${player.pcode}`);
-                    window.scrollTo(0,0);
+                    navigate(
+                      `/player/${position}/details?pcode=${player.pcode}`
+                    );
+                    window.scrollTo(0, 0);
                   }}
                   className="text-white border border-white py-2 px-4 rounded-lg cursor-pointer"
                 >
@@ -87,7 +98,7 @@ const PlayerCarousel: React.FC<PlayerCarouselProps> = ({ position }) => {
           className="text-white rounded-lg hover:bg-gray-600 transition h-13 leading-[52px] w-[200px] px-[52px] py-0 bg-transparent border border-[rgba(255,255,255,0.5)]"
           onClick={() => {
             navigate(`/player/${position}`);
-            window.scrollTo(0,0);
+            window.scrollTo(0, 0);
           }} // 목록 페이지로 이동
         >
           목록

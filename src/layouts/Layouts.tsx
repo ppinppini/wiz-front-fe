@@ -1,10 +1,10 @@
-import PlayerNavbar from '../components/PlayerNavbar';
+import PlayerNavbar from "../components/PlayerNavbar";
 
 const Layouts = () => {
-    return (
-        <>
-            <PlayerNavbar></PlayerNavbar>
-        </>
-    );
+  return (
+    <>
+      <PlayerNavbar />
+    </>
+  );
 };
 export default Layouts;
