@@ -86,7 +86,7 @@ const ScheduleTopCard: React.FC<ScheduleTopCardProps> = ({
                 )}
 
                 {/* BUTTON */}
-                <Link to={`../boxscore/${displayDate}/${gmkey}`}>
+                <Link to={`../game/boxscore?gameDate=${displayDate}&gmkey=${gmkey}`}>
                   <button className='bg-[#909090] rounded-full text-sm text-white py-1 px-4'>
                     경기 정보
                   </button>
@@ -150,7 +150,7 @@ const ScheduleTopCard: React.FC<ScheduleTopCardProps> = ({
                 )}
 
                 {/* BUTTON */}
-                <Link to={`../boxscore/${displayDate}/${gmkey}`}>
+                <Link to={`../game/boxscore?gameDate=${displayDate}&gmkey=${gmkey}`}>
                   <button className='bg-[#909090] rounded-full text-sm text-white py-1 px-4'>
                     경기 정보
                   </button>
