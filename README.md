@@ -8,6 +8,11 @@
 
 - **프로야구팀과 선수들**에 대한 소개 및 경기 일정, 경기 기록 등을 제공하는 **웹 서비스**입니다.
 
+### 배포 링크
+
+- https://wiz-front-mz9ighcqw-heewonlims-projects.vercel.app/
+
+
 ---
 
 ### 목차
@@ -16,9 +21,9 @@
 <br/>
 [라이브러리](#라이브러리)
 <br/>
-[기타 정보](#기타-정보)
+[사용 기술](#사용-기술)
 <br/>
-[사용 기술](#기타-정보)
+[프로젝트 팀원](#프로젝트-팀원)
 
 ---
 
@@ -61,35 +66,52 @@
 <table border="1" cellspacing="0" cellpadding="10">
   <tr>
     <td align="center" style="padding: 20px;">
-      <img src="https://avatars.githubusercontent.com/u/112358232?v=4" height="150" width="150"><br/>
+      <a href="https://github.com/rhrh9999">
+        <img src="https://avatars.githubusercontent.com/u/112358232?v=4" height="150" width="150">
+      </a>
+      <br/>
       <b>김다은</b> <br/>
       <a href="https://github.com/rhrh9999">danni</a>
     </td>
     <td align="center" style="padding: 20px;">
-      <img src="https://avatars.githubusercontent.com/u/179909553?v=4" height="150" width="150"><br/>
+      <a href="https://github.com/chaehyun422">
+        <img src="https://avatars.githubusercontent.com/u/179909553?v=4" height="150" width="150">
+      </a>
+      <br/>
       <b>김채현</b> <br/>
       <a href="https://github.com/chaehyun422">chaehyun422</a>
     </td>
     <td align="center" style="padding: 20px;">
-      <img src="https://avatars.githubusercontent.com/u/114410351?v=4" height="150" width="150"><br/>
+      <a href="https://github.com/Shinsungwoo21">
+        <img src="https://avatars.githubusercontent.com/u/114410351?v=4" height="150" width="150">
+      </a>
+      <br/>
       <b>신성우</b> <br/>
       <a href="https://github.com/Shinsungwoo21">Shinsungwoo21</a>
     </td>
   </tr>
-  <!-- 여백주기 -->
+  <!-- 여백 -->
   <tr>
     <td align="center" style="padding: 20px;">
-      <img src="https://avatars.githubusercontent.com/u/75336939?v=4" height="150" width="150"><br/>
+      <a href="https://github.com/gmldnjs212">
+        <img src="https://avatars.githubusercontent.com/u/75336939?v=4" height="150" width="150">
+      </a>
+      <br/>
       <b>임희원</b> <br/>
       <a href="https://github.com/gmldnjs212">gmldnjs212</a>
     </td>
     <td align="center" style="padding: 20px;">
-      <img src="https://avatars.githubusercontent.com/u/97329194?v=4" height="150" width="150"><br/>
+      <a href="https://github.com/ppinppini">
+        <img src="https://avatars.githubusercontent.com/u/97329194?v=4" height="150" width="150">
+      </a>
+      <br/>
       <b>황유빈</b> <br/>
       <a href="https://github.com/ppinppini">ppinppini</a>
     </td>
     <td align="center" style="padding: 20px;">
-      <img src="src/assets/ProjectLogo.png" alt="ProjectLogo" height="100" width="100" style="border-radius: 50px;"/>
+      <a href="https://wiz-front-fe.vercel.app/">
+        <img src="src/assets/ProjectLogo.png" alt="ProjectLogo" height="100" width="100" style="border-radius: 50px;"/>
+      </a>
     </td>
   </tr>
 </table>
