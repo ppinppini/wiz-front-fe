@@ -10,7 +10,7 @@
 
 ### 배포 링크
 
-- https://wiz-front-mz9ighcqw-heewonlims-projects.vercel.app/
+- https://wiz-front-fe.vercel.app/
 
 
 ---
