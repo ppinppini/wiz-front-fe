@@ -53,7 +53,7 @@ const GameBoxScoreBatterRecord = ({ batters, name }: GameBoxScoreBatterRecordPro
     }, []);
 
     return (
-        <div className="overflow-x-auto text-white">
+        <div className="overflow-x-auto text-white w-[1237.55px]">
             <h2 className="text-lg font-bold border-l-4 border-red-600 pl-2 mb-4">{name} 타자 기록</h2>
             <table className="min-w-full bg-white border border-gray-300">
                 <thead>
