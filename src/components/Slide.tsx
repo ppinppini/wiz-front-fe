@@ -62,20 +62,21 @@ const Slide = () => {
         
       </Swiper>  
       
-      <div className='z-20 flex w-[1100px] inset-x-0 left-[230px] items-center absolute gap-[1000px]'> 
-          <div className='swiper-button-prev w-[54px] h-[54px] cursor-pointer'>
-            <img src="https://www.ktwiz.co.kr/v2/imgs/ico-54-gallery-prev@2x.png" alt="Prev" />
-          </div>
-          <div className='swiper-button-next w-[54px] h-[54px] cursor-pointer'>
-            <img src="https://www.ktwiz.co.kr/v2/imgs/ico-54-gallery-next@2x.png" alt="Next" />
-          </div>
-      </div>
+      <div className='flex items-center justify-center'>
+        <div className='z-20 flex w-[1100px] items-center gap-[1000px]'> 
+            <div className='swiper-button-prev w-[54px] h-[54px] cursor-pointer'>
+              <img src="https://www.ktwiz.co.kr/v2/imgs/ico-54-gallery-prev@2x.png" alt="Prev" />
+            </div>
+            <div className='swiper-button-next w-[54px] h-[54px] cursor-pointer'>
+              <img src="https://www.ktwiz.co.kr/v2/imgs/ico-54-gallery-next@2x.png" alt="Next" />
+            </div>
+        </div>
 
-      
-      <div className='controller'>
-        <button className="z-30 cursor-pointer absolute w-[350px] h-[48px] px-8 py-2 text-sm font-extrabold text-center left-[600px] text-black border border-black rounded-lg hover:bg-gray-100">더 많은 사진보기</button>  
-      </div>   
-      
+        
+        <div className='controller'>
+          <button className="-ml-[711.5px] z-30 cursor-pointer w-[320px] h-[48px] px-8 py-2 text-[14px] font-extrabold text-center text-black border border-black rounded-lg hover:bg-gray-100">더 많은 사진보기</button>  
+        </div>   
+      </div>  
 
     </div>
   );
