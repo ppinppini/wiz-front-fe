@@ -30,7 +30,7 @@ const BoxScore = () => {
         return <h1>데이터가 없습니다. URL이 잘못되었습니다.</h1>;
     }
 
-    const { data, isError, error, isLoading } = useQuery({
+    const { data, isLoading } = useQuery({
         queryKey: ["boxScore", gameDate, gmkey],
         queryFn: () => api.boxScoreFetcher(gameDate, gmkey),
     });
