@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from "react";
-//import TopBanner from "../../components/TopBanner";
 import PageLocator from "../../components/PageLocator";
 import { NewsList, NewsDetail } from "../../types/types";
 import SearchBar from "../../components/media/SearchBar";
@@ -12,13 +11,11 @@ import TabMenuNavbar from "../../components/TabMenuNavbar";
 
 const WizNews = () => {
   const [isSticky, setIsSticky] = useState(false);
-
   const [hasAnimated, setHasAnimated] = useState(false);
   const [news, setNews] = useState<NewsList[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [totalPages, setTotalPages] = useState<number>(0);
-
   const [selectedArticle, setSelectedArticle] = useState<NewsDetail | null>(
     null
   );

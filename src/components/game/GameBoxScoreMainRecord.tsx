@@ -35,7 +35,7 @@ const GameBoxScoreMainRecord = ({ etcgames }: GameBoxScoreMainRecordProps) => {
     }, []);
 
     return (
-        <div className="overflow-x-auto w-full px-4 text-white">
+        <div className="overflow-x-auto w-[1237.55px] text-white">
             <h2 className="text-lg font-bold border-l-4 border-red-600 pl-2 mb-4 text-white">주요 기록</h2>
             <table className="min-w-full bg-black text-white border border-gray-300">
                 <thead>

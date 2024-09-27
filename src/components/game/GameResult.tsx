@@ -31,7 +31,7 @@ const GameResult: React.FC<GameResultProps> = ({
 
       {/* 경기 상세정보 */}
       <div className='w-[16.5625em] h-[1.6875em] mt-[-0.625em] flex justify-center'>
-        <Link to={`/regular/boxscore/${displayDate}/${gmkey}`}>
+        <Link to={`game/boxscore?gameDate=${displayDate}&gmkey=${gmkey}`}>
           <div className='notokr relative flex flex-row justify-center items-center py-[7px] pr-[32px] pl-[12px] bg-gray-900 bg-opacity-50 text-[0.8125em] text-white rounded-md cursor-pointer'>
             경기정보
             <img

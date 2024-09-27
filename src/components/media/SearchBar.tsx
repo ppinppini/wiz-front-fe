@@ -12,7 +12,7 @@ function SearchBar({ onSearch }: SearchBarProps) {
   };
 
   return (
-    <div className="flex gap-2 mb-4">
+    <div className="flex gap-2 mb-4 mt-4">
       <input
         type="text"
         value={input}

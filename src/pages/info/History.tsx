@@ -89,7 +89,7 @@ const KtWizHistory = () => {
     };
   }, []);
   return (
-    <div className="bg-black text-white -z-10">
+    <div className="bg-black text-white -z-10 h-[4400px]">
       <BackgroundImage
         imageUrl={playertogether}
         className="title-banner"
